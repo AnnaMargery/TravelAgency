@@ -23,14 +23,9 @@ public class HomeController {
         return "admin";
     }
 
-    @GetMapping("/manager")
-    public String manager() {
-        return "manager";
-    }
-
-    @GetMapping("/employee")
+    @GetMapping("/user")
     public String employee() {
-        return "employee";
+        return "user";
     }
 
     @GetMapping("/logout")
