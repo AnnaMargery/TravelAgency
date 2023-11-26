@@ -24,7 +24,7 @@ public class HomeController {
     }
 
     @GetMapping("/user")
-    public String employee() {
+    public String user() {
         return "user";
     }
 
