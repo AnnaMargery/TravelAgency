@@ -14,12 +14,10 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UserService  {
+public class UserService {
 
     private final UserRepository userRepository;
-
     private final UserRoleRepository userRoleRepository;
-
     private final PasswordEncoder passwordEncoder;
 
 
@@ -53,7 +51,6 @@ public class UserService  {
         userRepository.save(user);
 
     }
-
 
 
 }
