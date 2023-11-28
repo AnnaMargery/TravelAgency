@@ -10,7 +10,9 @@ import java.util.List;
 public interface LocationRepository extends JpaRepository<LocationModel, Long> {
 
     List<LocationModel> findAllByContinent(String continent);
-    List<LocationModel> findAllByCountry(String continent);
-    List<LocationModel> findAllByCity(String continent);
+    List<LocationModel> findAllByCountry(String country);
+    List<LocationModel> findAllByCity(String city);
+
+
 
 }

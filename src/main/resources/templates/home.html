@@ -1,5 +1,6 @@
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -10,11 +11,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand">Spring Security Login With Database Authentication</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Dodaj Wycieczke</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/logout}">Przeglądaj111 </a>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Przeglądaj2222 </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}">Zapisz się na wycieczke </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  sec:authorize="hasRole('USER') or hasRole('ADMIN')" th:href="@{/logout}">Przeglądaj </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
                 </li>
@@ -22,14 +45,30 @@
         </div>
     </div>
 </nav>
-<br /><br />
-<body>
+<br/><br/>
+
 <div class="container">
     <div class="row">
         <h1> Welcome to Spring Security world!</h1>
         <p th:text="${userRoles}"></p>
     </div>
+
+
+    <h2>Welcome</h2>
+    <p>Spring Security Thymeleaf tutorial</p>
+    <div sec:authorize="hasRole('USER')">Text visible to user.</div>
+
+    <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+
+    <div sec:authorize="isAuthenticated()"> Text visible only to authenticated users.</div>
+    Authenticated username:
+    <b><div sec:authentication="name"></div></b>
+    Authenticated user roles:
+    <div sec:authentication="authorities"></div>
+
+    <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> This will only be displayed if authenticated user has role ROLE_ADMIN. </div>
+    <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}"> This will only be displayed if authenticated user has role ADMIN. </div>
+
 </div>
-</body>
 </body>
 </html>
