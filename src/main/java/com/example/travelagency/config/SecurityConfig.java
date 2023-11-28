@@ -24,10 +24,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
         http
-                .csrf(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
+               /* .csrf(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
                 .cors(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
-                .authorizeHttpRequests(a->a.anyRequest().permitAll());          // dodane do ominięcia Security w Postmanie
-                /*.authorizeHttpRequests((authorize) ->
+                .authorizeHttpRequests(a->a.anyRequest().permitAll());          // dodane do ominięcia Security w Postmanie*/
+                .authorizeHttpRequests((authorize) ->
                         authorize
                                 .requestMatchers(new AntPathRequestMatcher("/locations","/locations/*")).hasRole("ADMIN")
                                 .anyRequest().authenticated()
@@ -42,7 +42,7 @@ public class SecurityConfig {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-                );*/
+                );
         return http.build();
     }
 

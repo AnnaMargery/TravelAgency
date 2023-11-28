@@ -1,6 +1,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--      xmlns:sec="http://www.thymeleaf.org">-->
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -18,25 +19,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Dodaj Wycieczke</a>
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}" sec:authorize="hasAuthority('ADMIN')">Dodaj wycieczkę </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/logout}">Przeglądaj111 </a>
-                </li>
-
-                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Przeglądaj2222 </a>
+                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}" sec:authorize="hasAuthority('ADMIN')">Edytuj wycieczkę </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}">Zapisz się na wycieczke </a>
+                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}" sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Przeglądaj wycieczki </a>
                 </li>
 
+
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  sec:authorize="hasRole('USER') or hasRole('ADMIN')" th:href="@{/logout}">Przeglądaj </a>
+                    <a class="nav-link active" aria-current="page"  th:href="@{/logout}" sec:authorize="hasAuthority('USER')">Edytuj swoje dane</a>
                 </li>
+
+
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
