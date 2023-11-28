@@ -15,8 +15,8 @@ public class LocationService {
 
     // todo dto?
 
-    public void addLocation(LocationModel locationToAdd) {
-        locationRepository.save(locationToAdd);
+    public LocationModel addLocation(LocationModel locationToAdd) {
+        return locationRepository.save(locationToAdd);
     }
 
     public List<LocationModel> getLocationList(){
