@@ -20,8 +20,8 @@ public class LocationModel {
     private String city;
 
     @OneToMany(mappedBy = "location")
-    private Set<AddressModel> addressModel;
-
+    private Set<AddressModel> addresses;
+//todo przemyslec
 
 
 }

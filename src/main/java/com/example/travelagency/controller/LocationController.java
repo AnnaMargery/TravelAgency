@@ -32,7 +32,6 @@ public class LocationController {
         }
     }
 
-
     @GetMapping("/continent/{continent}")
     public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable("continent") String continent) {
         try {
