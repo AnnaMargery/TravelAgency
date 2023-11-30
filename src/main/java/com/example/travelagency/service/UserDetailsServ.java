@@ -2,7 +2,7 @@ package com.example.travelagency.service;
 
 import com.example.travelagency.model.UserModel;
 import com.example.travelagency.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,10 +15,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsServ implements UserDetailsService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    public UserDetailsServ(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserModel userModel = userRepository.findByUsernameOrEmail(username, username).get();

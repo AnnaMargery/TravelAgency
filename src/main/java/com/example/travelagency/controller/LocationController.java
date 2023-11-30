@@ -2,7 +2,7 @@ package com.example.travelagency.controller;
 
 import com.example.travelagency.model.LocationModel;
 import com.example.travelagency.service.LocationService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,20 +11,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+
 @RequestMapping(value = "/locations", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class LocationController {
 
     private final LocationService locationService;
 
-    @GetMapping
-    public ResponseEntity<List<LocationModel>> getLocationList() {
-        List<LocationModel> locationList = locationService.getLocationList();
-        return ResponseEntity.ok(locationList);
+    @Autowired
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<LocationModel>> getLocationList() {
+        try {
+            List<LocationModel> locationList = locationService.getLocationList();
+            return ResponseEntity.ok(locationList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
     @GetMapping("/continent/{continent}")
-    public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable String continent) {
+    public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable("continent") String continent) {
         try {
             List<LocationModel> locationList = locationService.getLocationListByContinent(continent);
             return ResponseEntity.ok(locationList);
@@ -34,7 +44,7 @@ public class LocationController {
     }
 
     @GetMapping("/country/{country}")
-    public ResponseEntity<List<LocationModel>> getLocationsByCountry(@PathVariable String country) {
+    public ResponseEntity<List<LocationModel>> getLocationsByCountry(@PathVariable("country") String country) {
         try {
             List<LocationModel> locationModelList = locationService.getLocationListByCountry(country);
             return ResponseEntity.ok(locationModelList);
@@ -44,18 +54,17 @@ public class LocationController {
     }
 
     @GetMapping("/city/{city}")
-    public ResponseEntity<List<LocationModel>> getLocationsByCity(@PathVariable String city) {
+    public ResponseEntity<LocationModel> getLocationsByCity(@PathVariable("city") String city) {
         try {
-            List<LocationModel> locationModelList = locationService.getLocationListByCity(city);
+            LocationModel locationModelList = locationService.getLocationByCity(city);
             return ResponseEntity.ok(locationModelList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    // NIE MOGE JEJ PRZETESTOWAC, BO PRZEZ TO SECURITY NIE MOGE OBEJSC POSTMANA.
     @PostMapping
-    public ResponseEntity<LocationModel> addLocation(@RequestBody LocationModel locationToAdd){
+    public ResponseEntity<LocationModel> addLocation(@RequestBody LocationModel locationToAdd) {
         try {
             LocationModel location = locationService.addLocation(locationToAdd);
             return ResponseEntity.ok(location);
@@ -64,7 +73,14 @@ public class LocationController {
         }
     }
 
-
-
+    @PutMapping
+    public ResponseEntity<LocationModel> saveEditLocation(@RequestBody LocationModel locationToEdit) {
+        try {
+            LocationModel updateLocation = locationService.saveEditLocation(locationToEdit);
+            return ResponseEntity.ok(updateLocation);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 }

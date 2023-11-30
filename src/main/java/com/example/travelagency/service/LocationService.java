@@ -2,24 +2,27 @@ package com.example.travelagency.service;
 
 import com.example.travelagency.model.LocationModel;
 import com.example.travelagency.repository.LocationRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class LocationService {
 
     private final LocationRepository locationRepository;
 
-    // todo dto?
+    @Autowired
+    public LocationService(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
+
 
     public LocationModel addLocation(LocationModel locationToAdd) {
         return locationRepository.save(locationToAdd);
     }
 
-    public List<LocationModel> getLocationList(){
+    public List<LocationModel> getLocationList() {
         return locationRepository.findAll();
     }
 
@@ -32,12 +35,12 @@ public class LocationService {
         return locationRepository.findAllByCountry(country);
     }
 
-    public List<LocationModel> getLocationListByCity(String city) {
-        return locationRepository.findAllByCity(city);
+    public LocationModel getLocationByCity(String city) {
+        return locationRepository.findLocationByCity(city);
     }
 
-    public void saveEditLocation(LocationModel locationToEdit) {
-        locationRepository.save(locationToEdit);
+    public LocationModel saveEditLocation(LocationModel locationToEdit) {
+        return locationRepository.save(locationToEdit);
     }
 
     public void deleteLocation(LocationModel locationToDelete) {
