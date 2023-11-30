@@ -3,6 +3,8 @@ package com.example.travelagency.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Data
 public class LocationModel {
@@ -17,6 +19,9 @@ public class LocationModel {
     @Column(nullable = false)
     private String city;
 
-    //todo dodać relacje z Adress
+    @OneToMany(mappedBy = "location")
+    private Set<AddressModel> addressModel;
+
+
 
 }

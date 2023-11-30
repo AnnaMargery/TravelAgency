@@ -12,7 +12,9 @@ INSERT INTO location_model (continent,country,city) values ('Europe', 'Spain','G
 INSERT INTO location_model (continent,country,city) values ('Europe', 'Spain','Lanzarote');
 INSERT INTO location_model (continent,country,city) values ('Asia', 'China','Beijing');
 
-/*.......Model init data*/
+/* AddressModel init data*/
+INSERT INTO address_model (street,postal_code,location_id) values ('15 Pl. Vendôme', '75001',1);
+
 
 
 /*.......Model init data*/
