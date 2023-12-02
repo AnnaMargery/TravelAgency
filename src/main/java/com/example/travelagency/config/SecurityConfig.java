@@ -24,25 +24,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
         http
-                .csrf(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
-                .cors(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
-                .authorizeHttpRequests(a->a.anyRequest().permitAll());          // dodane do ominięcia Security w Postmanie*/
-//                .authorizeHttpRequests((authorize) ->
-//                        authorize
-//                                .requestMatchers(new AntPathRequestMatcher("/locations","/locations/*")).hasRole("ADMIN")
-//                                .anyRequest().authenticated()
-//                )
-//                .formLogin(
-//                        form -> form
-//                                .loginPage("/login")
-//                                .loginProcessingUrl("/login")
-//                                .defaultSuccessUrl("/")
-//                                .permitAll()
-//                ).logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .permitAll()
-//                );
+//                .csrf(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
+//                .cors(c->c.disable())                                           // dodane do ominięcia Security w Postmanie
+//                .authorizeHttpRequests(a->a.anyRequest().permitAll());          // dodane do ominięcia Security w Postmanie*/
+                .authorizeHttpRequests((authorize) ->
+                        authorize
+                                .requestMatchers(new AntPathRequestMatcher("/locations","/locations/*")).hasRole("ADMIN")
+                                .anyRequest().authenticated()
+                )
+                .formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/")
+                                .permitAll()
+                ).logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .permitAll()
+                );
         return http.build();
     }
 

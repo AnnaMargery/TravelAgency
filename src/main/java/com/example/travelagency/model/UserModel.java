@@ -19,7 +19,7 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private String name; usunięto bo name = userName
+    private String name;
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false, unique = true)

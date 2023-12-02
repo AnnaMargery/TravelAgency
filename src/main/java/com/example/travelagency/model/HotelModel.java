@@ -11,9 +11,10 @@ public class HotelModel {
     private Long id;
     private String name;
     private Integer standard;
+    private String description;
     @OneToOne
     private AddressModel address;
-// todo przemyslec opis obiektu hotelowego jako dodatkowe pole
+
 
 
 }
