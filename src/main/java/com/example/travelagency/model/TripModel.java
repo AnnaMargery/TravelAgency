@@ -13,7 +13,7 @@ public class TripModel {
     private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Integer Duration;
+    private Integer duration;
     private Integer numberOfPlaces;
     private boolean isPromoted;
     @OneToOne
@@ -22,8 +22,14 @@ public class TripModel {
     private AirportModel airportTo;
     @OneToOne
     private HotelModel hotel;
-    @OneToMany(mappedBy = "tripModel")
-    private Set<PriceModel> price;
+
+
+    //TODO relacjaTrip&Price
+//    @OneToMany (mappedBy = "tripModel")
+//    private Set<PriceModel> price;
+    @OneToOne
+   private PriceModel price;
+
 
 
 
