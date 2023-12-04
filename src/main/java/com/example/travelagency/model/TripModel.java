@@ -1,10 +1,13 @@
 package com.example.travelagency.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
+@Getter
 public class TripModel {
 
     @Id
@@ -21,8 +24,8 @@ public class TripModel {
     private AirportModel airportTo;
     @OneToOne
     private HotelModel hotel;
-    @OneToOne
-    private PriceModel price;
+    @ManyToMany(mappedBy = "trip")
+    private Set<PriceModel> price;
 
 
 }

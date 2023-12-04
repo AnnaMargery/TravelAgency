@@ -38,17 +38,8 @@ public class AddressService {
         return addressRepository.save(addressToAdd);
     }
 
-
     public List<AddressModel> findAddressByContinent(String continent) {
-        List<AddressModel> allAddresses = addressRepository.findAll();
-        List<AddressModel> addressByContinent = addressRepository.findAll();
-
-        for (AddressModel address : allAddresses) {
-            if(address.getLocation().getContinent().equals(continent)){
-                addressByContinent.add(address);
-            }
-        }
-        return addressByContinent;
+        return addressRepository.findAllByLocationContinentContains(continent);
     }
 
     public void deleteAddress(Long addressId) throws ApiRequestException {

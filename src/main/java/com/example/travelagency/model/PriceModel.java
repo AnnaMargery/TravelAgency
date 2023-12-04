@@ -1,8 +1,12 @@
 package com.example.travelagency.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
+import java.util.Set;
 
 @Entity
+@Getter
 public class PriceModel {
 
     @Id
@@ -12,10 +16,8 @@ public class PriceModel {
     private Double priceForChildren;
     @OneToOne
     private FoodModel food;
-    @OneToOne
-    private TripModel tripModel;
-
-
+    @ManyToMany
+    private Set<TripModel> trip;
 
 
 

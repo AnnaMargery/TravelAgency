@@ -11,12 +11,10 @@ import java.util.List;
 @Service
 public class TripService {
     private final TripRepository tripRepository;
-    private final LocationRepository locationRepository;
 
     @Autowired
     public TripService(TripRepository tripRepository, LocationRepository locationRepository, LocationRepository locationRepository1) {
         this.tripRepository = tripRepository;
-        this.locationRepository = locationRepository;
     }
 
     /*public TripModel addTrip(TripModel tripToAdd) {
@@ -26,6 +24,11 @@ public class TripService {
     public List<TripModel> getTripList() {
         return tripRepository.findAll();
     }
+
+    public List<TripModel> getTripsByContinent(String continent){
+        return tripRepository.findTripModelByHotelAddressLocationContinent(continent);
+    }
+
 
 //todo wyszukiwanie wycieczek po miescie/lotnisku wylotu
 //  miescie/hotelu pobytu

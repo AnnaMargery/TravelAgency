@@ -1,8 +1,10 @@
 package com.example.travelagency.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class HotelModel {
 
 

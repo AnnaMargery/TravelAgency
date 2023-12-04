@@ -14,6 +14,8 @@ public interface AddressRepository extends JpaRepository<AddressModel, Long> {
 
     List<AddressModel> findAllByStreet(String streetName);
 
+    List<AddressModel> findAllByLocationContinentContains(String continent);
+
 
 
 }
