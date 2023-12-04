@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.LocationModel;
 import com.example.travelagency.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,17 @@ public class LocationController {
         }
     }
 
+    //todo zapytać Mikolaja o exceptiony
     @GetMapping("/continent/{continent}")
-    public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable("continent") String continent) {
+    public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable("continent") String continent) throws ApiRequestException {
         try {
             List<LocationModel> locationList = locationService.getLocationListByContinent(continent);
             return ResponseEntity.ok(locationList);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new ApiRequestException("Ooops Location by this continent not found");
         }
     }
 
@@ -79,6 +84,16 @@ public class LocationController {
             return ResponseEntity.ok(updateLocation);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DeleteMapping ("/{id}")
+    public ResponseEntity<Void> deleteLocation(@RequestBody Long id) {
+        try {
+            locationService.deleteLocation(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

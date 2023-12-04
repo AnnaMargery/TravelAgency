@@ -1,8 +1,12 @@
 package com.example.travelagency.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class AddressModel {
 
     @Id

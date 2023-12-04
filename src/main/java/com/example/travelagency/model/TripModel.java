@@ -3,7 +3,6 @@ package com.example.travelagency.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 public class TripModel {
@@ -22,17 +21,8 @@ public class TripModel {
     private AirportModel airportTo;
     @OneToOne
     private HotelModel hotel;
-
-
-    //TODO relacjaTrip&Price
-//    @OneToMany (mappedBy = "tripModel")
-//    private Set<PriceModel> price;
     @OneToOne
-   private PriceModel price;
-
-
-
-
+    private PriceModel price;
 
 
 }
