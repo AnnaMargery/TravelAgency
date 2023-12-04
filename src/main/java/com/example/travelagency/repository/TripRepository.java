@@ -10,23 +10,6 @@ import java.util.List;
 @Repository
 public interface TripRepository extends JpaRepository<TripModel, Long> {
     List<TripModel> findAll();
+    List<TripModel> findTripModelByHotelAddressLocationContinent(String continent);
 
-//
-//    List<TripModel> findAllByCountry(String country);
-//
-//    List<TripModel> findAllByCity(String city);
-//
-//    List<TripModel> findAllByHotel(HotelModel hotel);
-//
-//    List<TripModel> findAllByAirportFrom(AirportModel airport);
-//
-//    List<TripModel> findAllByAirportTo(AirportModel airport);
-//
-//    List<TripModel> findAllByHotelStandard(Integer standard);
-//
-//    List<TripModel> findAllByDuration(Integer duration);
-//
-//    List<TripModel> findAllByPromoted(Boolean isPromoted);
-//
-//    List<TripModel> findAllByStartDateIsLessThanEqual(LocalDate startDate);
 }

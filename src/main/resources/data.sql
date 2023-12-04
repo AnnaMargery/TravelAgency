@@ -89,9 +89,21 @@ INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Hotel Prague 1', 4, 'Nice hotel', 6);
 
 /*TripModel init data*/
-//TODO
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id,price_id)
-values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-01-01','2024-01-08',7,50,'true',6,1,5);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-01-10','2024-01-15',5,30,'true',1,2,2);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-01-01','2024-01-08',7,50,'true',4,3,3);
+
+
+--
+-- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
+-- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
+-- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
+-- values('2024-01-10','2024-01-15',5,30,'true',1,2,2,2);
+-- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
+-- values('2024-01-01','2024-01-08',7,50,'true',4,3,3,3);
 
 
 /*FoodModel init data*/
@@ -107,9 +119,19 @@ INSERT INTO food_model(food_option)
 values('Only Bed');
 
 /*PriceModel init data*/
-
 INSERT INTO price_model (price_for_adult,price_for_children, food_id)
- values(120,70,1);
+ values(1200,600,1);
+INSERT INTO price_model (price_for_adult,price_for_children, food_id)
+values(1000,500,2);
+INSERT INTO price_model (price_for_adult,price_for_children, food_id)
+values(800,400,3);
 
-
-
+/*PriceModel_TripModel*/
+INSERT INTO price_model_trip (price_id,trip_id)
+values(1,1);
+INSERT INTO price_model_trip  (price_id,trip_id)
+values(2,1);
+INSERT INTO price_model_trip  (price_id,trip_id)
+values(1,2);
+INSERT INTO price_model_trip (price_id,trip_id)
+values(2,2);

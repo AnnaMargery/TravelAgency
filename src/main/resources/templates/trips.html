@@ -8,29 +8,41 @@
 </head>
 <body>
 <h2>TRIPS</h2>
-
+<div>
 <tr th:each="trip : ${trips}">
-<td th:text="${trip}"></td>
+
+<td th:text="${trip.id}"></td> <br>
+<td th:text="${trip.startDate}"></td> <br>
+<td th:text="${trip.endDate}"></td> <br>
+<td th:text="${trip.duration}"></td><br>
+<td th:text="${trip.numberOfPlaces}"></td><br>
+<td th:text="${trip.isPromoted}"></td><br>
+<td th:text="${trip.airportFrom.name}"></td><br>
+<td th:text="${trip.airportTo.name}"></td><br>
+<td th:text="${trip.hotel.name}"></td><br>
 </tr>
+</div>
 
-//todo
+</div>
 
-<!--<tr th:each="cartItem : ${@cart.cartItems}">-->
+
+
+<!--<tr th:each="trip : ${trips}">-->
 <!--    <td>1</td>-->
-<!--    <td>-->
-<!--        <img th:src="@{${cartItem.item.imgUrl}}">-->
-<!--    </td>-->
-<!--    <td th:text="${cartItem.item.name}"></td>-->
+<!--&lt;!&ndash;    <td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <img th:src="@{${cartItem.item.imgUrl}}">&ndash;&gt;-->
+<!--&lt;!&ndash;    </td>&ndash;&gt;-->
+<!--    <td th:text="${trip.startDate}"></td>-->
 <!--    <td style="display: flex; padding-top: 10px">-->
 <!--        <a class="mbtn" th:href="@{'/order/decrease/' + ${cartItem.item.id}}">-</a>-->
 <!--        <p th:text="${cartItem.counter}"></p>-->
 <!--        <a class="mbtn" th:href="@{'/order/increase/' + ${cartItem.item.id}}">+</a>-->
 <!--    </td>-->
-<!--    <td th:text="${cartItem.price}"></td>-->
+<!--    <td th:text="${trip.endDate}"></td>-->
 <!--    <td>-->
 <!--        <a class="mbtn" th:href="@{'/order/remove/' + ${cartItem.item.id}}">X</a>-->
 <!--    </td>-->
-<!--</tr>-->
+</tr>
 
 
 
