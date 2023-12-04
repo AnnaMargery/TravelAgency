@@ -1,5 +1,6 @@
 package com.example.travelagency.service;
 
+import com.example.travelagency.exception.ApiExceptionHandler;
 import com.example.travelagency.model.LocationModel;
 import com.example.travelagency.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,11 @@ public class LocationService {
         return locationRepository.save(locationToEdit);
     }
 
-    public void deleteLocation(LocationModel locationToDelete) {
-        locationRepository.save(locationToDelete);
+    public void deleteLocation(Long id) {
+        locationRepository.deleteById(id);
     }
 
+    public LocationModel findById(Long locationId) throws ApiExceptionHandler {
+        return locationRepository.findById(locationId).orElseThrow(ApiExceptionHandler::new);
+    }
 }

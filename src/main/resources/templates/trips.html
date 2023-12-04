@@ -3,9 +3,37 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>trips.html</title>
+    <link rel="stylesheet" type="text/css" 
+    href="../static/css/styles.css">
 </head>
 <body>
-<p>trips.html</p>
-</form>
+<h2>TRIPS</h2>
+
+<tr th:each="trip : ${trips}">
+<td th:text="${trip}"></td>
+</tr>
+
+//todo
+
+<!--<tr th:each="cartItem : ${@cart.cartItems}">-->
+<!--    <td>1</td>-->
+<!--    <td>-->
+<!--        <img th:src="@{${cartItem.item.imgUrl}}">-->
+<!--    </td>-->
+<!--    <td th:text="${cartItem.item.name}"></td>-->
+<!--    <td style="display: flex; padding-top: 10px">-->
+<!--        <a class="mbtn" th:href="@{'/order/decrease/' + ${cartItem.item.id}}">-</a>-->
+<!--        <p th:text="${cartItem.counter}"></p>-->
+<!--        <a class="mbtn" th:href="@{'/order/increase/' + ${cartItem.item.id}}">+</a>-->
+<!--    </td>-->
+<!--    <td th:text="${cartItem.price}"></td>-->
+<!--    <td>-->
+<!--        <a class="mbtn" th:href="@{'/order/remove/' + ${cartItem.item.id}}">X</a>-->
+<!--    </td>-->
+<!--</tr>-->
+
+
+
+
 </body>
 </html>

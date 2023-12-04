@@ -1,6 +1,5 @@
 package com.example.travelagency.service;
 
-
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.LocationRepository;
 import com.example.travelagency.repository.TripRepository;
@@ -15,7 +14,7 @@ public class TripService {
     private final LocationRepository locationRepository;
 
     @Autowired
-    public TripService(TripRepository tripRepository, LocationRepository locationRepository) {
+    public TripService(TripRepository tripRepository, LocationRepository locationRepository, LocationRepository locationRepository1) {
         this.tripRepository = tripRepository;
         this.locationRepository = locationRepository;
     }
@@ -27,6 +26,18 @@ public class TripService {
     public List<TripModel> getTripList() {
         return tripRepository.findAll();
     }
+
+//todo wyszukiwanie wycieczek po miescie/lotnisku wylotu
+//  miescie/hotelu pobytu
+//  wycieczki po kontynentach
+//  wycieczki po krajach
+//  wycieczki po opcji wyzywienia
+//  po standardzie
+//  po ilosci dni pobytu
+// sortowanie po cenie
+// po dacie wylotu
+// zblizajace sie wycieczki
+
 
 /*
     public List<TripModel> getTripListByContinent(String continent){

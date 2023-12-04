@@ -12,12 +12,7 @@ public class PriceModel {
     private Double priceForChildren;
     @OneToOne
     private FoodModel food;
-
-
-    //TODO relacjaTrip&Price
-//    @ManyToOne
-//    private TripModel tripModel;
-    @OneToOne(mappedBy = "price")
+    @OneToOne
     private TripModel tripModel;
 
 

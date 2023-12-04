@@ -10,8 +10,10 @@ import java.util.List;
 public interface LocationRepository extends JpaRepository<LocationModel, Long> {
 
     List<LocationModel> findAllByContinent(String continent);
+
     List<LocationModel> findAllByCountry(String country);
+
     LocationModel findLocationByCity(String city);
 
-
+    void deleteAddressById(Long addressId);
 }

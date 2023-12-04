@@ -90,13 +90,25 @@ values ('Hotel Prague 1', 4, 'Nice hotel', 6);
 
 /*TripModel init data*/
 //TODO
-   INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id,price_id)
-    values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id,price_id)
+values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
 
- INSERT INTO food_model(food_option)
- values('allinc');
 
-  INSERT INTO price_model (price_for_adult,price_for_children, food_id)
+/*FoodModel init data*/
+INSERT INTO food_model(food_option)
+values('All-Inclusive');
+INSERT INTO food_model(food_option)
+values('Full-Board');
+INSERT INTO food_model(food_option)
+values('Half-Board');
+INSERT INTO food_model(food_option)
+values('Bed and Breakfast');
+INSERT INTO food_model(food_option)
+values('Only Bed');
+
+/*PriceModel init data*/
+
+INSERT INTO price_model (price_for_adult,price_for_children, food_id)
  values(120,70,1);
 
 
