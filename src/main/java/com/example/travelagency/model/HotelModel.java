@@ -2,9 +2,11 @@ package com.example.travelagency.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.ToString;
 
 @Entity
 @Getter
+@ToString
 public class HotelModel {
 
 

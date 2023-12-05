@@ -1,6 +1,7 @@
 package com.example.travelagency.service;
 
 import com.example.travelagency.exception.ApiExceptionHandler;
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
 import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.repository.AddressRepository;
@@ -29,8 +30,8 @@ public class HotelService {
         return hotelRepository.findAll();
     }
 
-    public HotelModel getHotelById(Long hotelId) throws ApiExceptionHandler {
-        return hotelRepository.findById(hotelId).orElseThrow(ApiExceptionHandler::new);
+    public HotelModel getHotelById(Long hotelId){
+        return hotelRepository.findById(hotelId).orElseThrow();
     }
 
      public List<HotelModel> getHotelsByStandard(Integer standard){
