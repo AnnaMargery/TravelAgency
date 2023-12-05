@@ -17,6 +17,11 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/start")
+    public String start() {
+        return "bootStrap";
+    }
+
     @GetMapping("/admin")
     public String admin() {
         return "admin";
