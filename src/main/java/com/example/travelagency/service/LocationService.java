@@ -6,7 +6,10 @@ import com.example.travelagency.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class LocationService {
@@ -23,8 +26,18 @@ public class LocationService {
         return locationRepository.save(locationToAdd);
     }
 
+
     public List<LocationModel> getLocationList() {
         return locationRepository.findAll();
+    }
+
+    public Set<String> getListOfContinents () {
+        List<LocationModel> allLocations = locationRepository.findAll();
+        Set<String> continents = new HashSet<>();
+        for (LocationModel location : allLocations) {
+            continents.add(location.getContinent());
+        }
+        return continents;
     }
 
     public List<LocationModel> getLocationListByContinent(String continent) {
