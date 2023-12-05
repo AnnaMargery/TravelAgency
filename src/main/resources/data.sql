@@ -96,7 +96,18 @@ values('2024-01-10','2024-01-15',5,30,'true',1,2,2);
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
 values('2024-01-01','2024-01-08',7,50,'true',4,3,3);
 
-
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-03-01','2024-03-15',14,70,'true',5,1,4);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-03-01','2024-03-08',7,70,'true',6,2,2);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-03-05','2024-03-15',10,20,'true',6,3,3);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-02-03','2024-02-13',10,40,'true',5,1,1);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-02-03','2024-02-13',10,70,'false',5,1,4);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id)
+values('2024-02-03','2024-02-13',10,20,'false',5,1,5);
 --
 -- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
 -- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
