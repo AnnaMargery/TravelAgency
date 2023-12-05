@@ -18,11 +18,12 @@ public class TripModel {
     private Integer duration;
     private Integer numberOfPlaces;
     private boolean isPromoted;
-    @OneToOne
+
+    @ManyToOne
     private AirportModel airportFrom;
-    @OneToOne
+    @ManyToOne
     private AirportModel airportTo;
-    @OneToOne
+    @ManyToOne
     private HotelModel hotel;
     @ManyToMany(mappedBy = "trip")
     private Set<PriceModel> price;
