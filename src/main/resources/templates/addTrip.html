@@ -67,9 +67,11 @@
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Select Country</label>
-                        <select class="form-control">
-                            <option>Default select</option>
+                        <label>Select Continent</label>
+                        <select class="form-control" th:value="${countries}">
+                            <option disable>Please select</option>
+                            <option th:each="country : ${countries}"
+                                    th:value="${country}" th:text="${country}"/>
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
@@ -90,18 +92,20 @@
 
                     <div class="col-md-6 form-group">
                     <label>Select Departure Airport</label>
-                    <select class="form-control">
-                        <th:block th:each="idsAndText : ${deviceidsAndwhatToUpdateText}">
-                            <option th:each="tripModel : ${tripModel.getAirportTo()}"/>
-                        </th:block>
-                    </select>
+                        <select class="form-control" th:value="${airports}">
+                            <option disable>Please select</option>
+                            <option th:each="airport : ${airports}"
+                                    th:value="${airport}" th:text="${airport}"/>
+                        </select>
                     </div>
 
                     <div class="col-md-6 form-group">
                     <label>Select Arrival Airport</label>
-                    <select class="form-control">
-                        <option>Airport to</option>
-                    </select>
+                        <select class="form-control" th:value="${airports}">
+                            <option disable>Please select</option>
+                            <option th:each="airport : ${airports}"
+                                    th:value="${airport}" th:text="${airport}"/>
+                        </select>
                     </div>
 
                     <div class="col-md-6 form-group">

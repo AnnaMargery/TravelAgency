@@ -49,6 +49,15 @@ public class LocationService {
         return continents;
     }
 
+    public Set<String> getListOfCountires() {
+        List<LocationModel> allLocations = locationRepository.findAll();
+        Set<String> countries = new HashSet<>();
+        for (LocationModel location : allLocations) {
+            countries.add(location.getCountry());
+        }
+        return countries;
+    }
+
     public List<LocationModel> getLocationListByContinent(String continent) {
         if (!locationRepository.findAllLocationsByContinent(continent).isEmpty()) {
             return locationRepository.findAllLocationsByContinent(continent);
