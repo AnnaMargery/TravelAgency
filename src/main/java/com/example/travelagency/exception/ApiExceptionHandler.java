@@ -9,11 +9,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @ControllerAdvice
-public class ApiExceptionHandler extends Exception {
+public class ApiExceptionHandler{
 
     @ExceptionHandler(value = {ApiRequestException.class})
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException e) {
-        // Create payload containtin exception and details
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
 
         ApiException apiException = new ApiException(
@@ -21,8 +20,18 @@ public class ApiExceptionHandler extends Exception {
                 badRequest,
                 ZonedDateTime.now(ZoneId.of("Z"))
         );
-        // return response entity
         return new ResponseEntity<>(apiException, badRequest);
+    }
 
+    @ExceptionHandler(value = {ApiInputException.class})
+    public ResponseEntity<Object> handleApiInputException(ApiInputException e) {
+        HttpStatus badRequest = HttpStatus.NOT_ACCEPTABLE;
+
+        ApiException apiException = new ApiException(
+                e.getMessage(),
+                badRequest,
+                ZonedDateTime.now(ZoneId.of("Z"))
+        );
+        return new ResponseEntity<>(apiException, badRequest);
     }
 }

@@ -2,12 +2,14 @@ package com.example.travelagency.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
 @Getter
+@ToString
 public class TripModel {
 
     @Id
@@ -18,7 +20,6 @@ public class TripModel {
     private Integer duration;
     private Integer numberOfPlaces;
     private boolean isPromoted;
-
     @ManyToOne
     private AirportModel airportFrom;
     @ManyToOne

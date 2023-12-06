@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Set;
@@ -31,7 +33,6 @@ public class TripController {
         return "trips";
     }
 
-    //todo sprawdzić iterowanie przy tego typu
     @GetMapping("continent/{continent}")
     public String getTripList(@PathVariable(value = "continent") String continent, Model model){
         List<TripModel>tripsByContinent = tripService.getTripsByContinent(continent);
@@ -55,6 +56,8 @@ public class TripController {
         model.addAttribute("tripModel", tripModel);
         return "getTrips";
     }
+
+
 
 
 

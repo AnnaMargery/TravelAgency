@@ -16,6 +16,4 @@ public class AirportModel {
     @OneToOne
     private AddressModel address;
 
-
-
 }

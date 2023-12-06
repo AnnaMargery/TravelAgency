@@ -1,8 +1,8 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
 import com.example.travelagency.service.AddressService;
-import com.example.travelagency.service.LocationService;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,11 @@ import java.util.List;
 public class AddressController {
 
     private final AddressService addressService;
-    private final LocationService locationService;
+
 
     @Autowired
-    public AddressController(AddressService addressService, LocationService locationService) {
+    public AddressController(AddressService addressService) {
         this.addressService = addressService;
-        this.locationService = locationService;
     }
 
     @GetMapping
@@ -33,31 +32,44 @@ public class AddressController {
         try {
             List<AddressModel> addressList = addressService.getAddressList();
             return ResponseEntity.ok(addressList);
-        } catch (Exception e){
-           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @GetMapping("continent/{continent}")
-    public ResponseEntity<List<AddressModel>> getAddressesByContinent(@PathVariable String continent) {
-        try {
-            List<AddressModel> addressByContinent = addressService.findAddressByContinent(continent);
-            return ResponseEntity.ok(addressByContinent);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
-
-    @PostMapping()
-    public ResponseEntity<AddressModel> addAddress(@RequestBody AddressModel addressToAdd, Long locationId) {
-        try {
-            AddressModel address = addressService.addAddress(addressToAdd, locationId);
-            return ResponseEntity.ok(address);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
+    @GetMapping("continent/{continent}")
+    public ResponseEntity<List<AddressModel>> getAddressesByContinent(@PathVariable String continent) {
+        List<AddressModel> addressByContinent = addressService.findAddressesByContinent(continent);
+        return ResponseEntity.ok(addressByContinent);
+    }
 
-//TODO zaimplemnetowac metody delete/ i edit/ find by id?
+    @GetMapping("/{addressId}")
+    public ResponseEntity<AddressModel> getAddressById(@PathVariable Long addressId) {
+        try {
+            AddressModel addressByContinent = addressService.findAddressById(addressId);
+            return ResponseEntity.ok(addressByContinent);
+        } catch (ApiRequestException e) {
+            throw new ApiRequestException("Address not found for id: " + addressId);
+        }
+    }
+
+    @PostMapping()
+    public ResponseEntity<AddressModel> addAddress(@RequestBody AddressModel addressToAdd, Long locationId) {
+        AddressModel address = addressService.addAddress(addressToAdd, locationId);
+        return ResponseEntity.ok(address);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAddress(@PathVariable Long id) {
+        addressService.deleteAddress(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("addressToUpdate")
+    public ResponseEntity<AddressModel> saveEditAddress(@RequestBody AddressModel addressToUpdate){
+        AddressModel updatedAddress = addressService.updateAddress(addressToUpdate);
+        return ResponseEntity.ok(updatedAddress);
+    }
+
+    //todo zrobić testy w Postmanie!
 }
