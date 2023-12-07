@@ -8,7 +8,9 @@ import com.example.travelagency.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class HotelService {
@@ -33,6 +35,16 @@ public class HotelService {
         }
         throw new ApiRequestException("Hotel not found for id: " + hotelId);
     }
+    public Set<String> getHotelModelNames() {
+        List<HotelModel> allHotels = hotelRepository.findAll();
+        Set<String> hotels = new HashSet<>();
+        for (HotelModel hotel : allHotels) {
+            hotels.add(hotel.getName());
+        }
+        return hotels;
+    }
+
+
 
     public List<HotelModel> getHotelsByContinent(String continent) {
         if (!hotelRepository.getAllByAddress_LocationContinent(continent).isEmpty()) {

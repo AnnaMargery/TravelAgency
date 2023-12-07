@@ -6,8 +6,7 @@ import com.example.travelagency.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TripService {
@@ -18,9 +17,6 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
-    /*public TripModel addTrip(TripModel tripToAdd) {
-        return tripRepository.save(tripToAdd);
-    }*/
 
     public List<TripModel> getTripList() {
         return tripRepository.findAll();
@@ -29,6 +25,17 @@ public class TripService {
     public List<TripModel> getTripsByContinent(String continent){
         return tripRepository.findTripModelByHotelAddressLocationContinent(continent);
     }
+
+    public List<String> getFoodOptions() {
+        List<String> foods = new ArrayList<>();
+        foods.add("Only Bed");
+        foods.add("Bed and Breakfast");
+        foods.add("Half-Board");
+        foods.add("Full-Board");
+        foods.add("All-Inclusive");
+        return foods;
+    }
+
 
     public void PostAddTrip(TripModel trip) {
         tripRepository.save(trip);
