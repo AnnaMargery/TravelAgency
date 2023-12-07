@@ -21,9 +21,6 @@ public class TripOrderModel {
     private Integer numberOfAdults;
     private Integer numberOfChildren;
 
-    @ManyToOne
-    private FoodModel foodOption;
-
     //private Double totalPrice;
 
 }
