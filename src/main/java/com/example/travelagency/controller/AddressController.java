@@ -29,12 +29,8 @@ public class AddressController {
 
     @GetMapping
     public ResponseEntity<List<AddressModel>> getAddressList() {
-        try {
-            List<AddressModel> addressList = addressService.getAddressList();
-            return ResponseEntity.ok(addressList);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        List<AddressModel> addressList = addressService.getAddressList();
+        return ResponseEntity.ok(addressList);
     }
 
     @GetMapping("continent/{continent}")
@@ -45,12 +41,8 @@ public class AddressController {
 
     @GetMapping("/{addressId}")
     public ResponseEntity<AddressModel> getAddressById(@PathVariable Long addressId) {
-        try {
-            AddressModel addressByContinent = addressService.findAddressById(addressId);
-            return ResponseEntity.ok(addressByContinent);
-        } catch (ApiRequestException e) {
-            throw new ApiRequestException("Address not found for id: " + addressId);
-        }
+        AddressModel addressById = addressService.findAddressById(addressId);
+        return ResponseEntity.ok(addressById);
     }
 
     @PostMapping()
@@ -66,7 +58,7 @@ public class AddressController {
     }
 
     @PutMapping("addressToUpdate")
-    public ResponseEntity<AddressModel> saveEditAddress(@RequestBody AddressModel addressToUpdate){
+    public ResponseEntity<AddressModel> saveEditAddress(@RequestBody AddressModel addressToUpdate) {
         AddressModel updatedAddress = addressService.updateAddress(addressToUpdate);
         return ResponseEntity.ok(updatedAddress);
     }

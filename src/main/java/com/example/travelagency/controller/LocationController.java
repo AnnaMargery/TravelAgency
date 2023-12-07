@@ -37,7 +37,6 @@ public class LocationController {
     public ResponseEntity<List<LocationModel>> getLocationsByCountry(@PathVariable("country") String country) {
         List<LocationModel> locationModelList = locationService.getLocationListByCountry(country);
         return ResponseEntity.ok(locationModelList);
-
     }
 
     @GetMapping("/city/{city}")
