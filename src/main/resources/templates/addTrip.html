@@ -87,7 +87,7 @@
 
                     <div class="col-md-6 form-group">
                         <label>Number of places</label>
-                       <input type="number" class="form-control" >
+                       <input type="number" th:value="*{trip.getNumberOfPlaces()}" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
@@ -110,30 +110,55 @@
 
                     <div class="col-md-6 form-group">
                         <label>Select Hotel</label>
-                        <select class="form-control">
-                            <option>Hotel</option>
+                        <select class="form-control" th:value="${hotels}">
+                            <option disable>Please select</option>
+                            <option th:each="hotel : ${hotels}"
+                                    th:value="${hotel}" th:text="${hotel}"/>
                         </select>
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Select Food Option</label>
-                        <select class="form-control">
-                            <option>Food Option</option>
+                        <select class="form-control" th:value="${foods}">
+                            <option disable>Please select</option>
+                            <option th:each="food : ${foods}"
+                                    th:value="${food}" th:text="${food}"/>
                         </select>
                     </div>
-                </div>
 
-                <div class="col-md-6 form-group">
-                    <label>Promoted</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="option1" value="Yes">
-                        <label class="form-check-label" for="option1">Yes</label>
+                    <div class="col-md-6 form-group">
+                        <label>Is trip promoted? </label>
+                        <select class="form-control" th:field="*{promotion}">
+                            <option disabled th:value="'false'">Please select</option>
+                            <option th:value="'true'" th:text="Yes"></option>
+                            <option th:value="'false'" th:text="No"></option>
+                        </select>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="option2" value="No">
-                        <label class="form-check-label" for="option2">No</label>
+
+                    <div class="row col-md-6 form-group">
+                    <div class="col-md-6 form-group">
+                        <label>Price for adult</label>
+                        <input type="number" step="0.01" th:value="${priceAdult}"class="form-control" >
                     </div>
-                </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Price for child</label>
+                        <input type="number" step="0.01" th:value="*{trip.getPriceForChild()}" class="form-control" >
+                    </div>
+                    </div>
+
+
+                    <!--                <div class="col-md-6 form-group">-->
+<!--                    <label>Is promoted? </label>-->
+<!--                    <div class="form-check form-check-inline">-->
+<!--                        <input class="form-check-input" type="radio" th:name="${promoted}" id="option1" value="true">-->
+<!--                        <label class="form-check-label" for="option1">Yes</label>-->
+<!--                    </div>-->
+<!--                    <div class="form-check form-check-inline">-->
+<!--                        <input class="form-check-input" type="radio" th:field="${promoted}" id="option2" value="false" checked>-->
+<!--                        <label class="form-check-label" for="option2">No</label>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
             </form>

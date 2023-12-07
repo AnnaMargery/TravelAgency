@@ -1,9 +1,7 @@
 package com.example.travelagency.controller;
 
 import com.example.travelagency.model.TripModel;
-import com.example.travelagency.service.AirportService;
-import com.example.travelagency.service.LocationService;
-import com.example.travelagency.service.TripService;
+import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +19,17 @@ public class TripController {
     private final LocationService locationService;
     private final AirportService airportService;
 
+    private final FoodService foodService;
+
+    private final HotelService hotelService;
+
     @Autowired
-    public TripController(TripService tripService, LocationService locationService, AirportService airportService) {
+    public TripController(TripService tripService, LocationService locationService, AirportService airportService, FoodService foodService, HotelService hotelService) {
         this.tripService = tripService;
         this.locationService = locationService;
         this.airportService = airportService;
+        this.foodService = foodService;
+        this.hotelService = hotelService;
     }
 
     @GetMapping()
@@ -52,6 +56,18 @@ public class TripController {
         model.addAttribute("countries", countryList);
         Set<String> airportList = airportService.getAirportModelNames();
         model.addAttribute("airports", airportList);
+        Set<String> hotelList = hotelService.getHotelModelNames();
+        model.addAttribute("hotels", hotelList);
+        List<String> foodList = tripService.getFoodOptions();
+        model.addAttribute("foods", foodList);
+        Boolean promotion = tripModel.isPromoted();
+        model.addAttribute("promotion", promotion);
+        Double priceAdult = tripModel.getPriceForAdult();
+        model.addAttribute("priceAdult", priceAdult);
+        Double priceChild = tripModel.getPriceForChild();
+        model.addAttribute("priceChild", priceChild);
+//        Set<Boolean> isPromoted  = tripService.isTripPromoted();
+//        model.addAttribute("promotion",isPromoted);
         return "addTrip";
     }
 
