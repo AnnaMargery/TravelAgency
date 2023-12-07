@@ -1,12 +1,11 @@
 package com.example.travelagency.service;
 
 import com.example.travelagency.model.TripModel;
-import com.example.travelagency.repository.LocationRepository;
 import com.example.travelagency.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
 
 @Service
 public class TripService {
@@ -17,42 +16,72 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
-
     public List<TripModel> getTripList() {
         return tripRepository.findAll();
     }
 
-    public List<TripModel> getTripsByContinent(String continent){
+    public List<TripModel> getTripsByContinent(String continent) {
         return tripRepository.findTripModelByHotelAddressLocationContinent(continent);
     }
 
-    public List<String> getFoodOptions() {
-        List<String> foods = new ArrayList<>();
-        foods.add("Only Bed");
-        foods.add("Bed and Breakfast");
-        foods.add("Half-Board");
-        foods.add("Full-Board");
-        foods.add("All-Inclusive");
-        return foods;
+    List<TripModel> getTripsByCountry(String country) {
+        return tripRepository.findTripModelByHotelAddressLocationCountry(country);
     }
 
+    public List<TripModel> getTripsByCityOfDeparture(String cityOdDeparture) {
+        return tripRepository.findTripModelByAirportFromAddress(cityOdDeparture);
+    }
+
+    public List<TripModel> getTripsByHotelCity(String cityOfHotel) {
+        return tripRepository.findTripModelByHotelAddressLocationCity(cityOfHotel);
+    }
+
+    public List<TripModel> getTripsByFoodOption(String foodOption) {
+        return tripRepository.findTripModelByFoodOption(foodOption);
+    }
+
+    public List<TripModel> getTRipsByHotelStandard(Integer hotelStandard) {
+        return tripRepository.findTripModelByHotelStandard(hotelStandard);
+    }
+
+    public List<TripModel> findTripsByDuration(Integer durationOfTrip) {
+        return tripRepository.findTripModelByDuration(durationOfTrip);
+    }
+
+    public List<TripModel> findTripsPromoted() {
+        return tripRepository.findTripModelByPromotedTrue();
+    }
+
+    //todo nie jestem pewna
+    public List<TripModel> findTripsSortedByPriceForAdultAscendingOrder() {
+        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
+    }
+
+    public List<TripModel> findTripsSortedByPriceForAdultDescendingOrder() {
+        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
+    }
+
+    public List<TripModel> findTripsSortedByDepartureDate() {
+        return tripRepository.findAllByStartDateIsNear();
+    }
 
     public void PostAddTrip(TripModel trip) {
         tripRepository.save(trip);
     }
 
 
-//todo wyszukiwanie wycieczek po miescie/lotnisku wylotu
-//  miescie/hotelu pobytu
-//  wycieczki po kontynentach
-//  wycieczki po krajach
-//  wycieczki po opcji wyzywienia
-//  po standardzie
-//  po ilosci dni pobytu
-// sortowanie po cenie
-// po dacie wylotu
 // zblizajace sie wycieczki
 
+
+//    public List<String> getFoodOptions() {
+//        List<String> foods = new ArrayList<>();
+//        foods.add("Only Bed");
+//        foods.add("Bed and Breakfast");
+//        foods.add("Half-Board");
+//        foods.add("Full-Board");
+//        foods.add("All-Inclusive");
+//        return foods;
+//    }
 
 /*
     public List<TripModel> getTripListByContinent(String continent){

@@ -1,6 +1,7 @@
 package com.example.travelagency.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -21,6 +22,7 @@ public class UserModel {
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false, unique = true)
+    @Email
     private String email;
     @Column(nullable = false)
     private String password;

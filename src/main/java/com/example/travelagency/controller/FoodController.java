@@ -1,7 +1,6 @@
 package com.example.travelagency.controller;
 
 import com.example.travelagency.model.FoodModel;
-import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

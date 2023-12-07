@@ -126,13 +126,6 @@ INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_pro
                         price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
 values ('2024-02-03', '2024-02-13', 10, 20, 'false', 150, 80, 'Only Bed', 5, 1, 5);
---
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-10','2024-01-15',5,30,'true',1,2,2,2);
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-01','2024-01-08',7,50,'true',4,3,3,3);
 
 
 /*FoodModel init data

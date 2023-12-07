@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.model.FoodEnum;
 import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.service.*;
@@ -19,9 +20,7 @@ public class TripController {
     private final TripService tripService;
     private final LocationService locationService;
     private final AirportService airportService;
-
     private final FoodService foodService;
-
     private final HotelService hotelService;
 
     @Autowired
@@ -60,7 +59,8 @@ public class TripController {
         model.addAttribute("airports", airportList);
         List<HotelModel> hotelList = hotelService.getHotelsList();
         model.addAttribute("hotels", hotelList);
-        List<String> foodList = tripService.getFoodOptions();
+//        List<String> foodList = tripService.getFoodOptions();
+        List<FoodEnum> foodList = List.of(FoodEnum.values());
         model.addAttribute("foods", foodList);
         Boolean promotion = tripModel.isPromoted();
         model.addAttribute("promotion", promotion);
