@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.model.AirportModel;
 import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.service.*;
@@ -20,8 +21,6 @@ public class TripController {
     private final LocationService locationService;
     private final AirportService airportService;
 
-    private final FoodService foodService;
-
     private final HotelService hotelService;
 
     @Autowired
@@ -29,7 +28,6 @@ public class TripController {
         this.tripService = tripService;
         this.locationService = locationService;
         this.airportService = airportService;
-        this.foodService = foodService;
         this.hotelService = hotelService;
     }
 
@@ -52,11 +50,13 @@ public class TripController {
         TripModel tripModel = new TripModel();
         model.addAttribute("trip", tripModel);
         model.addAttribute("hotelModel", new HotelModel());
+        model.addAttribute("airportModel", new AirportModel());
         Set<String> continentList = locationService.getListOfContinents();
         model.addAttribute("continents", continentList);
         Set<String> countryList = locationService.getListOfCountires();
         model.addAttribute("countries", countryList);
-        Set<String> airportList = airportService.getAirportModelNames();
+
+        List<AirportModel> airportList = airportService.getAirportList();
         model.addAttribute("airports", airportList);
         List<HotelModel> hotelList = hotelService.getHotelsList();
         model.addAttribute("hotels", hotelList);
