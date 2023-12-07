@@ -1,5 +1,6 @@
 package com.example.travelagency.service;
 
+import com.example.travelagency.exception.ApiInputException;
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
 import com.example.travelagency.model.LocationModel;
@@ -23,41 +24,47 @@ public class AddressService {
     }
 
     public List<AddressModel> getAddressList() {
-        return addressRepository.findAll();
+        if (!addressRepository.findAll().isEmpty()) {
+            return addressRepository.findAll();
+        }
+        throw new ApiRequestException("Address list is empty");
     }
 
-    public AddressModel findAddressById(Long addressId) {
-        if (!addressRepository.existsById(addressId)) {
+        public AddressModel findAddressById (Long addressId){
+            if (!addressRepository.existsById(addressId)) {
+                throw new ApiRequestException("Address not found for id: " + addressId);
+            }
+            return addressRepository.findById(addressId).get();
+        }
+
+        public AddressModel addAddress (AddressModel addressToAdd, Long locationId){
+            if (!addressRepository.existsById(addressToAdd.getId())) {
+                LocationModel location = locationService.findById(locationId);
+                addressToAdd.setLocation(location);
+                return addressRepository.save(addressToAdd);
+            }
+            throw new ApiInputException("Address already exists in database");
+        }
+
+        public List<AddressModel> findAddressesByContinent (String continent){
+            if (!addressRepository.findAllByLocationContinentContains(continent).isEmpty()) {
+                return addressRepository.findAllByLocationContinentContains(continent);
+            }
+            throw new ApiRequestException("Address not found for Continent: " + continent);
+        }
+
+        public void deleteAddress (Long addressId){
+            if (addressRepository.existsById(addressId)) {
+                addressRepository.deleteById(addressId);
+            }
             throw new ApiRequestException("Address not found for id: " + addressId);
         }
-        return addressRepository.findById(addressId).get();
-    }
 
-    public AddressModel addAddress(AddressModel addressToAdd, Long locationId) {
-        LocationModel location = locationService.findById(locationId);
-        addressToAdd.setLocation(location);
-        return addressRepository.save(addressToAdd);
-    }
-
-    public List<AddressModel> findAddressesByContinent(String continent) {
-        if (!addressRepository.findAllByLocationContinentContains(continent).isEmpty()) {
-            return addressRepository.findAllByLocationContinentContains(continent);
+        public AddressModel updateAddress (AddressModel addressToUpdate){
+            if (!addressRepository.existsById(addressToUpdate.getId())) {
+                throw new ApiRequestException("Address not found for id: " + addressToUpdate.getId());
+            }
+            return addressRepository.save(addressToUpdate);
         }
-        throw new ApiRequestException("Address not found for Continent: " + continent);
     }
-
-    public void deleteAddress(Long addressId) {
-        if (!addressRepository.existsById(addressId)) {
-            throw new ApiRequestException("Address not found for id: " + addressId);
-        }
-        locationService.deleteLocation(addressId);
-    }
-
-    public AddressModel updateAddress(AddressModel addressToUpdate) {
-        if (!addressRepository.existsById(addressToUpdate.getId())) {
-            throw new ApiRequestException("Address not found for id: " + addressToUpdate.getId());
-        }
-        return addressRepository.save(addressToUpdate);
-    }
-}
 

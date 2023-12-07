@@ -1,12 +1,10 @@
 package com.example.travelagency.service;
 
-import com.example.travelagency.exception.ApiExceptionHandler;
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
+import com.example.travelagency.model.AirportModel;
 import com.example.travelagency.model.HotelModel;
-import com.example.travelagency.repository.AddressRepository;
 import com.example.travelagency.repository.HotelRepository;
-import com.example.travelagency.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,32 +14,59 @@ import java.util.List;
 public class HotelService {
 
     private final HotelRepository hotelRepository;
-    private final LocationRepository locationRepository;
-    private final AddressRepository addressRepository;
 
     @Autowired
-    public HotelService(HotelRepository hotelRepository, LocationRepository locationRepository, AddressRepository addressRepository) {
+    public HotelService(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
-        this.locationRepository = locationRepository;
-        this.addressRepository = addressRepository;
     }
 
-    public List<HotelModel> getHotelsList(){
-        return hotelRepository.findAll();
+    public List<HotelModel> getHotelsList() {
+        if (!hotelRepository.findAll().isEmpty()) {
+            return hotelRepository.findAll();
+        }
+        throw new ApiRequestException("Hotel list is empty");
     }
 
-    public HotelModel getHotelById(Long hotelId){
-        return hotelRepository.findById(hotelId).orElseThrow();
+    public HotelModel getHotelById(Long hotelId) {
+        if (hotelRepository.existsById(hotelId)) {
+            return hotelRepository.findById(hotelId).get();
+        }
+        throw new ApiRequestException("Hotel not found for id: " + hotelId);
     }
 
-     public List<HotelModel> getHotelsByStandard(Integer standard){
-        return hotelRepository.getHotelModelByStandard(standard);
-     }
+    public List<HotelModel> getHotelsByContinent(String continent) {
+        if (!hotelRepository.getAllByAddress_LocationContinent(continent).isEmpty()) {
+            return hotelRepository.getAllByAddress_LocationContinent(continent);
+        }
+        throw new ApiRequestException("Hotels not found for continent: " + continent);
+    }
 
-     public List<HotelModel> getHotelsByContinent(String continent){
-         return hotelRepository.getAllByAddress_LocationContinent(continent);
-     }
+    public List<HotelModel> getHotelsByStandard(Integer standard) {
+        if (!hotelRepository.getHotelModelByStandard(standard).isEmpty()) {
+            return hotelRepository.getHotelModelByStandard(standard);
+        }
+        throw new ApiRequestException("Hotels not found for standard: " + standard);
+    }
 
-// todo wyszukiwanie hotelu po id, po lokalizacji, po standardzie
+    public HotelModel addHotel(HotelModel hotelToAdd, AddressModel addressOfHotel) {
+        if (!hotelRepository.existsById(hotelToAdd.getId())) {
+            hotelToAdd.setAddress(addressOfHotel);
+        }
+        return hotelRepository.save(hotelToAdd);
+    }
+
+    public void deleteHotel(Long hotelId) {
+        if (!hotelRepository.existsById(hotelId)) {
+            hotelRepository.deleteById(hotelId);
+        }
+        throw new ApiRequestException("Hotel not found for id: " + hotelId);
+    }
+
+    public HotelModel saveEditHotel(HotelModel hotelToEdit) {
+        if (hotelRepository.existsById(hotelToEdit.getId())) {
+            hotelRepository.save(hotelToEdit);
+        }
+        throw new ApiRequestException("Hotel not found for id: " + hotelToEdit.getId());
+    }
 
 }
