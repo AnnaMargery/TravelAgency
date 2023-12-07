@@ -13,7 +13,7 @@ public class TripService {
     private final TripRepository tripRepository;
 
     @Autowired
-    public TripService(TripRepository tripRepository, LocationRepository locationRepository, LocationRepository locationRepository1) {
+    public TripService(TripRepository tripRepository) {
         this.tripRepository = tripRepository;
     }
 

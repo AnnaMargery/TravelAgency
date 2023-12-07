@@ -56,9 +56,9 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>Add Trip</h2>
-            <form th:action="@{trips/save}" method="post">
+            <form th:action="@{addTrip}" th:object="${trip}" method="post">
                 <div class="form-row">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group" >
                         <label>Select Continent</label>
                         <select class="form-control" th:value="${continents}">
                             <option disable>Please select</option>
@@ -66,8 +66,8 @@
                                 th:value="${continent}" th:text="${continent}"/>
                         </select>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Select Continent</label>
+                    <div class="col-md-6 form-group" th:object="${countries}">
+                        <label>Select Country</label>
                         <select class="form-control" th:value="${countries}">
                             <option disable>Please select</option>
                             <option th:each="country : ${countries}"
@@ -78,16 +78,16 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Start Date</label>
-                        <input type="date" class="form-control" placeholder="yyyy-MM-dd">
+                        <input type="date" th:field="*{startDate}" class="form-control" placeholder="yyyy-MM-dd">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>End Date</label>
-                       <input type="date" class="form-control" placeholder="yyyy-MM-dd">
+                       <input type="date" th:field="*{endDate}" class="form-control" placeholder="yyyy-MM-dd">
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Number of places</label>
-                       <input type="number" th:value="*{trip.getNumberOfPlaces()}" class="form-control" >
+                       <input type="number" th:value="${trip.getNumberOfPlaces()}" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
@@ -110,10 +110,10 @@
 
                     <div class="col-md-6 form-group">
                         <label>Select Hotel</label>
-                        <select class="form-control" th:value="${hotels}">
-                            <option disable>Please select</option>
-                            <option th:each="hotel : ${hotels}"
-                                    th:value="${hotel}" th:text="${hotel}"/>
+                        <select class="form-control" th:field="*{hotel.id}" >
+<!--                            <option disabled="true" selected="selected">Please select</option>-->
+                            <option th:each="hotelDetail : ${hotels}"
+                                    th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
                         </select>
                     </div>
 
@@ -128,7 +128,7 @@
 
                     <div class="col-md-6 form-group">
                         <label>Is trip promoted? </label>
-                        <select class="form-control" th:field="*{promotion}">
+                        <select class="form-control" th:field="${promotion}">
                             <option disabled th:value="'false'">Please select</option>
                             <option th:value="'true'" th:text="Yes"></option>
                             <option th:value="'false'" th:text="No"></option>
@@ -138,12 +138,12 @@
                     <div class="row col-md-6 form-group">
                     <div class="col-md-6 form-group">
                         <label>Price for adult</label>
-                        <input type="number" step="0.01" th:value="${priceAdult}"class="form-control" >
+                        <input type="number" step="0.01" th:field="*{priceForAdult}" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Price for child</label>
-                        <input type="number" step="0.01" th:value="*{trip.getPriceForChild()}" class="form-control" >
+                        <input type="number" step="0.01" th:field="*{priceForChild}" class="form-control" >
                     </div>
                     </div>
 
@@ -161,6 +161,7 @@
 <!--                </div>-->
 
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+                </div>
             </form>
         </div>
     </div>
