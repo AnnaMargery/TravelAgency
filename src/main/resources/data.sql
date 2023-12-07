@@ -89,34 +89,43 @@ INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Hotel Prague 1', 4, 'Nice hotel', 6);
 
 /*TripModel init data*/
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-01-01', '2024-01-08', 7, 50, 'true', 6, 1, 5);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-01-01', '2024-01-08', 7, 50, 'true', 550, 350, 'All-Inclusive', 6, 1, 5);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-01-10', '2024-01-15', 5, 30, 'true', 1, 2, 2);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-01-10', '2024-01-15', 5, 30, 'true', 450, 300, 'All-Inclusive', 1, 2, 2);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-01-01', '2024-01-08', 7, 50, 'true', 4, 3, 3);
+values ('2024-01-01', '2024-01-08', 7, 50, 'true', 400, 200, 'All-Inclusive', 4, 3, 3);
 
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-03-01', '2024-03-15', 14, 70, 'true', 5, 1, 4);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-03-01', '2024-03-15', 14, 70, 'true', 350, 150, 'Half-Board', 5, 1, 4);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-03-01', '2024-03-08', 7, 70, 'true', 6, 2, 2);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-03-01', '2024-03-08', 7, 70, 'true', 250, 100, 'Half-Board', 6, 2, 2);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-03-05', '2024-03-15', 10, 20, 'true', 6, 3, 3);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-03-05', '2024-03-15', 10, 20, 'true', 250, 100, 'Bed and Breakfast', 6, 3, 3);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-02-03', '2024-02-13', 10, 40, 'true', 5, 1, 1);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-02-03', '2024-02-13', 10, 40, 'true', 200, 100, 'Bed and Breakfast', 5, 1, 1);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-02-03', '2024-02-13', 10, 70, 'false', 5, 1, 4);
-INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id,
+values ('2024-02-03', '2024-02-13', 10, 70, 'false', 200, 100, 'Only Bed', 5, 1, 4);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-02-03', '2024-02-13', 10, 20, 'false', 5, 1, 5);
+values ('2024-02-03', '2024-02-13', 10, 20, 'false', 150, 80, 'Only Bed', 5, 1, 5);
 --
 -- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
 -- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
@@ -126,7 +135,7 @@ values ('2024-02-03', '2024-02-13', 10, 20, 'false', 5, 1, 5);
 -- values('2024-01-01','2024-01-08',7,50,'true',4,3,3,3);
 
 
-/*FoodModel init data*/
+/*FoodModel init data
 INSERT INTO food_model(food_option)
 values ('All-Inclusive');
 INSERT INTO food_model(food_option)
@@ -137,30 +146,21 @@ INSERT INTO food_model(food_option)
 values ('Bed and Breakfast');
 INSERT INTO food_model(food_option)
 values ('Only Bed');
-
-/*PriceModel init data*/
+*/
+/*PriceModel init data
 INSERT INTO price_model (price_for_adult, price_for_children, food_id)
 values (1200, 600, 1);
 INSERT INTO price_model (price_for_adult, price_for_children, food_id)
 values (1000, 500, 2);
 INSERT INTO price_model (price_for_adult, price_for_children, food_id)
 values (800, 400, 3);
-
-/*PriceModel_TripModel*/
-INSERT INTO price_model_trip (price_id, trip_id)
-values (1, 1);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (2, 1);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (1, 2);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (2, 2);
+*/
 
 /*TripOrder init data*/
-INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children, food_option_id)
-values (1, 2, 1, 1);
-INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children, food_option_id)
-values (2, 2, 0, 1);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (1, 2, 1);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (2, 2, 0);
 
 /*TripParticipant init data*/
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
