@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TripOrderRepository extends JpaRepository<TripOrderModel, Long> {
-
+TripOrderModel getTripOrderModelById(Long id);
 }

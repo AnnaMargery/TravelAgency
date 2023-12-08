@@ -1,7 +1,6 @@
 package com.example.travelagency.controller;
 
 
-import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
@@ -12,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Controller
 @RequiredArgsConstructor
