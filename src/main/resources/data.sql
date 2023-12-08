@@ -155,7 +155,16 @@ values (1000, 500, 2);
 INSERT INTO price_model (price_for_adult, price_for_children, food_id)
 values (800, 400, 3);
 */
-
+/*PriceModel_TripModel
+INSERT INTO price_model_trip (price_id, trip_id)
+values (1, 1);
+INSERT INTO price_model_trip (price_id, trip_id)
+values (2, 1);
+INSERT INTO price_model_trip (price_id, trip_id)
+values (1, 2);
+INSERT INTO price_model_trip (price_id, trip_id)
+values (2, 2);
+*/
 /*TripOrder init data*/
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (1, 2, 1);
