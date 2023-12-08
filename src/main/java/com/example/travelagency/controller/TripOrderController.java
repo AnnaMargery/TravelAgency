@@ -3,7 +3,9 @@ package com.example.travelagency.controller;
 
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripOrderModel;
+import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
+import com.example.travelagency.service.TripParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class TripOrderController {
     private final TripOrderService tripOrderService;
+    private final TripParticipantService tripParticipantService;
 
 
     @GetMapping("/addOrder")
@@ -27,6 +30,11 @@ public class TripOrderController {
         Integer numberOfChildren = tripOrderModel.getNumberOfChildren();
         model.addAttribute("numberOfChildren", numberOfChildren);
 
+
+        List<TripParticipantModel> participantsList = tripParticipantService.findParticipantsByTripOrderId(tripOrderModel.getId());
+        model.addAttribute("participantsList", participantsList);
+
+        //jak przekazać TripId?
         //Double totalPrice = tripOrderService.totalPrice(tripOrderModel.getTrip().getId(), numberOfAdults, numberOfChildren);
         //model.addAttribute("totalPrice", totalPrice);
         return "addOrder";
