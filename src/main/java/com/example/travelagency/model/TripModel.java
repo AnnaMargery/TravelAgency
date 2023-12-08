@@ -31,7 +31,8 @@ public class TripModel {
     private boolean isPromoted;
     private Double priceForAdult;
     private Double priceForChild;
-    private String foodOption;
+    @Enumerated(EnumType.STRING)
+    private FoodOption foodOption;
     @ManyToOne
     private AirportModel airportFrom;
     @ManyToOne
