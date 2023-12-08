@@ -58,21 +58,21 @@
             <h2>Add Trip</h2>
             <form th:action="@{addTrip}" th:object="${trip}" method="post">
                 <div class="form-row">
-                    <div class="col-md-6 form-group" >
-                        <label>Select Continent</label>
-                        <select class="form-control" th:value="${continents}">
-                            <option disable>Please select</option>
-                            <option th:each="continent : ${continents}"
-                                th:value="${continent}" th:text="${continent}"/>
-                        </select>
-                    </div>
-                    <div class="col-md-6 form-group" th:object="${countries}">
-                        <label>Select Country</label>
-                        <select class="form-control" th:value="${countries}">
-                            <option disable>Please select</option>
-                            <option th:each="country : ${countries}"
-                                    th:value="${country}" th:text="${country}"/>
-                        </select>
+<!--                    <div class="col-md-6 form-group" >-->
+<!--                        <label>Select Continent</label>-->
+<!--                        <select class="form-control" th:value="${continents}">-->
+<!--                            <option disable>Please select</option>-->
+<!--                            <option th:each="continent : ${continents}"-->
+<!--                                th:value="${continent}" th:text="${continent}"/>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 form-group" th:object="${countries}">-->
+<!--                        <label>Select Country</label>-->
+<!--                        <select class="form-control" th:value="${countries}">-->
+<!--                            <option disable>Please select</option>-->
+<!--                            <option th:each="country : ${countries}"-->
+<!--                                    th:value="${country}" th:text="${country}"/>-->
+<!--                        </select>-->
                     </div>
                     <div class="col-md-6 form-group">
                     </div>
@@ -87,31 +87,41 @@
 
                     <div class="col-md-6 form-group">
                         <label>Number of places</label>
-                       <input type="number" th:value="${trip.getNumberOfPlaces()}" class="form-control" >
+                       <input type="number" th:field="*{numberOfPlaces}" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
                     <label>Select Departure Airport</label>
-                        <select class="form-control" th:value="${airports}">
-                            <option disable>Please select</option>
+                        <select name="airportFrom" id="airportFrom" class="form-control">
+                            <option value="" th:selected="selected" th:disabled="disabled" >
                             <option th:each="airport : ${airports}"
-                                    th:value="${airport}" th:text="${airport}"/>
+                                    th:value="${airport.id}" th:text="${airport.name}"/>
                         </select>
                     </div>
 
                     <div class="col-md-6 form-group">
-                    <label>Select Arrival Airport</label>
-                        <select class="form-control" th:value="${airports}">
-                            <option disable>Please select</option>
+                        <label>Select Departure Airport</label>
+                        <select name="airportTo" id="airportTo" class="form-control">
+                            <option value="" th:selected="selected" th:disabled="disabled" >
                             <option th:each="airport : ${airports}"
-                                    th:value="${airport}" th:text="${airport}"/>
+                                    th:value="${airport.id}" th:text="${airport.name}"/>
                         </select>
                     </div>
+
+
+<!--                    <div class="col-md-6 form-group">-->
+<!--                        <label>Select Hotel</label>-->
+<!--                        <select class="form-control" th:field="*{hotel.id}" >-->
+<!--                            &lt;!&ndash;                            <option disabled="true" selected="selected">Please select</option>&ndash;&gt;-->
+<!--                            <option th:each="hotelDetail : ${hotels}"-->
+<!--                                    th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>-->
+<!--                        </select>-->
+<!--                    </div>-->
 
                     <div class="col-md-6 form-group">
                         <label>Select Hotel</label>
-                        <select class="form-control" th:field="*{hotel.id}" >
-<!--                            <option disabled="true" selected="selected">Please select</option>-->
+                        <select name="hotel" id="hotel" class="form-control">
+                            <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
                             <option th:each="hotelDetail : ${hotels}"
                                     th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
                         </select>
@@ -119,19 +129,20 @@
 
                     <div class="col-md-6 form-group">
                         <label>Select Food Option</label>
-                        <select class="form-control" th:value="${foods}">
-                            <option disable>Please select</option>
+                        <select name="foodOption" id="foodOption" class="form-control">
+                            <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
                             <option th:each="food : ${foods}"
-                                    th:value="${food}" th:text="${food}"/>
+                                    th:value="${food}" th:text="${food.getFoodOption()}"/>
                         </select>
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Is trip promoted? </label>
-                        <select class="form-control" th:field="${promotion}">
-                            <option disabled th:value="'false'">Please select</option>
-                            <option th:value="'true'" th:text="Yes"></option>
-                            <option th:value="'false'" th:text="No"></option>
+                        <select th:field="*{promoted}" class="form-control">
+<!--                            <option value="" th:selected="selected" th:disabled="disabled">-->
+<!--                                Please select</option>-->
+                            <option th:value="true" th:text="Yes"></option>
+                            <option th:value="false" th:text="No"></option>
                         </select>
                     </div>
 

@@ -29,4 +29,12 @@ public class TripOrderService {
         Double totalPrice = numberOfAdults * priceForAdult + numberOfChildren * priceForChildren;
         return totalPrice;
     }
+
+    public void PostAddTripOrder(TripOrderModel tripOrder) {
+        tripOrderRepository.save(tripOrder);
+    }
+
+    public TripOrderModel getOrderById(Long id){
+        return tripOrderRepository.getTripOrderModelById(id);
+    }
 }
