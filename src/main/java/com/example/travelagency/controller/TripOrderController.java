@@ -2,7 +2,6 @@ package com.example.travelagency.controller;
 
 
 import com.example.travelagency.model.TripOrderModel;
-import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
 import com.example.travelagency.service.TripParticipantService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TripOrderController {
     private final TripOrderService tripOrderService;
-    private final TripParticipantService tripParticipantService;
 
+    @GetMapping("/orders")
+    public String getOrdersList(Model model) {
+        List<TripOrderModel> orderList = tripOrderService.getOrderList();
+        model.addAttribute("orders", orderList);
+        return "orders";
+    }
 
     @GetMapping("/addOrder")
     public String getAddTripForm(Model model) {
@@ -30,8 +34,8 @@ public class TripOrderController {
         model.addAttribute("numberOfChildren", numberOfChildren);
 
 
-        List<TripParticipantModel> participantsList = tripParticipantService.findParticipantsByTripOrderId(tripOrderModel.getId());
-        model.addAttribute("participantsList", participantsList);
+//        List<TripParticipantModel> participantsList = tripParticipantService.findParticipantsByTripOrderId(tripOrderModel.getId());
+//        model.addAttribute("participantsList", participantsList);
 
         //jak przekazać TripId?
         //Double totalPrice = tripOrderService.totalPrice(tripOrderModel.getTrip().getId(), numberOfAdults, numberOfChildren);

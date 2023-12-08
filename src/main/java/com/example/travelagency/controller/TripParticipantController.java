@@ -1,6 +1,5 @@
 package com.example.travelagency.controller;
 
-import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
 import com.example.travelagency.service.TripParticipantService;
@@ -25,8 +24,7 @@ public class TripParticipantController {
     public String getAddParticipantForm(@PathVariable("id") Long id, Model model) {
         TripParticipantModel participant = new TripParticipantModel();
         model.addAttribute("participant", participant);
-
-        participant.setTripOrder(tripOrderService.getOrderById(id)); //set?
+        participant.setTripOrder(tripOrderService.getOrderById(id));
 
         String firstName = participant.getFirstName();
         model.addAttribute("firstName", firstName);
@@ -42,6 +40,6 @@ public class TripParticipantController {
     public String saveParticipant(@ModelAttribute TripParticipantModel participant) {
         tripParticipantService.postAddParticipant(participant);
 
-        return "addOrder";
+        return "orders";
     }
 }
