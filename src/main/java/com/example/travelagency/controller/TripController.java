@@ -1,6 +1,7 @@
 package com.example.travelagency.controller;
 
 import com.example.travelagency.model.AirportModel;
+import com.example.travelagency.model.FoodOption;
 import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.service.*;
@@ -20,11 +21,10 @@ public class TripController {
     private final TripService tripService;
     private final LocationService locationService;
     private final AirportService airportService;
-
     private final HotelService hotelService;
 
     @Autowired
-    public TripController(TripService tripService, LocationService locationService, AirportService airportService, FoodService foodService, HotelService hotelService) {
+    public TripController(TripService tripService, LocationService locationService, AirportService airportService, HotelService hotelService) {
         this.tripService = tripService;
         this.locationService = locationService;
         this.airportService = airportService;
@@ -51,6 +51,7 @@ public class TripController {
         model.addAttribute("trip", tripModel);
         model.addAttribute("hotelModel", new HotelModel());
         model.addAttribute("airportModel", new AirportModel());
+        model.addAttribute("foods", FoodOption.values());
         Set<String> continentList = locationService.getListOfContinents();
         model.addAttribute("continents", continentList);
         Set<String> countryList = locationService.getListOfCountires();
@@ -60,8 +61,8 @@ public class TripController {
         model.addAttribute("airports", airportList);
         List<HotelModel> hotelList = hotelService.getHotelsList();
         model.addAttribute("hotels", hotelList);
-        List<String> foodList = tripService.getFoodOptions();
-        model.addAttribute("foods", foodList);
+//        List<String> foodList = tripService.getFoodOptions();
+//        model.addAttribute("foods", foodList);
         Boolean promotion = tripModel.isPromoted();
         model.addAttribute("promotion", promotion);
         Double priceAdult = tripModel.getPriceForAdult();
