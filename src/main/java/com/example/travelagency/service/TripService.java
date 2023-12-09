@@ -1,10 +1,12 @@
 package com.example.travelagency.service;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,6 +28,17 @@ public class TripService {
 
     public List<TripModel> getTripsByCountry(String country) {
         return tripRepository.findTripModelByHotelAddressLocationCountry(country);
+    }
+
+    public TripModel getTripById(Long tripId) {
+        if (tripRepository.existsById(tripId)) {
+            return tripRepository.findById(tripId).get();
+        }
+        throw new ApiRequestException("Trip not found for id: " + tripId);
+    }
+    public Integer getDurationOfTripByDays(Date startDate, Date endDate){
+
+        return 8;
     }
 //
 //    public List<TripModel> getTripsByCityOfDeparture(String cityOdDeparture) {

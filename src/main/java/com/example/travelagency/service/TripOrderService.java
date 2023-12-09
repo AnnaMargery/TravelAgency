@@ -30,6 +30,7 @@ public class TripOrderService {
         return totalPrice;
     }
 
+
     public void PostAddTripOrder(TripOrderModel tripOrder) {
         tripOrderRepository.save(tripOrder);
     }
