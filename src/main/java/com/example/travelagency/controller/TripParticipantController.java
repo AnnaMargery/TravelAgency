@@ -1,19 +1,20 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
 import com.example.travelagency.service.TripParticipantService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
-
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class TripParticipantController {
@@ -24,22 +25,38 @@ public class TripParticipantController {
     public String getAddParticipantForm(@PathVariable("id") Long id, Model model) {
         TripParticipantModel participant = new TripParticipantModel();
         model.addAttribute("participant", participant);
-        participant.setTripOrder(tripOrderService.getOrderById(id));
 
-        String firstName = participant.getFirstName();
-        model.addAttribute("firstName", firstName);
-        String lastName = participant.getLastName();
-        model.addAttribute("lastName", lastName);
-        LocalDate birthDate = participant.getBirthDate();
-        model.addAttribute("birthDate", birthDate);
+//        TripOrderModel orderById = tripOrderService.getOrderById(id);
+//        participant.setTripOrder(orderById);
+        model.addAttribute("orderId", id);
+
+//        String firstName = participant.getFirstName();
+//        model.addAttribute("firstName", firstName);
+//        String lastName = participant.getLastName();
+//        model.addAttribute("lastName", lastName);
+//        LocalDate birthDate = participant.getBirthDate();
+//        model.addAttribute("birthDate", birthDate);
 
         return "addParticipant";
     }
 
-    @PostMapping("/addParticipant")
-    public String saveParticipant(@ModelAttribute TripParticipantModel participant) {
+    @PostMapping("/addParticipant/{id}")
+    public String saveParticipant(@ModelAttribute TripParticipantModel participant, BindingResult bindingResult, @PathVariable("id") Long id) {
+       if(bindingResult.hasErrors()){
+           log.error("BindingResult {}", bindingResult.hasErrors());
+       }
+        participant.setTripOrder(tripOrderService.getOrderById(id));
         tripParticipantService.postAddParticipant(participant);
 
-        return "orderDetails";
+        return "redirect:/orders/details/"+id;
     }
+//    @GetMapping("/details/{id}")
+//    public String getOrderDetails(@PathVariable("id") Long id, Model model) {
+//        TripOrderModel orderById = tripOrderService.getOrderById(id);
+//        model.addAttribute("details", orderById);
+//        List<TripParticipantModel> participantsByTripOrderId = tripParticipantService.findParticipantsByTripOrderId(id);
+//        model.addAttribute("participantsList", participantsByTripOrderId);
+//
+//        return "orderDetails";
+//    }
 }
