@@ -51,7 +51,7 @@
 
 <!--        Przerobic na mozliwosc dodawania wycieczki po id do zamowienia oraz mozliwosc wyswietlenia dodatkowych szczegolow?-->
 
-        <form th:action="@{/addOrder/{id}(id=${trip.id})}" method="get">
+        <form th:action="@{/orders/add/{id}(id=${trip.id})}" method="get">
         <td><button type="submit" class="btn btn-primary btn-block mt-3">Order</button>
         </form>
         </td>
