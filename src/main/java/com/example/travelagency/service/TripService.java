@@ -1,6 +1,8 @@
 package com.example.travelagency.service;
 
 import com.example.travelagency.exception.ApiRequestException;
+import com.example.travelagency.exception.ApiRequestException;
+import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.TripRepository;
 import jakarta.annotation.PostConstruct;
