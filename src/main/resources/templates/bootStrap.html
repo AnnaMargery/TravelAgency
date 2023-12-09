@@ -150,10 +150,10 @@
 
 <!--GRID with CARDS-->
 <div style="margin-bottom: 200px">
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="row row-cols-1 row-cols-md-4 g-4 img-hov">
     <div class="col">
         <div class="card">
-            <img th:src="@{/img/europe-sq.jpg}"  class="card-img-top"  alt="prague">
+            <a th:href="@{/trips/continent/Europe}"><img th:src="@{/img/europe-sq.jpg}"  class="card-img-top"  alt="Europe"></a>
             <div class="card-body">
 <!--                <h5 class="card-title">Europe</h5>-->
 <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
@@ -162,7 +162,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <img th:src="@{/img/asia-sq.jpg}" class="card-img-top" alt="spain">
+            <a th:href="@{/trips/continent/Asia}"><img th:src="@{/img/asia-sq.jpg}" class="card-img-top" alt="Asia"></a>
             <div class="card-body">
 <!--                <h5 class="card-title">Asia</h5>-->
 <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
@@ -171,7 +171,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <img th:src="@{/img/africa-sq.jpg}" class="card-img-top" alt="madeira">
+            <a th:href="@{/trips/continent/Africa}"> <img th:src="@{/img/africa-sq.jpg}" class="card-img-top" alt="Africa"></a>
             <div class="card-body">
 <!--                <h5 class="card-title">Africa</h5>-->
 <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
@@ -180,7 +180,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <img th:src="@{/img/north-america-sq.jpg}" class="card-img-top" alt="...">
+            <a th:href="@{/trips/continent/NorthAmerica}"><img th:src="@{/img/north-america-sq.jpg}" class="card-img-top" alt="North-America"></a>
             <div class="card-body">
 <!--                <h5 class="card-title">Italy</h5>-->
 <!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->

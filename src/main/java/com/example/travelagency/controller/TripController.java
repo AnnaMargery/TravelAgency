@@ -66,22 +66,19 @@ public class TripController {
         model.addAttribute("continents", continentList);
         Set<String> countryList = locationService.getListOfCountires();
         model.addAttribute("countries", countryList);
-
         List<AirportModel> airportList = airportService.getAirportList();
         model.addAttribute("airports", airportList);
         List<HotelModel> hotelList = hotelService.getHotelsList();
         model.addAttribute("hotels", hotelList);
-//        List<String> foodList = tripService.getFoodOptions();
-//        model.addAttribute("foods", foodList);
         Boolean promotion = tripModel.isPromoted();
         model.addAttribute("promotion", promotion);
+//        Long duration = tripModel.getDuration();
+//        model.addAttribute("duration",duration);
         Double priceAdult = tripModel.getPriceForAdult();
         model.addAttribute("priceAdult", priceAdult);
         Double priceChild = tripModel.getPriceForChild();
         model.addAttribute("priceChild", priceChild);
 
-//        Set<Boolean> isPromoted  = tripService.isTripPromoted();
-//        model.addAttribute("promotion",isPromoted);
         return "addTrip";
     }
 

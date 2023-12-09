@@ -4,6 +4,8 @@ import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.TripRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.PreUpdate;
+import org.hibernate.validator.constraints.time.DurationMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,46 +44,6 @@ public class TripService {
     }
 
 
-    public Long getDurationOfTripByDays(Date startDate, Date endDate){
-        Long durationInMillies = Math.abs(endDate.getTime() - startDate.getTime());
-        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
-        return durationInDays;
-    }
-
-    public void getDuration(){
-        TripModel tripModel = new TripModel();
-        long durationInDays = Duration.between(tripModel.getEndDate(), tripModel.getStartDate()).toDays();
-//        Long durationInMillies = Math.abs(endDate.getTime() - startDate.getTime());
-//        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
-        tripModel.setDuration(durationInDays);
-    }
-
-
-//
-//    public List<TripModel> getTripsByCityOfDeparture(String cityOdDeparture) {
-//        return tripRepository.findTripModelByAirportFromAddress(cityOdDeparture);
-//    }
-//
-//    public List<TripModel> getTripsByHotelCity(String cityOfHotel) {
-//        return tripRepository.findTripModelByHotelAddressLocationCity(cityOfHotel);
-//    }
-//
-//    public List<TripModel> getTripsByFoodOption(String foodOption) {
-//        return tripRepository.findTripModelByFoodOption(foodOption);
-//    }
-//
-//    public List<TripModel> getTRipsByHotelStandard(Integer hotelStandard) {
-//        return tripRepository.findTripModelByHotelStandard(hotelStandard);
-//    }
-//
-//    public List<TripModel> findTripsByDuration(Integer durationOfTrip) {
-//        return tripRepository.findTripModelByDuration(durationOfTrip);
-//    }
-//
-//    public List<TripModel> findTripsPromoted() {
-//        return tripRepository.findTripModelByPromotedTrue();
-//    }
-//
 //    //todo nie jestem pewna
 //    public List<TripModel> findTripsSortedByPriceForAdultAscendingOrder() {
 //        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
@@ -100,12 +62,12 @@ public class TripService {
 //    }
 
 
-
-    public void PostAddTrip(TripModel trip) {
-        TripModel tripModel = new TripModel();
-        long durationInDays = Duration.between(tripModel.getEndDate(), tripModel.getStartDate()).toDays();
-        trip.setDuration(durationInDays);
-        tripRepository.save(trip);
+    public void PostAddTrip(TripModel tripModel) {
+//        TripModel tripModel = new TripModel();
+        Long durationInMillies = Math.abs(tripModel.getEndDate().getTime() - tripModel.getStartDate().getTime());
+        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
+        tripModel.setDuration(durationInDays);
+        tripRepository.save(tripModel);
     }
 
     public TripModel saveEditTrip(TripModel tripToEdit) {
