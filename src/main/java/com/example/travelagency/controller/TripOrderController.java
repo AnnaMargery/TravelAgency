@@ -2,23 +2,25 @@ package com.example.travelagency.controller;
 
 
 import com.example.travelagency.model.TripOrderModel;
+import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
+import com.example.travelagency.service.TripParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/orders")
 public class TripOrderController {
     private final TripOrderService tripOrderService;
+    private final TripParticipantService tripParticipantService;
 
-    @GetMapping("/orders")
+    @GetMapping
     public String getOrdersList(Model model) {
         List<TripOrderModel> orderList = tripOrderService.getOrderList();
         model.addAttribute("orders", orderList);
@@ -48,6 +50,16 @@ public class TripOrderController {
     public String saveOrder(@ModelAttribute TripOrderModel tripOrderModel) {
 
         tripOrderService.PostAddTripOrder(tripOrderModel);
-        return "orderAdded";
+        return "orderDetails";
+    }
+
+    @GetMapping("/details/{id}")
+    public String getOrderDetails(@PathVariable("id") Long id, Model model){
+        TripOrderModel orderById = tripOrderService.getOrderById(id);
+        model.addAttribute("details", orderById);
+        List<TripParticipantModel> participantsByTripOrderId = tripParticipantService.findParticipantsByTripOrderId(id);
+        model.addAttribute("participantsList", participantsByTripOrderId);
+
+        return "orderDetails";
     }
 }

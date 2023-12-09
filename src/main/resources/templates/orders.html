@@ -20,7 +20,9 @@
         <th scope="col">Id</th>
         <th scope="col">Number of adults</th>
         <th scope="col">Number of children</th>
+        <th scope="col">Total price</th>
         <th scope="col">Actions</th>
+
     </tr>
     </thead>
     <tbody>
@@ -31,13 +33,12 @@
         <td th:text="${order.numberOfChildren}"></td>
 
         <td th:text="${order.numberOfAdults}"></td>
+<td></td>
 
         <!--dodawanie uczestnika-->
 
-            <td><a th:href="@{addParticipant/${order.id}}"
-                   class="btn-right btn btn-primary" role="button">Add participant</a>
-                <a th:href="@{addParticipant/${order.id}}"
-                   class="btn-right btn btn-primary" role="button">List of participant</a>
+            <td><a th:href="@{/orders/details/${order.id}}"
+                   class="btn-right btn btn-primary" role="button">Details</a>
             </td>
 
     </tr>
@@ -45,6 +46,7 @@
     </tbody>
 </table>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
