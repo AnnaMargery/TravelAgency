@@ -50,9 +50,10 @@
         <td th:text="${trip.hotel.name} + ${trip.hotel.address.street} + ${trip.hotel.address.postalCode} + ${trip.hotel.address.location.country}"></td>
 
 <!--        Przerobic na mozliwosc dodawania wycieczki po id do zamowienia oraz mozliwosc wyswietlenia dodatkowych szczegolow?-->
-        <td><a th:href="@{addParticipant/${order.id}}"
-               class="btn-right btn btn-primary" role="button">Order this trip</a>
 
+        <form th:action="@{/addOrder/{id}(id=${trip.id})}" method="get">
+        <td><button type="submit" class="btn btn-primary btn-block mt-3">Order</button>
+        </form>
         </td>
     </tr>
 
