@@ -16,27 +16,25 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     List<TripModel> findTripModelByHotelAddressLocationContinent(String continent);
 
     List<TripModel> findTripModelByHotelAddressLocationCountry(String country);
+//
+//    List<TripModel> findTripModelByAirportFromAddress(String addressOfDeparture);
+//
+//    List<TripModel> findTripModelByHotelAddressLocationCity(String city);
+//
+//    List<TripModel> findTripModelByFoodOption(String foodOption);
+//
+//    List<TripModel> findTripModelByHotelStandard(Integer hotelStandard);
+//
+//    List<TripModel> findTripModelByDuration(Integer durationOfTrip);
+//
+//    List<TripModel> findTripModelByPromotedTrue();
 
-    List<TripModel> findTripModelByAirportFromAddress(String addressOfDeparture);
-
-    List<TripModel> findTripModelByHotelAddressLocationCity(String city);
-
-    List<TripModel> findTripModelByFoodOption(String foodOption);
-
-    List<TripModel> findTripModelByHotelStandard(Integer hotelStandard);
-
-    List<TripModel> findTripModelByDuration(Integer durationOfTrip);
-
-    List<TripModel> findTripModelByPromotedTrue();
-
-    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
-    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
+//    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
+//    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
 
     // todo hmmm nie wim jak podejsc do zbloizajacych sie wycieczek...
-    List<TripModel> findAllByStartDateIsNear();
+//    List<TripModel> findAllByStartDateIsNear();
 
-
-    List<TripModel> findTripModelByPri();
     Optional<TripModel> findById(Long id);
 
 

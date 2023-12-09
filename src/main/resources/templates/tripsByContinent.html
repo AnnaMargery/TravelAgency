@@ -14,7 +14,7 @@
             src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
 </head>
 <body>
-<h2>All Trips</h2>
+<h2>Trips by Continent</h2>
 
 <table class="table">
     <thead>
@@ -24,7 +24,7 @@
         <th scope="col">Departure Date</th>
         <th scope="col">Duration</th>
         <th scope="col">Number of places</th>
-<!--        <th scope="col">Promoted Trip</th>-->
+        <th scope="col">Promoted Trip</th>
         <th scope="col">Price for adult</th>
         <th scope="col">Price for child</th>
         <th scope="col">Food Option</th>
@@ -35,25 +35,35 @@
     </thead>
     <tbody>
 
-    <tr th:each="trip : ${trips}">
-        <td th:text="${trip.id}"></td>
-        <td th:text="${trip.startDate}"></td>
-        <td th:text="${trip.endDate}"></td>
-        <td th:text="${trip.duration}"></td>
-        <td th:text="${trip.numberOfPlaces}"></td>
-<!--        <td th:text="${trip.isPromoted}"></td>-->
-        <td th:text="${trip.priceForAdult}"></td>
-        <td th:text="${trip.priceForChild}"></td>
-        <td th:text="${trip.foodOption}"></td>
-        <td th:text="${trip.airportFrom.name}"></td>
-        <td th:text="${trip.airportTo.name}"></td>
-        <td th:text="${trip.hotel.name} + ${trip.hotel.address.street} + ${trip.hotel.address.postalCode} + ${trip.hotel.address.location.country}"></td>
+<!--    <form action="#" th_action="@{/trips/tripsByContinent}" th_object="${tripsByContinent}" method="post">-->
+<!--        <input type="text" th_field="">-->
+<!--        <p th_if="${#fields.hasErrors('title')}" th_errors="*{trip.id}"></p>-->
+<!--        <input type="text" th_field="${note.content}">-->
+<!--        <p th_if="${#fields.hasErrors('content')}" th_errors="*{trip}"></p>-->
+<!--        <button type="submit">Save</button>-->
+<!--    </form>-->
 
-<!--        Przerobic na mozliwosc dodawania wycieczki po id do zamowienia oraz mozliwosc wyswietlenia dodatkowych szczegolow?-->
-        <td><a th:href="@{addParticipant/${order.id}}"
-               class="btn-right btn btn-primary" role="button">Order this trip</a>
 
-        </td>
+    <!-- Wyświetlenie wyników filtrowania -->
+
+    <tr th:each="tripCon : ${tripsByContinent}">
+        <a th:href="@{'/tripsByContinent/'+${tripCon.hotel.address.location.continent}}"></a>
+        <td th:text="${tripCon.id}"></td>
+        <td th:text="${tripCon.startDate}"></td>
+        <td th:text="${tripCon.endDate}"></td>
+        <td th:text="${tripCon.duration}"></td>
+        <td th:text="${tripCon.numberOfPlaces}"></td>
+        <td th:text="${tripCon.isPromoted}"></td>
+        <td th:text="${tripCon.priceForAdult}"></td>
+        <td th:text="${tripCon.priceForChild}"></td>
+        <td th:text="${tripCon.foodOption}"></td>
+        <td th:text="${tripCon.airportFrom.name}"></td>
+        <td th:text="${tripCon.airportTo.name}"></td>
+        <td th:text="${tripCon.hotel.name} +  ${tripCon.hotel.address.street} +  ${tripCon.hotel.address.location.city}"></td>
+<!--        <td th:text="${tripCon.hotel.address.street}"></td>-->
+<!--        <td th:text="${tripCon.hotel.address.postalCode}"></td>-->
+<!--        <td th:text="${tripCon.hotel.address.location.country}"></td>-->
+
     </tr>
 
     <!--<tr th:each="trip : ${trips}">-->
@@ -71,7 +81,7 @@
     <!--    <td>-->
     <!--        <a class="mbtn" th:href="@{'/order/remove/' + ${cartItem.item.id}}">X</a>-->
     <!--    </td>-->
-<!--    </tr>-->
+    <!--    </tr>-->
 
 
     </tbody>

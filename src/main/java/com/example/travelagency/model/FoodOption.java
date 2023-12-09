@@ -1,7 +1,5 @@
 package com.example.travelagency.model;
 
-import org.hibernate.annotations.DialectOverride;
-
 public enum FoodOption {
     OB("Only Bed"),
     BB("Bed and Breakfast"),
