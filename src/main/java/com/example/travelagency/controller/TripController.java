@@ -39,11 +39,21 @@ public class TripController {
     }
 
     @GetMapping("continent/{continent}")
-    public String getTripList(@PathVariable(value = "continent") String continent, Model model) {
+    public String getTripListByContinent(@PathVariable(value = "continent") String continent, Model model) {
         List<TripModel> tripsByContinent = tripService.getTripsByContinent(continent);
-        model.addAttribute("continent/{continent}", tripsByContinent);
-        return "trips";
+        model.addAttribute("tripsByContinent", tripsByContinent);
+        return "tripsByContinent";
+        //todo nie dziala do widoku
     }
+
+    @GetMapping("country/{country}")
+    public String getTripListByCountry(@PathVariable(value = "country") String country, Model model) {
+        List<TripModel> tripsByCountry = tripService.getTripsByCountry(country);
+        model.addAttribute("tripsByCountry", tripsByCountry);
+        return "redirect:trips/country/{country}";
+        //todo nie dziala do widoku
+    }
+
 
     @GetMapping("/addTrip")
     public String getAddTripForm(Model model) {
@@ -75,13 +85,13 @@ public class TripController {
         return "addTrip";
     }
 
-   @PostMapping("/addTrip")
+    @PostMapping("/addTrip")
     public String saveTrip(@ModelAttribute TripModel tripModel, Model model) {
 //       model.addAttribute("tripModel", tripModel);
-       tripService.PostAddTrip(tripModel);
+        tripService.PostAddTrip(tripModel);
 
-       return "getTrips";
-   }
+        return "getTrips";
+    }
 //    @RequestMapping(value="/addTrip", method = RequestMethod.POST)
 //    public String saveTrip(@ModelAttribute("tripModel") TripModel tripModel) {
 //        tripService.PostAddTrip(tripModel);

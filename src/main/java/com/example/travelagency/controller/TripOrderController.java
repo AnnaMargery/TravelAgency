@@ -3,11 +3,12 @@ package com.example.travelagency.controller;
 
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.service.TripOrderService;
-import com.example.travelagency.service.TripParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 

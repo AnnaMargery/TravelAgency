@@ -31,21 +31,23 @@ values ('Europe', 'Poland', 'Cracow');
 /* AddressModel init data*/
 /*HOTELE*/
 INSERT INTO address_model (street, postal_code, location_id)
-values ('15 Pl. Vendôme', '75001', 1);
+    values ('15 Pl. Vendôme', '75001', 1);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('Via Carlo Cattaneo 31', '00185', 2);
+    values ('Via Carlo Cattaneo 31', '00185', 2);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('Circus Road West 15 Switch House West', 'SW11-8BD', 3);
+    values ('Circus Road West 15 Switch House West', 'SW11-8BD', 3);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('157 Waterloo Road', 'DEW-134-SW', 3);
+    values ('157 Waterloo Road', 'DEW-134-SW', 3);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('380 Kensington High Street', 'W14 8NL', 3);
+    values ('380 Kensington High Street', 'W14 8NL', 3);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('Žitná 1670/5', '110 00', 4);
+    values ('Žitná 1670/5', '110 00', 4);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('Nad Královskou oborou 920/53', '170 00', 4);
+    values ('Nad Královskou oborou 920/53', '170 00', 4);
 INSERT INTO address_model (street, postal_code, location_id)
-values ('Gran Via de les Corts Catalanes 543', '08011', 5);
+    values ('Gran Via de les Corts Catalanes 543', '08011', 5);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('ChinaTown 123', '0826451', 12);
 
 /*ADDRESY (LOTNISKA)*/
 INSERT INTO address_model (street, postal_code, location_id)
@@ -87,6 +89,8 @@ INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Art Hotel Prague', 4, 'Nice hotel', 7);
 INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Hotel Prague 1', 4, 'Nice hotel', 6);
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Hotel Bee-Bei', 4, 'Nice hotel', 9);
 
 /*TripModel init data*/
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
@@ -125,7 +129,7 @@ values ('2024-02-03', '2024-02-13', 10, 70, 'false', 200, 100, 'OB', 5, 1, 4);
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
                         price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-02-03', '2024-02-13', 10, 20, 'false', 150, 80, 'OB', 5, 1, 5);
+values ('2024-12-03', '2024-12-13', 10, 20, 'false', 150, 80, 'OB', 5, 3, 6);
 --
 -- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
 -- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);

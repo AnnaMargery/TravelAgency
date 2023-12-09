@@ -18,15 +18,11 @@ public class TripModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-
     private Integer duration;
-
     private Integer numberOfPlaces;
     private boolean isPromoted;
     private Double priceForAdult;

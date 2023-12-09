@@ -2,7 +2,6 @@ package com.example.travelagency.service;
 
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
-import com.example.travelagency.model.AirportModel;
 import com.example.travelagency.model.HotelModel;
 import com.example.travelagency.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,6 @@ public class HotelService {
         return hotels;
     }
 
-
-
     public List<HotelModel> getHotelsByContinent(String continent) {
         if (!hotelRepository.getAllByAddress_LocationContinent(continent).isEmpty()) {
             return hotelRepository.getAllByAddress_LocationContinent(continent);
@@ -59,7 +56,6 @@ public class HotelService {
         }
         throw new ApiRequestException("Hotels not found for standard: " + standard);
     }
-
     public HotelModel addHotel(HotelModel hotelToAdd, AddressModel addressOfHotel) {
         if (!hotelRepository.existsById(hotelToAdd.getId())) {
             hotelToAdd.setAddress(addressOfHotel);
