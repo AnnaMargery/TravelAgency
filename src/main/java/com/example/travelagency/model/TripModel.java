@@ -1,13 +1,16 @@
 package com.example.travelagency.model;
 
+import com.example.travelagency.service.TripService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 @Getter
@@ -19,10 +22,10 @@ public class TripModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
-    private Integer duration;
+    private LocalDate endDate;
+    private Long duration;
     private Integer numberOfPlaces;
     private boolean isPromoted;
     private Double priceForAdult;

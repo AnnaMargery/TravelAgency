@@ -141,8 +141,8 @@
 }
 
 .card {
-    margin: 3% 3% 3% 3%;
+    margin: 3% 0% 3% 0%;
     /*padding: 2% 2% 2% 2%;*/
-    width: 25rem;
-   height: 300px;
+    width: 20vw;
+   height: 250px;
 }

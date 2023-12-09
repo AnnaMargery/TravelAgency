@@ -3,11 +3,15 @@ package com.example.travelagency.service;
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.TripRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TripService {
@@ -36,10 +40,23 @@ public class TripService {
         }
         throw new ApiRequestException("Trip not found for id: " + tripId);
     }
-    public Integer getDurationOfTripByDays(Date startDate, Date endDate){
 
-        return 8;
+
+    public Long getDurationOfTripByDays(Date startDate, Date endDate){
+        Long durationInMillies = Math.abs(endDate.getTime() - startDate.getTime());
+        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
+        return durationInDays;
     }
+
+    public void getDuration(){
+        TripModel tripModel = new TripModel();
+        long durationInDays = Duration.between(tripModel.getEndDate(), tripModel.getStartDate()).toDays();
+//        Long durationInMillies = Math.abs(endDate.getTime() - startDate.getTime());
+//        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
+        tripModel.setDuration(durationInDays);
+    }
+
+
 //
 //    public List<TripModel> getTripsByCityOfDeparture(String cityOdDeparture) {
 //        return tripRepository.findTripModelByAirportFromAddress(cityOdDeparture);
@@ -85,6 +102,9 @@ public class TripService {
 
 
     public void PostAddTrip(TripModel trip) {
+        TripModel tripModel = new TripModel();
+        long durationInDays = Duration.between(tripModel.getEndDate(), tripModel.getStartDate()).toDays();
+        trip.setDuration(durationInDays);
         tripRepository.save(trip);
     }
 

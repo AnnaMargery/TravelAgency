@@ -38,4 +38,6 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     Optional<TripModel> findById(Long id);
 
 
+
+
 }
