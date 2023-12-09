@@ -17,6 +17,7 @@ public class TripParticipantModel {
     private Long id;
 
     @ManyToOne
+//    @ToString.Exclude
     private TripOrderModel tripOrder;
 
     private String firstName;

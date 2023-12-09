@@ -35,11 +35,11 @@
         <td th:text="${order.numberOfAdults}"></td>
 <td></td>
 
-        <!--dodawanie uczestnika-->
 
-            <td><a th:href="@{/orders/details/${order.id}}"
-                   class="btn-right btn btn-primary" role="button">Details</a>
-            </td>
+        <form th:action="@{/orders/details/{id}(id=${order.id})}" method="get">
+            <td><button type="submit" class="btn btn-primary btn-block mt-3">Details</button>
+        </form>
+        </td>
 
     </tr>
 

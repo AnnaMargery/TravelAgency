@@ -68,7 +68,7 @@ public class TripOrderController {
     public String saveOrder(@PathVariable("id") Long id, TripOrderModel tripOrderModel) {
         tripOrderModel.setTrip(tripService.getTripById(id));
         tripOrderService.PostAddTripOrder(tripOrderModel);
-        return "orderAdded";
+        return "orders";
     }
 
 
