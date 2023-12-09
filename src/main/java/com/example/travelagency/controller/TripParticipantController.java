@@ -40,6 +40,6 @@ public class TripParticipantController {
     public String saveParticipant(@ModelAttribute TripParticipantModel participant) {
         tripParticipantService.postAddParticipant(participant);
 
-        return "orders";
+        return "orderDetails";
     }
 }
