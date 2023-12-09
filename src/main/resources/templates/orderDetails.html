@@ -15,7 +15,7 @@
 </head>
 <body>
 <h2>Order details</h2>
-
+<form th:action="@{/orders/details/{id}(id=${details.id})}" th:object="${details}" method="post">
 <table class="table">
     <thead>
     <tr>
@@ -37,8 +37,7 @@
 
         <td><a th:href="@{addParticipant/{id}}"
                class="btn-right btn btn-primary" role="button">Add participant</a>
-            <!--            <a th:href="@{addParticipant/${order.id}}"-->
-            <!--               class="btn-right btn btn-primary" role="button">List of participants</a>-->
+
         </td>
 
     </tr>
