@@ -104,37 +104,35 @@
 
             <div class="col-md-6 form-group">
                 <label>Number of places</label>
-                <input type="number" th:value="${tripToEdit.numberOfPlaces}"
-                       class="form-control">
+                <input type="number" th:value="${tripToEdit.numberOfPlaces}" th:field="*{numberOfPlaces}" class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Departure Airport</label>
-                <input type="text" th:value="${tripToEdit.airportFrom.name}" class="form-control">
+                <input type="text" th:value="${tripToEdit.airportFrom.name}" th:field="*{numberOfPlaces}"class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Destination Airport</label>
-                <input type="text" th:value="${tripToEdit.airportTo.name}" class="form-control">
+                <input type="text" th:value="${tripToEdit.airportTo.name}" th:field="*{numberOfPlaces}"class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Hotel</label>
-                <input type="text" th:value="${tripToEdit.hotel.name}" class="form-control">
+                <input type="text" th:value="${tripToEdit.hotel.name}" th:field="*{numberOfPlaces}" class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Food Option</label>
-                <input type="text" th:value="${tripToEdit.foodOption.getFoodOption()}" class="form-control">
+                <input type="text" th:value="${tripToEdit.foodOption.getFoodOption()}" th:field="*{numberOfPlaces}" class="form-control">
             </div>
             </form>
             </select>
 <!--        </div>-->
 <!--        <a class="btn btn-info" th:href="@{/trips/edit/{id}(id=${tripToEdit.id})}">Update</a>-->
 <!--        </td>-->
-        <form th:action="@{/trips/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${updatedTrip}" method="post">
+        <form th:action="@{/trips/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">
             <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
-    </div>
     </form>
 </div>
 </div>

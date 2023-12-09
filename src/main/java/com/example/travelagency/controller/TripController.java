@@ -42,14 +42,16 @@ public class TripController {
     public String getTripListByContinent(@PathVariable(value = "continent") String continent, Model model) {
         List<TripModel> tripsByContinent = tripService.getTripsByContinent(continent);
         model.addAttribute("tripsByContinent", tripsByContinent);
-        return "redirect: trips/continent/{continent}";
+//        return "redirect:/trips/continent/{continent}";
+        return "tripsByContinent";
     }
 
     @GetMapping("country/{country}")
     public String getTripListByCountry(@PathVariable(value = "country") String country, Model model) {
         List<TripModel> tripsByCountry = tripService.getTripsByCountry(country);
         model.addAttribute("tripsByCountry", tripsByCountry);
-        return "redirect:trips/country/{country}";
+//        return "redirect:/trips/country/{country}";
+        return "trips";
     }
 
     @GetMapping("/add")
@@ -86,7 +88,7 @@ public class TripController {
         return "getTrips";
     }
 
-    //todo to adminController
+
     @GetMapping("/admin")
     public String getAdminTripList(Model model) {
         List<TripModel> tripList = tripService.getTripList();
@@ -101,7 +103,6 @@ public class TripController {
         return "adminEditTrip";
     }
 
-    //todo to adminController
     @PostMapping("/edit/{tripId}")
     public String saveEditTrip(@PathVariable(value = "tripId") Long tripId, @ModelAttribute("tripToEdit") TripModel trip, Model model) {
         TripModel existingTrip = tripService.getTripById(tripId);
@@ -118,7 +119,7 @@ public class TripController {
 //        existingTrip.setPriceForChild(trip.getPriceForChild());
 //        existingTrip.setPromoted(trip.isPromoted());
         tripService.saveEditTrip(existingTrip);
-        model.addAttribute("updatedTrip",existingTrip);
+        model.addAttribute("tripToEdit",existingTrip);
         return "redirect:/trips/admin";
     }
 }
