@@ -24,7 +24,6 @@ public class TripOrderModel {
 
     private Integer numberOfAdults;
     private Integer numberOfChildren;
-
-    //private Double totalPrice;
+    private Double totalPrice;
 
 }

@@ -169,11 +169,13 @@ values (1, 2);
 INSERT INTO price_model_trip (price_id, trip_id)
 values (2, 2);
 */
+
 /*TripOrder init data*/
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (1, 2, 1);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (2, 2, 0);
+
 
 /*TripParticipant init data*/
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
@@ -184,7 +186,7 @@ INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_
 values (1, 'Jakub', 'Kowalski', '2015-05-14');
 
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
-values (2, 'Jan', 'Kowalski', '1980-02-03');
+values (2, 'Jan', 'Wilk', '1980-02-03');
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
-values (2, 'Anna', 'Kowalska', '1984-09-07');
+values (2, 'Anna', 'Wilk', '1984-09-07');
 

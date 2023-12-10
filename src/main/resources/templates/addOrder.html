@@ -62,7 +62,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>Add Order</h2>
-            <form th:action="@{/orders/add/{id}(id=${order.id})}" th:object="${order}" method="post">
+            <form th:action="@{/orders/add/{id}(id=${tripId})}" th:object="${order}" method="post">
                 <div class="form-row">
 
                     <div class="col-md-6 form-group">
@@ -77,14 +77,6 @@
 
                 </div>
 
-
-
-<!--                &lt;!&ndash;lista uczestników&ndash;&gt;-->
-
-<!--                    <tr th:each="participant: ${participantsList}">-->
-<!--                        <td th:text="${participant.firstName}">-->
-<!--                        <td th:text="${participant.lastName}">-->
-<!--                    </tr>-->
 
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
             </form>
