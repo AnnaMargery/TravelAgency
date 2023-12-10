@@ -2,26 +2,32 @@ package com.example.travelagency.service;
 
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.TripModel;
+import com.example.travelagency.repository.TripOrderRepository;
+import com.example.travelagency.repository.TripParticipantRepository;
 import com.example.travelagency.repository.TripRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.PreUpdate;
 import org.hibernate.validator.constraints.time.DurationMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 @Service
 public class TripService {
     private final TripRepository tripRepository;
+    private final TripOrderRepository tripOrderRepository;
+    private final TripParticipantService tripParticipantService;
 
     @Autowired
-    public TripService(TripRepository tripRepository) {
+    public TripService(TripRepository tripRepository, TripOrderRepository tripOrderRepository, TripParticipantService tripParticipantService) {
         this.tripRepository = tripRepository;
+        this.tripOrderRepository = tripOrderRepository;
+        this.tripParticipantService = tripParticipantService;
     }
 
     public List<TripModel> getTripList() {
@@ -74,8 +80,13 @@ public class TripService {
         return tripRepository.save(tripToEdit);
     }
 
-    public void deleteTrip(TripModel tripToDelete) {
-        tripRepository.save(tripToDelete);
+    public void deleteTrip(Long tripId) {
+        if (!tripRepository.existsById(tripId)) {
+            throw new ApiRequestException("Trip not found for id: " + tripId);
+        }
+//        tripParticipantService.deleteParticipantByTrip(tripRepository.findById(tripId).get());
+//        tripOrderRepository.deleteOrderByTripId(tripId);
+        tripRepository.deleteById(tripId);
     }
 
 

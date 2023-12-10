@@ -22,13 +22,15 @@ public class TripController {
     private final LocationService locationService;
     private final AirportService airportService;
     private final HotelService hotelService;
+    private final TripOrderService tripOrderService;
 
     @Autowired
-    public TripController(TripService tripService, LocationService locationService, AirportService airportService, HotelService hotelService) {
+    public TripController(TripService tripService, LocationService locationService, AirportService airportService, HotelService hotelService, TripOrderService tripOrderService) {
         this.tripService = tripService;
         this.locationService = locationService;
         this.airportService = airportService;
         this.hotelService = hotelService;
+        this.tripOrderService = tripOrderService;
     }
 
     @GetMapping()
@@ -42,20 +44,19 @@ public class TripController {
     public String getTripListByContinent(@PathVariable(value = "continent") String continent, Model model) {
         List<TripModel> tripsByContinent = tripService.getTripsByContinent(continent);
         model.addAttribute("tripsByContinent", tripsByContinent);
+//        return "redirect:/trips/continent/{continent}";
         return "tripsByContinent";
-        //todo nie dziala do widoku
     }
 
     @GetMapping("country/{country}")
     public String getTripListByCountry(@PathVariable(value = "country") String country, Model model) {
         List<TripModel> tripsByCountry = tripService.getTripsByCountry(country);
         model.addAttribute("tripsByCountry", tripsByCountry);
-        return "redirect:trips/country/{country}";
-        //todo nie dziala do widoku
+//        return "redirect:/trips/country/{country}";
+        return "trips";
     }
 
-
-    @GetMapping("/addTrip")
+    @GetMapping("/add")
     public String getAddTripForm(Model model) {
         TripModel tripModel = new TripModel();
         model.addAttribute("trip", tripModel);
@@ -82,18 +83,57 @@ public class TripController {
         return "addTrip";
     }
 
-    @PostMapping("/addTrip")
+    @PostMapping("/add")
     public String saveTrip(@ModelAttribute TripModel tripModel, Model model) {
 //       model.addAttribute("tripModel", tripModel);
         tripService.PostAddTrip(tripModel);
-
         return "getTrips";
     }
-//    @RequestMapping(value="/addTrip", method = RequestMethod.POST)
-//    public String saveTrip(@ModelAttribute("tripModel") TripModel tripModel) {
-//        tripService.PostAddTrip(tripModel);
-//        return "getTrips";
-//    }
 
 
+    @GetMapping("/admin")
+    public String getAdminTripList(Model model) {
+        List<TripModel> tripList = tripService.getTripList();
+        model.addAttribute("trips", tripList);
+        return "adminTrips";
+    }
+
+    //todo do konsultacji
+    @GetMapping("/edit/{id}")
+    public String getEditTripForm(@PathVariable(value = "id") Long tripId, Model model) {
+        TripModel tripToEdit = tripService.getTripById(tripId);
+        String hotelName = tripToEdit.getHotel().getName();
+        model.addAttribute("tripToEdit", tripToEdit);
+        model.addAttribute("hotelName", hotelName);
+        return "adminEditTrip";
+    }
+
+    //todo do konsultacji z mentorem
+    @PostMapping("/edit/{tripId}")
+    public String saveEditTrip(@PathVariable(value = "tripId") Long tripId, Model model, @ModelAttribute TripModel trip) {
+        TripModel editedTrip = tripService.getTripById(tripId);
+//        editedTrip.setId(tripId);
+//        editedTrip.setHotel(trip.getHotel());
+//        editedTrip.setDuration(trip.getDuration());
+//        editedTrip.setEndDate(trip.getEndDate());
+//        editedTrip.setStartDate(trip.getStartDate());
+//        editedTrip.setAirportFrom(trip.getAirportFrom());
+//        editedTrip.setAirportTo(trip.getAirportTo());
+//        editedTrip.setFoodOption(trip.getFoodOption());
+//        editedTrip.setNumberOfPlaces(trip.getNumberOfPlaces());
+//        editedTrip.setPriceForAdult(trip.getPriceForAdult());
+//        editedTrip.setPriceForChild(trip.getPriceForChild());
+//        editedTrip.setPromoted(trip.isPromoted());
+        tripService.saveEditTrip(editedTrip);
+        model.addAttribute("editedTrip", editedTrip);
+        return "redirect:/trips/admin";
+    }
+
+    //todo dokonczyc implementacje w przypadku gdy wycieczka jest zamowiona lub opatrzyc wyjatkiem.
+    @GetMapping("/delete/{id}")
+    public String deleteTrip(@PathVariable(value = "id") Long tripId, Model model) {
+//        tripOrderService.deleteOrderByTripId(tripId);
+        tripService.deleteTrip(tripId);
+        return "deleteInfo";
+    }
 }
