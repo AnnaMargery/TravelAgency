@@ -1,5 +1,6 @@
 package com.example.travelagency.service;
 
+import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.repository.TripOrderRepository;
 import com.example.travelagency.repository.TripRepository;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
