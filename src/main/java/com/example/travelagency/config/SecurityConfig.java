@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a->a.anyRequest().permitAll());          // dodane do ominięcia Security w Postmanie*/
 //                .authorizeHttpRequests((authorize) ->
 //                        authorize
-//                                .requestMatchers(new AntPathRequestMatcher("/locations","/locations/*")).hasRole("ADMIN")
+//                                .requestMatchers(new AntPathRequestMatcher("/start","/start/*")).hasAnyRole("ADMIN, USER")
 //                                .anyRequest().authenticated()
 //                )
 //                .formLogin(
