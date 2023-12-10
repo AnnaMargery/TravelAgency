@@ -30,14 +30,7 @@ public class TripParticipantController {
 //        participant.setTripOrder(orderById);
         model.addAttribute("orderId", id);
 
-//        String firstName = participant.getFirstName();
-//        model.addAttribute("firstName", firstName);
-//        String lastName = participant.getLastName();
-//        model.addAttribute("lastName", lastName);
-//        LocalDate birthDate = participant.getBirthDate();
-//        model.addAttribute("birthDate", birthDate);
-
-        return "addParticipant";
+       return "addParticipant";
     }
 
     @PostMapping("/addParticipant/{id}")
