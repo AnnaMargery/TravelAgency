@@ -169,11 +169,13 @@ values (1, 2);
 INSERT INTO price_model_trip (price_id, trip_id)
 values (2, 2);
 */
+
 /*TripOrder init data*/
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (1, 2, 1);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (2, 2, 0);
+
 
 /*TripParticipant init data*/
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)

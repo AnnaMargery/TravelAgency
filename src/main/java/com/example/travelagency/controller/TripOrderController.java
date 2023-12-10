@@ -1,6 +1,5 @@
 package com.example.travelagency.controller;
 
-
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
@@ -32,34 +31,35 @@ public class TripOrderController {
         return "orders";
     }
 
-    @GetMapping("/addOrder")
-    public String getAddTripForm(Model model) {
-        TripOrderModel tripOrderModel = new TripOrderModel();
-        model.addAttribute("order", tripOrderModel);
-        Integer numberOfAdults = tripOrderModel.getNumberOfAdults();
-        model.addAttribute("numberOfAdults", numberOfAdults);
-        Integer numberOfChildren = tripOrderModel.getNumberOfChildren();
-        model.addAttribute("numberOfChildren", numberOfChildren);
-
-
-//        List<TripParticipantModel> participantsList = tripParticipantService.findParticipantsByTripOrderId(tripOrderModel.getId());
-//        model.addAttribute("participantsList", participantsList);
-
-        //jak przekazać TripId?
-        //Double totalPrice = tripOrderService.totalPrice(tripOrderModel.getTrip().getId(), numberOfAdults, numberOfChildren);
-        //model.addAttribute("totalPrice", totalPrice);
-        return "addOrder";
-    }
+//    @GetMapping("/addOrder")
+//    public String getAddTripForm(Model model) {
+//        TripOrderModel tripOrderModel = new TripOrderModel();
+//        model.addAttribute("order", tripOrderModel);
+//        Integer numberOfAdults = tripOrderModel.getNumberOfAdults();
+//        model.addAttribute("numberOfAdults", numberOfAdults);
+//        Integer numberOfChildren = tripOrderModel.getNumberOfChildren();
+//        model.addAttribute("numberOfChildren", numberOfChildren);
+//
+//
+////        List<TripParticipantModel> participantsList = tripParticipantService.findParticipantsByTripOrderId(tripOrderModel.getId());
+////        model.addAttribute("participantsList", participantsList);
+//
+//        //jak przekazać TripId?
+//        //Double totalPrice = tripOrderService.totalPrice(tripOrderModel.getTrip().getId(), numberOfAdults, numberOfChildren);
+//        //model.addAttribute("totalPrice", totalPrice);
+//        return "addOrder";
+//    }
 
     @GetMapping("/add/{id}")
-    public String getAddTripFormById(@PathVariable("id") Long id, Model model) {
+    public String getAddTripOrderFormById(@PathVariable("id") Long id, Model model) {
         TripOrderModel tripOrderModel = new TripOrderModel();
-        tripOrderModel.setId(id);
         model.addAttribute("order", tripOrderModel);
-        Integer numberOfAdults = tripOrderModel.getNumberOfAdults();
-        model.addAttribute("numberOfAdults", numberOfAdults);
-        Integer numberOfChildren = tripOrderModel.getNumberOfChildren();
-        model.addAttribute("numberOfChildren", numberOfChildren);
+
+        model.addAttribute("tripId", id);
+//        Integer numberOfAdults = tripOrderModel.getNumberOfAdults();
+//        model.addAttribute("numberOfAdults", numberOfAdults);
+//        Integer numberOfChildren = tripOrderModel.getNumberOfChildren();
+//        model.addAttribute("numberOfChildren", numberOfChildren);
         return "addOrder";
     }
 
@@ -67,13 +67,15 @@ public class TripOrderController {
     @PostMapping("/add/{id}")
     public String saveOrder(@PathVariable("id") Long id, TripOrderModel tripOrderModel) {
         tripOrderModel.setTrip(tripService.getTripById(id));
+
         tripOrderService.PostAddTripOrder(tripOrderModel);
-        return "redirect:/orders/details/"+id;
+        return "redirect:/orders/details/"+tripOrderModel.getId();
     }
 
 
     @GetMapping("/details/{id}")
     public String getOrderDetails(@PathVariable("id") Long id, Model model) {
+
         TripOrderModel orderById = tripOrderService.getOrderById(id);
         model.addAttribute("details", orderById);
 
