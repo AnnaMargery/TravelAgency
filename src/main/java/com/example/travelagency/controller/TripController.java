@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AirportModel;
 import com.example.travelagency.model.FoodOption;
 import com.example.travelagency.model.HotelModel;
@@ -8,6 +9,7 @@ import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,17 +104,38 @@ public class TripController {
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long tripId, Model model) {
         TripModel tripToEdit = tripService.getTripById(tripId);
-        String hotelName = tripToEdit.getHotel().getName();
         model.addAttribute("tripToEdit", tripToEdit);
-        model.addAttribute("hotelName", hotelName);
         return "adminEditTrip";
     }
 
+
     //todo do konsultacji z mentorem
-    @PostMapping("/edit/{tripId}")
-    public String saveEditTrip(@PathVariable(value = "tripId") Long tripId, Model model, @ModelAttribute TripModel trip) {
+    @PutMapping("/edit/{id}")
+    public String saveEditTrip(@PathVariable(value = "id") Long tripId, Model model, @ModelAttribute("tripToEdit") TripModel tripModel) {
         TripModel editedTrip = tripService.getTripById(tripId);
-//        editedTrip.setId(tripId);
+        TripModel updatedTrip = tripService.saveEditTrip(editedTrip);
+//        model.addAttribute("tripToEdit", updatedTrip);
+        return "redirect:/trips/admin";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTrip(@PathVariable(value = "id") Long tripId) {
+        if(!tripOrderService.getOrdersByTripId(tripId).isEmpty()){
+            throw new ApiRequestException("Trip can't be removed - trip orders exists");
+        }
+        tripService.deleteTrip(tripId);
+        return "deleteInfo";
+    }
+
+    @GetMapping("/promoted")
+    public String getPromotedTrips(Model model) {
+        List<TripModel> promotedTrips = tripService.getPromotedTrips();
+        model.addAttribute("promotedTrips",promotedTrips);
+        return "redirect:/trips/promoted";
+    }
+
+
+    //        editedTrip.setId(tripId);
 //        editedTrip.setHotel(trip.getHotel());
 //        editedTrip.setDuration(trip.getDuration());
 //        editedTrip.setEndDate(trip.getEndDate());
@@ -124,16 +147,4 @@ public class TripController {
 //        editedTrip.setPriceForAdult(trip.getPriceForAdult());
 //        editedTrip.setPriceForChild(trip.getPriceForChild());
 //        editedTrip.setPromoted(trip.isPromoted());
-        tripService.saveEditTrip(editedTrip);
-        model.addAttribute("editedTrip", editedTrip);
-        return "redirect:/trips/admin";
-    }
-
-    //todo dokonczyc implementacje w przypadku gdy wycieczka jest zamowiona lub opatrzyc wyjatkiem.
-    @GetMapping("/delete/{id}")
-    public String deleteTrip(@PathVariable(value = "id") Long tripId, Model model) {
-//        tripOrderService.deleteOrderByTripId(tripId);
-        tripService.deleteTrip(tripId);
-        return "deleteInfo";
-    }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,22 @@ public class TripService {
         }
         throw new ApiRequestException("Trip not found for id: " + tripId);
     }
+
+    public List<TripModel> getPromotedTrips(){
+        List<TripModel> promotedTrips = new ArrayList<>();
+        List<TripModel> allTrips = tripRepository.findAll();
+        for (TripModel trip : allTrips) {
+            if(trip.isPromoted()==true){
+                promotedTrips.add(trip);
+            }
+        }
+        if (!promotedTrips.isEmpty()) {
+            return promotedTrips;
+        }
+        throw new ApiRequestException("Promoted trips not found");
+    }
+
+
 
 
 //    //todo nie jestem pewna

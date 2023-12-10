@@ -1,6 +1,5 @@
 package com.example.travelagency.service;
 
-import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.repository.TripParticipantRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +20,5 @@ public class TripParticipantService {
         return tripParticipantRepository.findAllByTripOrderId(tripOrderId);
     }
 
-
-    //todo
-//    public void deleteParticipantByTrip(TripModel tripModel) {
-//        tripParticipantRepository.deleteAllByTripOrderTrip(tripModel);
-////        List<TripParticipantModel> participants = tripParticipantRepository.findAll();
-////        for (TripParticipantModel participant : participants) {
-////            if (participant.getTripOrder().getTrip().getId()== tripId) {
-////                tripParticipantRepository.delete(participant);
-////            }
-////        }
-//
-//    }
 
 }
