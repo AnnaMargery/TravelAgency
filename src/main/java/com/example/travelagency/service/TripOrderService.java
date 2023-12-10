@@ -19,6 +19,18 @@ public class TripOrderService {
         return tripOrderRepository.findAll();
     }
 
+
+
+    public Double totalPrice(long tripId, int numberOfAdults, int numberOfChildren) {
+        Optional<TripModel> tripById = tripRepository.findById(tripId);
+        Double priceForAdult = tripById.get().getPriceForAdult();
+        Double priceForChildren = tripById.get().getPriceForChild();
+
+        Double totalPrice = numberOfAdults * priceForAdult + numberOfChildren * priceForChildren;
+        return totalPrice;
+    }
+
+
     public void PostAddTripOrder(TripOrderModel tripOrder) {
         Double priceForAdult = tripOrder.getTrip().getPriceForAdult();
         Double priceForChild = tripOrder.getTrip().getPriceForChild();
@@ -31,14 +43,7 @@ public class TripOrderService {
         return tripOrderRepository.getTripOrderModelById(id);
     }
 
-    //todo do sprawdzenia- napisana poniewaz nie da sie usuwac wycieczki na ktore sa zamowienia-
-    // wiec w metodzie usuwania tripa trzeba uwzglednic usuwanie ordera- ale jeszcze trzeba usunac powiazania z participantami
-//    public void deleteOrderByTripId(Long tripId) {
-//        List<TripOrderModel> orders = tripOrderRepository.findAll();
-//        for (TripOrderModel order : orders) {
-//            if (order.getTrip().getId() == tripId) {
-//                tripOrderRepository.deleteById(order.getId());
-//            }
-//        }
-//    }
+    public List<TripOrderModel> getOrdersByTripId(Long tripId){
+        return tripOrderRepository.getAllByTripId(tripId);
+    }
 }

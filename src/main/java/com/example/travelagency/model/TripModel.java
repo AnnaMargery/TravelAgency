@@ -9,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 
-//@EntityListeners({TripService.class})
 @Entity
 @Getter
 @Setter
@@ -19,11 +18,9 @@ public class TripModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private Long duration;
     private Integer numberOfPlaces;
@@ -38,7 +35,6 @@ public class TripModel {
     private AirportModel airportTo;
     @ManyToOne
     private HotelModel hotel;
-
 
 
 //    public void getDuration() {

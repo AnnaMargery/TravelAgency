@@ -27,8 +27,6 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
 //
 //    List<TripModel> findTripModelByDuration(Integer durationOfTrip);
 //
-//    List<TripModel> findTripModelByPromotedTrue();
-
 //    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
 //    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
 
