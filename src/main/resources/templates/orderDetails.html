@@ -15,24 +15,35 @@
 </head>
 <body>
 <h2>Order details</h2>
-<form th:action="@{/orders/details/{id}(id=${details.id})}" th:object="${details}" method="post">
+<form th:action="@{/orders/details/{id}(id=${orderId})}" th:object="${details}" method="post">
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Id</th>
+            <th scope="col">From Airport</th>
+            <th scope="col">To Airport</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Hotel Name</th>
+            <th scope="col">Food Option</th>
             <th scope="col">Number of adults</th>
             <th scope="col">Number of children</th>
             <th scope="col">Actions</th>
+            <th scope="col">Price</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td th:text="${details.getId()}"></td>
-
+            <td th:text="${details.trip.airportFrom.name}"></td>
+            <td th:text="${details.trip.airportTo.name}"></td>
+            <td th:text="${details.trip.startDate}"></td>
+            <td th:text="${details.trip.endDate}"></td>
+            <td th:text="${details.trip.duration}"></td>
+            <td th:text="${details.trip.hotel.name}"></td>
+            <td th:text="${details.trip.foodOption}"></td>
             <td th:text="${details.numberOfAdults}"></td>
-
             <td th:text="${details.numberOfChildren}"></td>
-
+            <td th:text="${details.numberOfChildren}"></td>
             <!--dodawanie uczestnika-->
             <td>
     <a class="btn btn-info" th:href="@{/addParticipant/{id}(id=${details.id})}">Add participant</a>

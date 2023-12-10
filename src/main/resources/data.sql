@@ -184,7 +184,7 @@ INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_
 values (1, 'Jakub', 'Kowalski', '2015-05-14');
 
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
-values (2, 'Jan', 'Kowalski', '1980-02-03');
+values (2, 'Jan', 'Wilk', '1980-02-03');
 INSERT INTO trip_participant_model (trip_order_id, first_name, last_name, birth_date)
-values (2, 'Anna', 'Kowalska', '1984-09-07');
+values (2, 'Anna', 'Wilk', '1984-09-07');
 

@@ -76,6 +76,8 @@ public class TripOrderController {
     public String getOrderDetails(@PathVariable("id") Long id, Model model) {
         TripOrderModel orderById = tripOrderService.getOrderById(id);
         model.addAttribute("details", orderById);
+
+        model.addAttribute("orderId", id);
         List<TripParticipantModel> participantsByTripOrderId = tripParticipantService.findParticipantsByTripOrderId(id);
         model.addAttribute("participantsList", participantsByTripOrderId);
 

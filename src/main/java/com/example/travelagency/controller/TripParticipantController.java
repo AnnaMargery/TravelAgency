@@ -34,22 +34,11 @@ public class TripParticipantController {
     }
 
     @PostMapping("/addParticipant/{id}")
-    public String saveParticipant(@ModelAttribute TripParticipantModel participant, BindingResult bindingResult, @PathVariable("id") Long id) {
-       if(bindingResult.hasErrors()){
-           log.error("BindingResult {}", bindingResult.hasErrors());
-       }
+    public String saveParticipant(@ModelAttribute TripParticipantModel participant, @PathVariable("id") Long id) {
+
         participant.setTripOrder(tripOrderService.getOrderById(id));
         tripParticipantService.postAddParticipant(participant);
 
         return "redirect:/orders/details/"+id;
     }
-//    @GetMapping("/details/{id}")
-//    public String getOrderDetails(@PathVariable("id") Long id, Model model) {
-//        TripOrderModel orderById = tripOrderService.getOrderById(id);
-//        model.addAttribute("details", orderById);
-//        List<TripParticipantModel> participantsByTripOrderId = tripParticipantService.findParticipantsByTripOrderId(id);
-//        model.addAttribute("participantsList", participantsByTripOrderId);
-//
-//        return "orderDetails";
-//    }
 }
