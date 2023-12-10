@@ -56,24 +56,9 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>Add Trip</h2>
-            <form th:action="@{addTrip}" th:object="${trip}" method="post">
+            <form th:action="@{add}" th:object="${trip}" method="post">
                 <div class="form-row">
-<!--                    <div class="col-md-6 form-group" >-->
-<!--                        <label>Select Continent</label>-->
-<!--                        <select class="form-control" th:value="${continents}">-->
-<!--                            <option disable>Please select</option>-->
-<!--                            <option th:each="continent : ${continents}"-->
-<!--                                th:value="${continent}" th:text="${continent}"/>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6 form-group" th:object="${countries}">-->
-<!--                        <label>Select Country</label>-->
-<!--                        <select class="form-control" th:value="${countries}">-->
-<!--                            <option disable>Please select</option>-->
-<!--                            <option th:each="country : ${countries}"-->
-<!--                                    th:value="${country}" th:text="${country}"/>-->
-<!--                        </select>-->
-                    </div>
+                </div>
                     <div class="col-md-6 form-group">
                     </div>
                     <div class="col-md-6 form-group">
@@ -108,15 +93,6 @@
                         </select>
                     </div>
 
-
-<!--                    <div class="col-md-6 form-group">-->
-<!--                        <label>Select Hotel</label>-->
-<!--                        <select class="form-control" th:field="*{hotel.id}" >-->
-<!--                            &lt;!&ndash;                            <option disabled="true" selected="selected">Please select</option>&ndash;&gt;-->
-<!--                            <option th:each="hotelDetail : ${hotels}"-->
-<!--                                    th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>-->
-<!--                        </select>-->
-<!--                    </div>-->
 
                     <div class="col-md-6 form-group">
                         <label>Select Hotel</label>
@@ -172,7 +148,8 @@
 <!--                </div>-->
 
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
-                </div>
+            </div>
+        </div>
             </form>
         </div>
     </div>

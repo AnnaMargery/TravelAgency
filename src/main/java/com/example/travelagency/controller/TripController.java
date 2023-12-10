@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Set;
@@ -65,18 +66,12 @@ public class TripController {
         model.addAttribute("hotelModel", new HotelModel());
         model.addAttribute("airportModel", new AirportModel());
         model.addAttribute("foods", FoodOption.values());
-        Set<String> continentList = locationService.getListOfContinents();
-        model.addAttribute("continents", continentList);
-        Set<String> countryList = locationService.getListOfCountires();
-        model.addAttribute("countries", countryList);
         List<AirportModel> airportList = airportService.getAirportList();
         model.addAttribute("airports", airportList);
         List<HotelModel> hotelList = hotelService.getHotelsList();
         model.addAttribute("hotels", hotelList);
         Boolean promotion = tripModel.isPromoted();
         model.addAttribute("promotion", promotion);
-//        Long duration = tripModel.getDuration();
-//        model.addAttribute("duration",duration);
         Double priceAdult = tripModel.getPriceForAdult();
         model.addAttribute("priceAdult", priceAdult);
         Double priceChild = tripModel.getPriceForChild();
@@ -101,41 +96,64 @@ public class TripController {
     }
 
     //todo do konsultacji
+//    @GetMapping("/edit/{id}")
+//    public String getEditTripForm(@PathVariable(value = "id") Long tripId, Model model,
+//                                  Model hotelModel, Model airportModel) {
+//        final TripModel tripE = new TripModel();
+//
+//        model.addAttribute("tripE", tripE);
+//        TripModel tripToEdit = tripService.getTripById(tripId);
+//        model.addAttribute("tripToEdit", tripToEdit);
+//        model.addAttribute("hotelModel", tripToEdit.getHotel());
+//        List<HotelModel> hotelList = hotelService.getHotelsList();
+//        model.addAttribute("hotels", hotelList);
+//        model.addAttribute("airportModel", tripToEdit.getAirportTo());
+//        List<AirportModel> airportList = airportService.getAirportList();
+//        model.addAttribute("airports", airportList);
+//        model.addAttribute("foods", FoodOption.values());
+//        model.addAttribute("numberOfPlaces", tripToEdit.getNumberOfPlaces());
+//        model.addAttribute("promotion", tripToEdit.isPromoted());
+//
+//        model.addAttribute("priceAdult", tripToEdit.getPriceForAdult());
+//
+//        model.addAttribute("priceChild", tripToEdit.getPriceForChild());
+//        return "adminEditTrip";
+//    }
+
     @GetMapping("/edit/{id}")
-    public String getEditTripForm(@PathVariable(value = "id") Long tripId, Model model) {
-        TripModel tripToEdit = tripService.getTripById(tripId);
-        model.addAttribute("tripToEdit", tripToEdit);
-        return "adminEditTrip";
+    public String getEditTripForm(@PathVariable(value = "id") Long tripId, Model model,
+                                Model hotelModel, Model airportModel) {
+        model.addAttribute("tripToEdit", tripService.getTripById(tripId));
+        model.addAttribute("hotelModel", tripService.getTripById(tripId).getHotel());
+        model.addAttribute("airportModel", tripService.getTripById(tripId).getAirportTo());
+        return "/adminEditTrip";
     }
+    @PostMapping("/edit/{tripId}")
+    public String saveEditTrip(@ModelAttribute("tripToEdit") TripModel tripModel, Model model){
+        this.tripService.saveEditTrip(tripModel);
+        return "/adminTrips";
+    }
+
+
+//    @PostMapping("/edit/{id}")
+//    public RedirectView saveEditTrip(@PathVariable(value = "id") Long id, Model model, TripModel editTrip) { {
+////        TripModel tripToEdit = tripService.getTripById(id);
+////        model.addAttribute("tripToEdit",tripToEdit);
+//        List<AirportModel> airportList = airportService.getAirportList();
+//        List<HotelModel> hotelList = hotelService.getHotelsList();
+//        model.addAttribute("hotels", hotelList);
+//        model.addAttribute("airports", airportList);
+//
+//        tripService.saveEditTrip(editTrip);
+//        return new RedirectView("/trips/admin");
+//    }
 
 
     //todo do konsultacji z mentorem
-    @PutMapping("/edit/{id}")
-    public String saveEditTrip(@PathVariable(value = "id") Long tripId, Model model, @ModelAttribute("tripToEdit") TripModel tripModel) {
-        TripModel editedTrip = tripService.getTripById(tripId);
-        TripModel updatedTrip = tripService.saveEditTrip(editedTrip);
-//        model.addAttribute("tripToEdit", updatedTrip);
-        return "redirect:/trips/admin";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteTrip(@PathVariable(value = "id") Long tripId) {
-        if(!tripOrderService.getOrdersByTripId(tripId).isEmpty()){
-            throw new ApiRequestException("Trip can't be removed - trip orders exists");
-        }
-        tripService.deleteTrip(tripId);
-        return "deleteInfo";
-    }
-
-    @GetMapping("/promoted")
-    public String getPromotedTrips(Model model) {
-        List<TripModel> promotedTrips = tripService.getPromotedTrips();
-        model.addAttribute("promotedTrips",promotedTrips);
-        return "redirect:/trips/promoted";
-    }
-
-
-    //        editedTrip.setId(tripId);
+//    @PutMapping("/edit/{tripId}")
+//    public String saveEditTrip1(@PathVariable(value = "tripId") Long tripId, Model model, @ModelAttribute TripModel trip) {
+//        TripModel editedTrip = tripService.getTripById(tripId);
+//        editedTrip.setId(tripId);
 //        editedTrip.setHotel(trip.getHotel());
 //        editedTrip.setDuration(trip.getDuration());
 //        editedTrip.setEndDate(trip.getEndDate());
@@ -147,4 +165,35 @@ public class TripController {
 //        editedTrip.setPriceForAdult(trip.getPriceForAdult());
 //        editedTrip.setPriceForChild(trip.getPriceForChild());
 //        editedTrip.setPromoted(trip.isPromoted());
+//        tripService.saveEditTrip(editedTrip);
+//        model.addAttribute("editedTrip", editedTrip);
+//        return "redirect:/trips/admin";
+//    }
+
+
+//    //todo do konsultacji z mentorem
+//    @PutMapping("/edit/{id}")
+//    public String saveEditTrip1(@PathVariable(value = "id") Long tripId, Model model, @ModelAttribute("tripToEdit") TripModel tripModel) {
+//        TripModel editedTrip = tripService.getTripById(tripId);
+//        TripModel updatedTrip = tripService.saveEditTrip(editedTrip);
+//       model.addAttribute("tripToEdit", updatedTrip);
+//        return "redirect:/trips/admin";
+//    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteTrip(@PathVariable(value = "id") Long tripId) {
+        if (!tripOrderService.getOrdersByTripId(tripId).isEmpty()) {
+            throw new ApiRequestException("Trip can't be removed - trip orders exists");
+        }
+        tripService.deleteTrip(tripId);
+        return "deleteInfo";
+    }
+
+    @GetMapping("/promoted")
+    public String getPromotedTrips(Model model) {
+        List<TripModel> promotedTrips = tripService.getPromotedTrips();
+        model.addAttribute("promotedTrips", promotedTrips);
+        return "redirect:/trips/promoted";
+    }
 }
+
