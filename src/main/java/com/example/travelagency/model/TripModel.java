@@ -1,16 +1,12 @@
 package com.example.travelagency.model;
 
-import com.example.travelagency.repository.TripRepository;
-import com.example.travelagency.service.TripService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 
 //@EntityListeners({TripService.class})

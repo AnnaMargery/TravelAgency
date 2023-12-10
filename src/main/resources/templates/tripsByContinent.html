@@ -15,7 +15,6 @@
 </head>
 <body>
 <h2>Trips by Continent</h2>
-
 <table class="table">
     <thead>
     <tr>
@@ -35,18 +34,18 @@
     </thead>
     <tbody>
 
-<!--    <form action="#" th_action="@{/trips/tripsByContinent}" th_object="${tripsByContinent}" method="post">-->
-<!--        <input type="text" th_field="">-->
-<!--        <p th_if="${#fields.hasErrors('title')}" th_errors="*{trip.id}"></p>-->
-<!--        <input type="text" th_field="${note.content}">-->
-<!--        <p th_if="${#fields.hasErrors('content')}" th_errors="*{trip}"></p>-->
-<!--        <button type="submit">Save</button>-->
-<!--    </form>-->
+    <!--    <form action="#" th_action="@{/trips/tripsByContinent}" th_object="${tripsByContinent}" method="post">-->
+    <!--        <input type="text" th_field="">-->
+    <!--        <p th_if="${#fields.hasErrors('title')}" th_errors="*{trip.id}"></p>-->
+    <!--        <input type="text" th_field="${note.content}">-->
+    <!--        <p th_if="${#fields.hasErrors('content')}" th_errors="*{trip}"></p>-->
+    <!--        <button type="submit">Save</button>-->
+    <!--    </form>-->
 
 
     <!-- Wyświetlenie wyników filtrowania -->
 
-    <tr th:each="tripCon : ${tripsByContinent}">
+    <tr th:each="tripCon : ${tripsByContinent}" >
         <a th:href="@{'/tripsByContinent/'+${tripCon.hotel.address.location.continent}}"></a>
         <td th:text="${tripCon.id}"></td>
         <td th:text="${tripCon.startDate}"></td>
@@ -60,30 +59,11 @@
         <td th:text="${tripCon.airportFrom.name}"></td>
         <td th:text="${tripCon.airportTo.name}"></td>
         <td th:text="${tripCon.hotel.name} +  ${tripCon.hotel.address.street} +  ${tripCon.hotel.address.location.city}"></td>
-<!--        <td th:text="${tripCon.hotel.address.street}"></td>-->
-<!--        <td th:text="${tripCon.hotel.address.postalCode}"></td>-->
-<!--        <td th:text="${tripCon.hotel.address.location.country}"></td>-->
+        <!--        <td th:text="${tripCon.hotel.address.street}"></td>-->
+        <!--        <td th:text="${tripCon.hotel.address.postalCode}"></td>-->
+        <!--        <td th:text="${tripCon.hotel.address.location.country}"></td>-->
 
     </tr>
-
-    <!--<tr th:each="trip : ${trips}">-->
-    <!--    <td>1</td>-->
-    <!--&lt;!&ndash;    <td>&ndash;&gt;-->
-    <!--&lt;!&ndash;        <img th:src="@{${cartItem.item.imgUrl}}">&ndash;&gt;-->
-    <!--&lt;!&ndash;    </td>&ndash;&gt;-->
-    <!--    <td th:text="${trip.startDate}"></td>-->
-    <!--    <td style="display: flex; padding-top: 10px">-->
-    <!--        <a class="mbtn" th:href="@{'/order/decrease/' + ${cartItem.item.id}}">-</a>-->
-    <!--        <p th:text="${cartItem.counter}"></p>-->
-    <!--        <a class="mbtn" th:href="@{'/order/increase/' + ${cartItem.item.id}}">+</a>-->
-    <!--    </td>-->
-    <!--    <td th:text="${trip.endDate}"></td>-->
-    <!--    <td>-->
-    <!--        <a class="mbtn" th:href="@{'/order/remove/' + ${cartItem.item.id}}">X</a>-->
-    <!--    </td>-->
-    <!--    </tr>-->
-
-
     </tbody>
 </table>
 

@@ -109,22 +109,22 @@
 
             <div class="col-md-6 form-group">
                 <label>Departure Airport</label>
-                <input type="text" th:value="${tripToEdit.airportFrom.name}" th:field="*{numberOfPlaces}"class="form-control">
+                <input type="text" th:value="${tripToEdit.airportFrom.name}" th:field="*{airportFrom.name}"class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Destination Airport</label>
-                <input type="text" th:value="${tripToEdit.airportTo.name}" th:field="*{numberOfPlaces}"class="form-control">
+                <input type="text" th:value="${tripToEdit.airportTo.name}" th:field="*{airportTo.name}"class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Hotel</label>
-                <input type="text" th:value="${tripToEdit.hotel.name}" th:field="*{numberOfPlaces}" class="form-control">
+                <input type="text" th:value="${tripToEdit.hotel.name}" th:field="*{hotel.name}" class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Food Option</label>
-                <input type="text" th:value="${tripToEdit.foodOption.getFoodOption()}" th:field="*{numberOfPlaces}" class="form-control">
+                <input type="text" th:value="${tripToEdit.foodOption.getFoodOption()}" th:field="*{foodOption.name()}" class="form-control">
             </div>
             </form>
             </select>
