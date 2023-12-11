@@ -37,14 +37,4 @@ public class TripModel {
     private HotelModel hotel;
 
 
-//    public void getDuration() {
-//        Long durationInMillies = Math.abs(this.endDate.getTime() - this.startDate.getTime());
-//        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
-//        this.duration = durationInDays;
-//    }
-//    public void setDuration(Long duration) {
-//        this.duration = duration;
-//        getDuration();
-//    }
-
 }
