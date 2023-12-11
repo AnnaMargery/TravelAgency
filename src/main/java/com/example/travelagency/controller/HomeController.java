@@ -19,7 +19,7 @@ public class HomeController {
 
     @GetMapping("/start")
     public String start() {
-        return "bootStrap";
+        return "start";
     }
 
     @GetMapping("/admin")

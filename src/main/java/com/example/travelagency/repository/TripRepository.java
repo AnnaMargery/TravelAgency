@@ -36,6 +36,7 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     List<TripModel> findLastMinuteTrips ();
     Optional<TripModel> findById(Long id);
 
+    List<TripModel> findTripModelByStartDateBefore(Date next7Days);
 
 
 

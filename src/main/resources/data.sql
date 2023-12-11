@@ -125,7 +125,7 @@ values ('2024-02-03', '2024-02-13', 10, 40, 'true', 200, 100, 'BB', 5, 1, 1);
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
                         price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
-values ('2024-02-03', '2024-02-13', 10, 70, 'false', 200, 100, 'OB', 5, 1, 4);
+values ('2023-12-15', '2023-12-22', 10, 70, 'false', 200, 100, 'OB', 5, 1, 4);
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
                         price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
