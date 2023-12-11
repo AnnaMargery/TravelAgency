@@ -34,15 +34,6 @@
     </thead>
     <tbody>
 
-    <!--    <form action="#" th_action="@{/trips/tripsByContinent}" th_object="${tripsByContinent}" method="post">-->
-    <!--        <input type="text" th_field="">-->
-    <!--        <p th_if="${#fields.hasErrors('title')}" th_errors="*{trip.id}"></p>-->
-    <!--        <input type="text" th_field="${note.content}">-->
-    <!--        <p th_if="${#fields.hasErrors('content')}" th_errors="*{trip}"></p>-->
-    <!--        <button type="submit">Save</button>-->
-    <!--    </form>-->
-
-
     <!-- Wyświetlenie wyników filtrowania -->
 
     <tr th:each="tripCon : ${tripsByContinent}" >
