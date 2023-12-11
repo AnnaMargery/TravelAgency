@@ -26,28 +26,25 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/start}" sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Home </a>
+                        <a class="nav-link divider-vertical" th:href="@{/start}" sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Home </a>
                     </li>
 
                     <li class="nav-item">
-                        <a  class="nav-link" th:href="@{/trips/add}" sec:authorize="hasAuthority('ADMIN')">Add trip</a>
+                        <a  class="nav-link divider-vertical" th:href="@{/trips/add}" sec:authorize="hasAuthority('ADMIN')">Add trip</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"  th:href="@{/trips/admin}" sec:authorize="hasAuthority('ADMIN')">Show, edit, delete trips</a>
+                        <a class="nav-link divider-vertical"  th:href="@{/trips/admin}" sec:authorize="hasAuthority('ADMIN')">Show, edit, delete trips</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link"  th:href="@{/logout}" sec:authorize="hasAuthority('USER')">Show your orders</a>
+                    <li class="nav-item ">
+                        <a class="nav-link divider-vertical"  th:href="@{/logout}" sec:authorize="hasAuthority('USER')">Show all trips</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    <li class="nav-item ">
+                        <a class="nav-link divider-vertical" th:href="@{/logout}" sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Logout</a>
                     </li>
 
-                    <form class="d-flex" role="search" th:href="@{/logout}">
-                        <button class="btn btn-outline-danger" type="submit">Logout</button>
-                    </form>
                 </ul>
             </div>
         </div>
