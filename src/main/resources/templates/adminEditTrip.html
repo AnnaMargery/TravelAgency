@@ -56,6 +56,7 @@
         </div>
     </div>
 </nav>
+
 <!--FORM-->
 <div class="container my-3">
     <div class="row">
@@ -84,22 +85,33 @@
             </div>
 
             <div class="col-md-6 form-group">
-                <label>Departure Airport</label>
-                <input type="text" th:field="*{airportFrom.name}"class="form-control">
-            </div>
+            <label>Departure Airport</label>
+            <select name="airportFrom" id="airportFrom" class="form-control">
+                <!--                    <option value="" th:selected="selected" th:disabled="disabled" >-->
+                <option th:each="airportDet: ${allAirports}"
+                        th:selected="${airportDet.id} == ${tripToEdit.airportFrom.id}"
+                        th:value="${airportDet.id}" th:text="${airportDet.name}"/>
+            </select>
+        </div>
 
             <div class="col-md-6 form-group">
                 <label>Destination Airport</label>
-                <input type="text" th:field="*{airportTo.name}"class="form-control">
+                <select name="airportTo" id="airportTo" class="form-control">
+<!--                    <option value="" th:selected="selected" th:disabled="disabled" >-->
+                    <option th:each="airport : ${allAirports}"
+                            th:selected="${airport.id} == ${tripToEdit.getAirportTo().id}"
+                            th:value="${airport.id}" th:text="${airport.name}"/>
+                </select>
             </div>
 
 
             <div class="col-md-6 form-group">
                 <label>Select Hotel</label>
                 <select name="hotel" id="hotel" class="form-control">
-<!--                    <option value="${tripToEdit.getHotel()}" th:selected="selected" th:text="${tripToEdit.getHotel.name} + ', ' + ${tripToEdit.getHotel().address.location.city}"></option>-->
-                    <option th:each="hotelDetail : ${allHotels}" th:selected="${tripToEdit.getHotel().getName()}+', '+${tripToEdit.getHotel().getAddress().getLocation().getCity()}"
+                    <option th:each="hotelDetail : ${allHotels}"
+                            th:selected="${hotelDetail.id} == ${tripToEdit.getHotel().getId()}"
                             th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
+                    <!--                            th:selected="${tripToEdit.getHotel().getName()}+', '+${tripToEdit.getHotel().getAddress().getLocation().getCity()}"-->
                 </select>
             </div>
 
@@ -107,8 +119,6 @@
             <div class="col-md-6 form-group">
                 <label>Select Food Option</label>
                 <select name="foodOption" id="foods" class="form-control">
-                    <!--                        <option th:value="${tripToEdit.getFoodOption()}" th:selected="selected" th:text="${tripToEdit.getFoodOption().foodOption}"></option>-->
-<!--                    <option value="${tripToEdit.getFoodOption().foodOption}" th:selected="selected" th:text="${tripToEdit.foodOption.getFoodOption()}"></option>-->
                     <option th:each="food : ${allFoods}" th:selected="${tripToEdit.getFoodOption().getFoodOption()}"
                             th:value="${food}" th:text="${food.getFoodOption()}" />
                 </select>
