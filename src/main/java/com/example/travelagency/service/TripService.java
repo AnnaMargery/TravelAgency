@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,11 +102,15 @@ public class TripService {
         if (!tripRepository.existsById(tripId)) {
             throw new ApiRequestException("Trip not found for id: " + tripId);
         }
-//        tripParticipantService.deleteParticipantByTrip(tripRepository.findById(tripId).get());
-//        tripOrderRepository.deleteOrderByTripId(tripId);
         tripRepository.deleteById(tripId);
     }
 
+//todo sprawdzic implementacje
+    public List<TripModel> getLastMinuteTrips() {
+        LocalDate dateInTheFuture = LocalDate.now().plusDays(3);
+        return tripRepository.findLastMinuteTrips();
 
+
+    }
 }
 

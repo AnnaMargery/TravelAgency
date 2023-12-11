@@ -2,6 +2,7 @@ package com.example.travelagency.repository;
 
 import com.example.travelagency.model.TripModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -30,9 +31,9 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
 //    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
 //    List<TripModel> findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
 
-    // todo hmmm nie wim jak podejsc do zbloizajacych sie wycieczek...
-//    List<TripModel> findAllByStartDateIsNear();
-
+    //todo przetestowac to query
+    @Query("select t from TripModel t where t.startDate >CURRENT_DATE and t.startDate <=CURRENT DATE + 5")
+    List<TripModel> findLastMinuteTrips ();
     Optional<TripModel> findById(Long id);
 
 

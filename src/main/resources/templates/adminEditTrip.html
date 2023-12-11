@@ -63,118 +63,161 @@
         <div class="col-md-8 mx-auto">
             <h2>Edit Trip</h2>
 
-
-<!--            <form action="#" th:action="@{/trips/edit/{id}(id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">-->
-<!--                <div class="row">-->
-<!--                    <div class="form-group col-md-6">-->
-<!--                        <label for="name" class="col-form-label">Airport From</label> <input type="text" th:field="*{airportFrom}" class="form-control" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{airportFrom}" class="text-danger"></span>-->
-<!--                    </div>-->
-<!--                    <div class="form-group col-md-8">-->
-<!--                        <label for="email" class="col-form-label">Email</label> <input type="text" th:field="*{airportTo}" class="form-control" id="email" placeholder="Email"> <span th:if="${#fields.hasErrors('email')}" th:errors="*{airportTo}" class="text-danger"></span>-->
-<!--                    </div>-->
-<!--                    <div class="form-group col-md-8">-->
-<!--                        <label for="phoneNo" class="col-form-label">Phone No</label> <input type="text" th:field="*{hotel}" class="form-control" id="phoneNo" placeholder="phoneNo"> <span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{hotel}" class="text-danger"></span>-->
-<!--                    </div>-->
-<!--                    <div class="form-group col-md-8">-->
-<!--                        <label for="phoneNo" class="col-form-label">Phone No</label> <input type="text" th:field="*{priceForAdult}" class="form-control" id="phoneNo" placeholder="phoneNo"> <span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{priceForAdult}" class="text-danger"></span>-->
-<!--                    </div>-->
-<!--                    <div class="form-group col-md-8">-->
-<!--                        <label for="phoneNo" class="col-form-label">Phone No</label> <input type="text" th:field="*{priceForChild}" class="form-control" id="phoneNo" placeholder="phoneNo"> <span th:if="${#fields.hasErrors('phoneNo')}" th:errors="*{priceForChild}" class="text-danger"></span>-->
-<!--                    </div>-->
-
-<!--                    <div class="form-group col-md-8">-->
-<!--                        <input type="submit" class="btn btn-primary" value="Update Trip">-->
-<!--                    </div>-->
-
-
-            <form th:action="@{/edit/{id}(id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">
-
-            <div class="form-row">
-            </div>
-            <div class="col-md-6 form-group">
-            </div>
-            <div class="col-md-6 form-group">
-                <label>Start Date</label>
-                <input type="date" th:field="*{startDate}" th:value="${tripToEdit.startDate}"class="form-control" placeholder="yyyy-MM-dd">
-            </div>
-            <div class="col-md-6 form-group">
-                <label>End Date</label>
-                <input type="date" th:field="*{endDate}" th:value="${tripToEdit.endDate}" class="form-control" placeholder="yyyy-MM-dd">
-            </div>
-
-            <div class="col-md-6 form-group">
-                <label>Number of places</label>
-                <input type="number" th:field="*{numberOfPlaces}"  th:value="${tripToEdit.getNumberOfPlaces()}"class="form-control">
-            </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Select Departure Airport</label>
-                    <select name="airportFrom" id="airportFrom" class="form-control">
-                        <option value="" th:selected="selected" th:disabled="disabled" >
-                        <option th:each="airport : ${airports}"
-                                th:value="${airport.id}" th:text="${airport.name}"/>
-                    </select>
+            <form th:action="@{/trips/edit/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">
+                <input type="hidden" th:field="${id}" />
+                <div class="form-row">
                 </div>
-
-            <div class="col-md-6 form-group">
-                <label>Destination Airport</label>
-                <select name="airportTo" id="airportTo" class="form-control">
-                    <option value="" th:selected="selected" th:disabled="disabled" >
-                    <option th:each="airport : ${airports}"
-                            th:value="${airport.id}" th:text="${airport.name}"/>
-                </select>
-            </div>
-
                 <div class="col-md-6 form-group">
-                    <label>Select Hotel</label>
-                    <select name="hotel" id="hotel" class="form-control">
-                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
-                        <option th:each="hotelDetail : ${hotels}"
-                                th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
-                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Start Date</label>
+                    <input type="date"  th:field="*{startDate}"class="form-control" placeholder="yyyy-MM-dd">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>End Date</label>
+                    <input type="date" th:field="*{endDate}" class="form-control" placeholder="yyyy-MM-dd">
                 </div>
 
                 <div class="col-md-6 form-group">
-                    <label>Select Food Option</label>
-                    <select name="foodOption" id="foodOption" class="form-control">
-                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
-                        <option th:each="food : ${foods}"
-                                th:value="${food}" th:text="${food.getFoodOption()}"/>
-                    </select>
+                    <label>Number of places</label>
+                    <input type="number" th:field="*{numberOfPlaces}" class="form-control">
                 </div>
 
                 <div class="col-md-6 form-group">
-                    <label>Is trip promoted? </label>
-                    <select th:field="*{promoted}" class="form-control">
-                        <!--                            <option value="" th:selected="selected" th:disabled="disabled">-->
-                        <!--                                Please select</option>-->
-                        <option th:value="true" th:text="Yes"></option>
-                        <option th:value="false" th:text="No"></option>
-                    </select>
+                    <label>Departure Airport</label>
+                    <input type="text" th:field="*{airportFrom.name}"class="form-control">
                 </div>
 
-                <div class="row col-md-6 form-group">
-                    <div class="col-md-6 form-group">
-                        <label>Price for adult</label>
-                        <input type="number" step="0.01" th:field="*{priceForAdult}" class="form-control" >
-                    </div>
-
-                    <div class="col-md-6 form-group">
-                        <label>Price for child</label>
-                        <input type="number" step="0.01" th:field="*{priceForChild}" class="form-control" >
-                    </div>
+                <div class="col-md-6 form-group">
+                    <label>Destination Airport</label>
+                    <input type="text" th:field="*{airportTo.name}"class="form-control">
                 </div>
-<!--        </div>-->
-<!--        <a class="btn btn-info" th:href="@{/trips/edit/{id}(id=${tripToEdit.id})}">Update</a>-->
-<!--        </td>-->
-<!--        <form th:action="@{/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">-->
-<!--            <form th:action="@{/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">-->
-            <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
-<!--    </form>-->
+
+                <div class="col-md-6 form-group">
+                    <label>Hotel</label>
+                    <input type="text" th:field="*{hotel.name}" class="form-control">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Food Option</label>
+                    <input type="text"  th:field="*{foodOption}" class="form-control">
+                </div>
             </form>
+            </select>
+        </div>
+                <a class="btn btn-primary btn-block mt-3" th:href="@{/trips/update/{id}(id=${tripToEdit.id})}">Save</a>
+                </td>
+<!--        <form th:action="@{/trips/update/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="put">-->
+<!--            <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>-->
+        </form>
+    </div>
 </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+<!--&lt;!&ndash;FORM&ndash;&gt;-->
+<!--<div class="container my-3">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-8 mx-auto">-->
+<!--            <h2>Edit Trip</h2>-->
+
+<!--            <form role= "form" th:action="@{/trips/edit/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">-->
+<!--            <input type="hidden" th:field="*{id}">-->
+<!--            <div class="form-row">-->
+<!--            </div>-->
+<!--            <div class="col-md-6 form-group">-->
+<!--            </div>-->
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>Start Date</label>-->
+<!--                <input type="date" th:field="*{startDate}" th:value="${tripToEdit.startDate}"class="form-control" placeholder="yyyy-MM-dd">-->
+<!--            </div>-->
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>End Date</label>-->
+<!--                <input type="date" th:field="*{endDate}" th:value="${tripToEdit.endDate}" class="form-control" placeholder="yyyy-MM-dd">-->
+<!--            </div>-->
+
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>Number of places</label>-->
+<!--                <input type="number" th:field="*{numberOfPlaces}"  th:value="${tripToEdit.getNumberOfPlaces()}"class="form-control">-->
+<!--            </div>-->
+
+<!--                <div class="col-md-6 form-group">-->
+<!--                    <label>Select Departure Airport</label>-->
+<!--                    <select name="airportFrom" id="airportFrom" class="form-control">-->
+<!--                        <option value="" th:selected="selected" th:disabled="disabled" >-->
+<!--                        <option th:each="airport : ${airports}"-->
+<!--                                th:value="${airport.id}" th:text="${airport.name}"/>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>Destination Airport</label>-->
+<!--                <select name="airportTo" id="airportTo" class="form-control">-->
+<!--                    <option value="" th:selected="selected" th:disabled="disabled" >-->
+<!--                    <option th:each="airport : ${airports}"-->
+<!--                            th:value="${airport.id}" th:text="${airport.name}"/>-->
+<!--                </select>-->
+<!--            </div>-->
+
+<!--                <div class="col-md-6 form-group">-->
+<!--                    <label>Select Hotel</label>-->
+<!--                    <select name="hotel" id="hotel" class="form-control">-->
+<!--                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>-->
+<!--                        <option th:each="hotelDetail : ${hotels}"-->
+<!--                                th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 form-group">-->
+<!--                    <label>Select Food Option</label>-->
+<!--                    <select name="foodOption" id="foodOption" class="form-control">-->
+<!--                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>-->
+<!--                        <option th:each="food : ${foods}"-->
+<!--                                th:value="${food}" th:text="${food.getFoodOption()}"/>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                <div class="col-md-6 form-group">-->
+<!--                    <label>Is trip promoted? </label>-->
+<!--                    <select th:field="*{promoted}" class="form-control">-->
+<!--                        &lt;!&ndash;                            <option value="" th:selected="selected" th:disabled="disabled">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                Please select</option>&ndash;&gt;-->
+<!--                        <option th:value="true" th:text="Yes"></option>-->
+<!--                        <option th:value="false" th:text="No"></option>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                <div class="row col-md-6 form-group">-->
+<!--                    <div class="col-md-6 form-group">-->
+<!--                        <label>Price for adult</label>-->
+<!--                        <input type="number" step="0.01" th:field="*{priceForAdult}" class="form-control" >-->
+<!--                    </div>-->
+
+<!--                    <div class="col-md-6 form-group">-->
+<!--                        <label>Price for child</label>-->
+<!--                        <input type="number" step="0.01" th:field="*{priceForChild}" class="form-control" >-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class="btn btn-info" th:href="@{/trips/edit/{id}(id=${tripToEdit.id})}">Update</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        </td>&ndash;&gt;-->
+<!--        <form th:action="@{/trips/edit/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">-->
+<!--&lt;!&ndash;        <form th:action="@{/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;            <form th:action="@{/edit/{tripId}(tripId=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">&ndash;&gt;-->
+<!--            <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+<!--            </form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
 <div class="container">
     <footer class="py-3 my-4">
