@@ -159,6 +159,13 @@ public class TripController {
         model.addAttribute("promotedTrips", promotedTrips);
         return "promotedTrips";
     }
+
+    @GetMapping("/lastMinute")
+    public String getLastMinuteTrips(Model model) {
+        List<TripModel> lastMinuteTrips = tripService.getLastMinuteTrips();
+        model.addAttribute("lastMinuteTrips", lastMinuteTrips);
+        return "lastMinuteTrips";
+    }
 }
 
 //    @PutMapping("/edit/{tripId}")
