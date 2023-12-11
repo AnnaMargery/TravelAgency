@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
 import com.example.travelagency.service.TripOrderService;
@@ -66,10 +67,14 @@ public class TripOrderController {
 
     @PostMapping("/add/{id}")
     public String saveOrder(@PathVariable("id") Long id, TripOrderModel tripOrderModel) {
-        tripOrderModel.setTrip(tripService.getTripById(id));
-
-        tripOrderService.PostAddTripOrder(tripOrderModel);
-        return "redirect:/orders/details/"+tripOrderModel.getId();
+        TripModel tripById = tripService.getTripById(id);
+        tripOrderModel.setTrip(tripById);
+        if (tripById.getNumberOfPlaces() >= (tripOrderModel.getNumberOfChildren() + tripOrderModel.getNumberOfAdults())) {
+            Integer updatedPNumberOfPlaces = tripById.getNumberOfPlaces() - (tripOrderModel.getNumberOfChildren() + tripOrderModel.getNumberOfAdults());
+            tripById.setNumberOfPlaces(updatedPNumberOfPlaces);
+            tripOrderService.PostAddTripOrder(tripOrderModel);
+        }
+        return "redirect:/orders/details/" + tripOrderModel.getId();
     }
 
 
