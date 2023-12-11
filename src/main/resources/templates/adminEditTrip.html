@@ -71,32 +71,32 @@
             </div>
             <div class="col-md-6 form-group">
                 <label>Start Date</label>
-                <input type="date"  th:field="*{startDate}"class="form-control" placeholder="yyyy-MM-dd">
+                <input type="date" required th:field="*{startDate}"class="form-control" placeholder="yyyy-MM-dd">
             </div>
             <div class="col-md-6 form-group">
                 <label>End Date</label>
-                <input type="date" th:field="*{endDate}" class="form-control" placeholder="yyyy-MM-dd">
+                <input type="date" required th:field="*{endDate}" class="form-control" placeholder="yyyy-MM-dd">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Number of places</label>
-                <input type="number" th:field="*{numberOfPlaces}" class="form-control">
+                <input type="number" required min="0" th:field="*{numberOfPlaces}" class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Departure Airport</label>
-                <input type="text" th:field="*{airportFrom.name}"class="form-control">
+                <input type="text" required th:field="*{airportFrom.name}"class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
                 <label>Destination Airport</label>
-                <input type="text" th:field="*{airportTo.name}"class="form-control">
+                <input type="text" required th:field="*{airportTo.name}"class="form-control">
             </div>
 
 
             <div class="col-md-6 form-group">
                 <label>Select Hotel</label>
-                <select name="hotel" id="hotel" class="form-control">
+                <select name="hotel"  required id="hotel" class="form-control">
 <!--                    <option value="${tripToEdit.getHotel()}" th:selected="selected" th:text="${tripToEdit.getHotel.name} + ', ' + ${tripToEdit.getHotel().address.location.city}"></option>-->
                     <option th:each="hotelDetail : ${allHotels}" th:selected="${tripToEdit.getHotel().getName()}+', '+${tripToEdit.getHotel().getAddress().getLocation().getCity()}"
                             th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
@@ -106,7 +106,7 @@
 
             <div class="col-md-6 form-group">
                 <label>Select Food Option</label>
-                <select name="foodOption" id="foods" class="form-control">
+                <select name="foodOption" required id="foods" class="form-control">
                     <!--                        <option th:value="${tripToEdit.getFoodOption()}" th:selected="selected" th:text="${tripToEdit.getFoodOption().foodOption}"></option>-->
 <!--                    <option value="${tripToEdit.getFoodOption().foodOption}" th:selected="selected" th:text="${tripToEdit.foodOption.getFoodOption()}"></option>-->
                     <option th:each="food : ${allFoods}" th:selected="${tripToEdit.getFoodOption().getFoodOption()}"
@@ -117,12 +117,12 @@
             <div class="row col-md-6 form-group">
                 <div class="col-md-6 form-group">
                     <label>Price for adult</label>
-                    <input type="number" step="0.01" th:field="*{priceForAdult}" class="form-control" >
+                    <input type="number" required min="0" step="0.01" th:field="*{priceForAdult}" class="form-control" >
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label>Price for child</label>
-                    <input type="number" step="0.01" th:field="*{priceForChild}" class="form-control" >
+                    <input type="number" required min="0" step="0.01" th:field="*{priceForChild}" class="form-control" >
                 </div>
             </div>
 
@@ -242,13 +242,9 @@
 <div class="container">
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
         </ul>
-        <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
+        <p class="text-center text-body-secondary">&copy; 2023 Go For Java, Girl!, Marta Kozdrój, Agnieszka Skrzypulec-Szota, Anna Margery </p>
     </footer>
 </div>
 

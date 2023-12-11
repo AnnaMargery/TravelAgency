@@ -17,7 +17,7 @@
 <!--navbar-->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">USER DASHBOARD- ADD TRIP PARTICIPANT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,11 +45,16 @@
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <button class="btn btn-outline-success" type="submit">Login</button>
+                <button class="btn btn-outline-danger" type="submit">Logout</button>
             </form>
         </div>
     </div>
 </nav>
+
+<br>
+<br>
+<br>
+<br>
 
 <!--FORM-->
 <div class="container my-3">
@@ -61,17 +66,18 @@
 
                     <div class="col-md-6 form-group">
                         <label>First Name</label>
-                        <input type="text" th:field="*{firstName}" class="form-control" >
+                        <input type="text" th:field="*{firstName}" required minlength="3" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Last Name</label>
-                        <input type="text" th:field="*{lastName}" class="form-control" >
+                        <input type="text" th:field="*{lastName}" required minlength="3" class="form-control" >
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label>Birth Date</label>
-                        <input type="date" th:field="*{birthDate}" class="form-control" placeholder="yyyy-MM-dd">
+                        </script>
+                        <input type="date" th:field="*{birthDate}" required class="form-control" placeholder="yyyy-MM-dd">
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
