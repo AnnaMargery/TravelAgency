@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.model.TripOrderModel;
 import com.example.travelagency.model.TripParticipantModel;
@@ -73,6 +74,8 @@ public class TripOrderController {
             Integer updatedPNumberOfPlaces = tripById.getNumberOfPlaces() - (tripOrderModel.getNumberOfChildren() + tripOrderModel.getNumberOfAdults());
             tripById.setNumberOfPlaces(updatedPNumberOfPlaces);
             tripOrderService.PostAddTripOrder(tripOrderModel);
+        }else{
+            throw new ApiRequestException("Not enough places in the trip");
         }
         return "redirect:/orders/details/" + tripOrderModel.getId();
     }

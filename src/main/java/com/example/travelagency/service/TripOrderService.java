@@ -27,8 +27,7 @@ public class TripOrderService {
         Double priceForAdult = tripById.get().getPriceForAdult();
         Double priceForChildren = tripById.get().getPriceForChild();
         Long duration = tripById.get().getDuration();
-        Double totalPrice = (numberOfAdults * priceForAdult + numberOfChildren * priceForChildren) * duration;
-        return totalPrice;
+        return (numberOfAdults * priceForAdult + numberOfChildren * priceForChildren) * duration;
     }
 
 
