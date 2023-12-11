@@ -7,18 +7,51 @@
             rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!--navbar-->
+<nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand">Spring Security Login With Database Authentication</a>
-
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+        <a class="navbar-brand">Go For a Journey, Go!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/start}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand">Spring Security Login With Database Authentication</a>-->
+
+<!--        <button class="navbar-toggler" type="button"-->
+<!--                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"-->
+<!--                aria-controls="navbarSupportedContent" aria-expanded="false"-->
+<!--                aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</nav>-->
 <br/>
 <br/>
 <div class="container">
@@ -39,22 +72,30 @@
                           class="form-horizontal">
                         <div class="form-group mb-3">
                             <label class="control-label"> Username</label> <input type="text"
-                                                                                  id="username" name="username"
+                                                                                  required minlength="3" id="username" name="username"
                                                                                   class="form-control"
                                                                                   placeholder="Enter username"/>
                         </div>
                         <div class="form-group mb-3">
                             <label class="control-label"> Password</label> <input
-                                type="password" id="password" name="password"
+                                type="password" required minlength="3" id="password" name="password"
                                 class="form-control" placeholder="Enter password"/>
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary" th:href="@{/start.html}">Login</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">&copy; 2023 Go For Java, Girl!, Marta Kozdrój, Agnieszka Skrzypulec-Szota, Anna Margery </p>
+        </footer>
+    </div>
     </div>
 </div>
 </body>
