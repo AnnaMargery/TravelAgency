@@ -36,7 +36,7 @@ public class TripController {
     public String getTripList(Model model) {
         List<TripModel> tripList = tripService.getTripList();
         model.addAttribute("trips", tripList);
-        return "trips";
+        return "allTrips";
     }
 
     @GetMapping("continent/{continent}")
@@ -83,12 +83,12 @@ public class TripController {
     }
 
 
-    @GetMapping("/admin")
-    public String getAdminTripList(Model model) {
-        List<TripModel> tripList = tripService.getTripList();
-        model.addAttribute("trips", tripList);
-        return "adminTrips";
-    }
+//    @GetMapping("/admin")
+//    public String getAdminTripList(Model model) {
+//        List<TripModel> tripList = tripService.getTripList();
+//        model.addAttribute("trips", tripList);
+//        return "allTrips";
+//    }
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
         TripModel tripModel = tripService.getTripById(id);
