@@ -65,6 +65,7 @@ public class TripService {
 
 
 
+
 //    //todo nie jestem pewna
 //    public List<TripModel> findTripsSortedByPriceForAdultAscendingOrder() {
 //        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
