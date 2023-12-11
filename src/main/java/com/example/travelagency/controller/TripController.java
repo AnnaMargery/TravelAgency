@@ -130,7 +130,6 @@ public class TripController {
         return "deleteInfo";
     }
 
-
     @GetMapping("/promoted")
     public String getPromotedTrips(Model model) {
         List<TripModel> promotedTrips = tripService.getPromotedTrips();

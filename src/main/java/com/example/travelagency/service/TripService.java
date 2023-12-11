@@ -49,39 +49,12 @@ public class TripService {
     }
 
     public List<TripModel> getPromotedTrips(){
-        List<TripModel> promotedTrips = new ArrayList<>();
-        List<TripModel> allTrips = tripRepository.findAll();
-        for (TripModel trip : allTrips) {
-            if(trip.isPromoted()==true){
-                promotedTrips.add(trip);
-            }
-        }
+        List<TripModel> promotedTrips = tripRepository.findByPromotedIsTrue();
         if (!promotedTrips.isEmpty()) {
             return promotedTrips;
         }
         throw new ApiRequestException("Promoted trips not found");
     }
-
-
-
-
-
-//    //todo nie jestem pewna
-//    public List<TripModel> findTripsSortedByPriceForAdultAscendingOrder() {
-//        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultAsc();
-//    }
-//
-//    public List<TripModel> findTripsSortedByPriceForAdultDescendingOrder() {
-//        return tripRepository.findTripModelByPriceForAdultOOrderByPriceForAdultDesc();
-//    }
-//
-//    public List<TripModel> findTripsSortedByDepartureDate() {
-//        return tripRepository.findAllByStartDateIsNear();
-//    }
-//
-//    public void PostAddTrip(TripModel trip) {
-//        tripRepository.save(trip);
-//    }
 
 
     public void PostAddTrip(TripModel tripModel) {
