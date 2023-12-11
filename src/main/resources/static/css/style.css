@@ -140,11 +140,13 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+
 .card {
-    margin: 3% 0% 3% 0%;
+    border: 0;
     /*padding: 2% 2% 2% 2%;*/
+    /*margin-bottom: 2%;*/
     width: 20vw;
-   height: 250px;
+    height: 10%;
 }
 .img-hov img:hover {
     transform: scale(1.2);

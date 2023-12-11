@@ -92,21 +92,24 @@ public class TripController {
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
         TripModel tripModel = tripService.getTripById(id);
+
         model.addAttribute("tripToEdit", tripModel);
-        model.addAttribute("hotelModel", tripModel.getHotel());
-        model.addAttribute("airportModel", tripModel.getAirportTo());
-        model.addAttribute("foods", tripModel.getFoodOption());
+//        model.addAttribute("hotelModel", tripModel.getHotel());
+//        model.addAttribute("airportModel", tripModel.getAirportTo());
+//        model.addAttribute("foods", tripModel.getFoodOption());
 
         model.addAttribute("allFoods", Arrays.asList(FoodOption.values()));
         model.addAttribute("allHotels",hotelService.getHotelsList());
+        model.addAttribute("allAirports",airportService.getAirportList());
 
-        model.addAttribute("priceAdult", tripModel.getPriceForAdult());
-        model.addAttribute("priceChild", tripModel.getPriceForChild());
-        model.addAttribute("numberOfPlaces", tripModel.getNumberOfPlaces());
-        List<AirportModel> airportList = airportService.getAirportList();
-        model.addAttribute("airports", airportList);
-        List<HotelModel> hotelList = hotelService.getHotelsList();
-        model.addAttribute("hotels", hotelList);
+
+//        model.addAttribute("priceAdult", tripModel.getPriceForAdult());
+//        model.addAttribute("priceChild", tripModel.getPriceForChild());
+//        model.addAttribute("numberOfPlaces", tripModel.getNumberOfPlaces());
+//        List<AirportModel> airportList = airportService.getAirportList();
+//        model.addAttribute("airports", airportList);
+//        List<HotelModel> hotelList = hotelService.getHotelsList();
+//        model.addAttribute("hotels", hotelList);
         return "adminEditTrip";
     }
 
@@ -114,7 +117,7 @@ public class TripController {
     public String saveEditTrip(@ModelAttribute TripModel tripModel, Model model) {
         TripModel updatedTrip = tripService.saveEditTrip(tripModel);
 //        return "redirect:/trips/admin";
-        return "adminTrips";
+        return "redirect:/trips/admin";
     }
 
 

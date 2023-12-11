@@ -29,11 +29,11 @@ public class TripModel {
     private Double priceForChild;
     @Enumerated(EnumType.STRING)
     private FoodOption foodOption;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private AirportModel airportFrom;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private AirportModel airportTo;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private HotelModel hotel;
 
 

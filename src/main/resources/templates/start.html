@@ -149,30 +149,20 @@
 </div>
 
 
-
 <!--GRID with CARDS-->
 <!--ROW 1-->
-<div class="row row-cols-1 row-cols-md-4 g-4 img-hov mb-5" >
+<div class="row row-cols-md-4 g-4 img-hov mb-auto" >
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/continent/Europe}"><img th:src="@{/img/europe-sq.jpg}"  class="card-img-top"  alt="Europe"></a>
+            <a th:href="@{/trips/continent/Europe}"><img th:src="@{/img/europe-sq.jpg}"  class="card-img-top rounded-4"  alt="Europe"></a>
             <div class="card-body">
-<!--                <h5 class="card-title">Europe</h5>-->
-<!--                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
             </div>
 
         </div>
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/continent/Asia}"><img th:src="@{/img/asia-sq.jpg}" class="card-img-top" alt="Asia"></a>
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card">
-            <a th:href="@{/trips/continent/Africa}"> <img th:src="@{/img/africa-sq.jpg}" class="card-img-top" alt="Africa"></a>
+            <a th:href="@{/trips/continent/Asia}"><img th:src="@{/img/asia-sq.jpg}" class="card-img-top rounded-4" alt="Asia"></a>
             <div class="card-body">
 
             </div>
@@ -180,8 +170,16 @@
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/continent/NorthAmerica}"><img th:src="@{/img/north-america-sq.jpg}" class="card-img-top" alt="North-America"></a>
+            <a th:href="@{/trips/continent/Africa}"> <img th:src="@{/img/africa-sq.jpg}" class="card-img-top rounded-4" alt="Africa"></a>
             <div class="card-body">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a th:href="@{/trips/continent/NorthAmerica}"><img th:src="@{/img/north-america-sq.jpg}" class="card-img-top rounded-4" alt="North-America"></a>
+            <div class="card-body">
+
             </div>
         </div>
     </div>
@@ -189,10 +187,10 @@
 </div>
 
 <!--ROW 2-->
-<div class="row row-cols-1 row-cols-md-4 g-4 img-hov mb-5" >
+<div class="row row-cols-1 row-cols-md-4 g-4 img-hov mb-auto" >
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/lastMinute}"><img th:src="@{/img/last-minute.jpg}"  class="card-img-top"  alt="Last-Minute"></a>
+            <a th:href="@{/trips/lastMinute}"><img th:src="@{/img/last-minute.jpg}"  class="card-img-top rounded-4"  alt="Last-Minute"></a>
             <div class="card-body">
 
             </div>
@@ -201,14 +199,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/promoted}"><img th:src="@{/img/best-deals.jpg}" class="card-img-top" alt="Best-Deals"></a>
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card">
-            <a th:href="@{/trips/continent/Africa}"> <img th:src="@{/img/recently-ordered.jpg}" class="card-img-top" alt="Recently-Ordered"></a>
+            <a th:href="@{/trips/promoted}"><img th:src="@{/img/best-deals.jpg}" class="card-img-top rounded-4" alt="Best-Deals"></a>
             <div class="card-body">
 
             </div>
@@ -216,7 +207,15 @@
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips}"><img th:src="@{/img/all-trips.jpg}" class="card-img-top" alt="All-Trips"></a>
+            <a th:href="@{/trips/continent/Africa}"> <img th:src="@{/img/recently-ordered.jpg}" class="card-img-top rounded-4" alt="Recently-Ordered"></a>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <a th:href="@{/trips}"><img th:src="@{/img/all-trips.jpg}" class="card-img-top rounded-4" alt="All-Trips"></a>
             <div class="card-body">
             </div>
         </div>
@@ -225,10 +224,10 @@
 </div>
 
 <!--ROW 3-->
-<div class="row row-cols-1 row-cols-md-4 g-4 img-hov mb-5" >
+<div class="row row-cols-1 row-cols-md-4 g-4 img-hov mb-auto" >
     <div class="col">
         <div class="card">
-            <a th:href="@{trips/country/Czech Republic}"><img th:src="@{/img/czech-republic.jpg}"  class="card-img-top"  alt="Czech-Republic"></a>
+            <a th:href="@{trips/country/Czech Republic}"><img th:src="@{/img/czech-republic.jpg}"  class="card-img-top rounded-4"  alt="Czech-Republic"></a>
             <div class="card-body">
 
             </div>
@@ -237,14 +236,14 @@
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/country/United Kingdom}"><img th:src="@{/img/united-kingdom.jpg}" class="card-img-top" alt="United-Kingdom"></a>
+            <a th:href="@{/trips/country/United Kingdom}"><img th:src="@{/img/united-kingdom.jpg}" class="card-img-top rounded-4" alt="United-Kingdom"></a>
             <div class="card-body">
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/country/Tenerife}"> <img th:src="@{/img/tenerife.jpg}" class="card-img-top" alt="Tenerife"></a>
+            <a th:href="@{/trips/country/Tenerife}"> <img th:src="@{/img/tenerife.jpg}" class="card-img-top rounded-4" alt="Tenerife"></a>
             <div class="card-body">
 
             </div>
@@ -252,7 +251,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <a th:href="@{/trips/country/China}"><img th:src="@{/img/china.jpg}" class="card-img-top" alt="China"></a>
+            <a th:href="@{/trips/country/China}"><img th:src="@{/img/china.jpg}" class="card-img-top rounded-4" alt="China"></a>
             <div class="card-body">
             </div>
         </div>
