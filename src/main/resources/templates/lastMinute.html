@@ -1,4 +1,4 @@
-lastMinuteTrips.html<!doctype html>
+<!doctype html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -72,20 +72,20 @@ lastMinuteTrips.html<!doctype html>
 
     <!-- Wyświetlenie wyników filtrowania -->
 
-    <tr th:each="promoted : ${promotedTrips}" >
-        <a th:href="@{/trips/promoted}"></a>
-        <td th:text="${promoted.id}"></td>
-        <td th:text="${promoted.startDate}"></td>
-        <td th:text="${promoted.endDate}"></td>
-        <td th:text="${promoted.duration}"></td>
-        <td th:text="${promoted.numberOfPlaces}"></td>
-        <td th:text="${promoted.isPromoted}"></td>
-        <td th:text="${promoted.priceForAdult}"></td>
-        <td th:text="${promoted.priceForChild}"></td>
-        <td th:text="${promoted.foodOption}"></td>
-        <td th:text="${promoted.airportFrom.name}"></td>
-        <td th:text="${promoted.airportTo.name}"></td>
-        <td th:text="${promoted.hotel.name} +  ${promoted.hotel.address.street} +  ${promoted.hotel.address.location.city}"></td>
+    <tr th:each="lastmin : ${lastMinuteTrips}" >
+        <a th:href="@{/trips/lastMinute}"></a>
+        <td th:text="${lastmin.id}"></td>
+        <td th:text="${lastmin.startDate}"></td>
+        <td th:text="${lastmin.endDate}"></td>
+        <td th:text="${lastmin.duration}"></td>
+        <td th:text="${lastmin.numberOfPlaces}"></td>
+        <td th:text="${lastmin.isPromoted}"></td>
+        <td th:text="${lastmin.priceForAdult}"></td>
+        <td th:text="${lastmin.priceForChild}"></td>
+        <td th:text="${lastmin.foodOption}"></td>
+        <td th:text="${lastmin.airportFrom.name}"></td>
+        <td th:text="${lastmin.airportTo.name}"></td>
+        <td th:text="${lastmin.hotel.name} +  ${lastmin.hotel.address.street} +  ${lastmin.hotel.address.location.city}"></td>
     </tr>
     </tbody>
 </table>

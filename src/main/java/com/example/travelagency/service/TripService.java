@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -95,6 +92,9 @@ public class TripService {
     }
 
     public TripModel saveEditTrip(TripModel tripToEdit) {
+        Long durationInMillies = Math.abs(tripToEdit.getEndDate().getTime() - tripToEdit.getStartDate().getTime());
+        Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
+        tripToEdit.setDuration(durationInDays);
         return tripRepository.save(tripToEdit);
     }
 
@@ -105,12 +105,13 @@ public class TripService {
         tripRepository.deleteById(tripId);
     }
 
-//todo sprawdzic implementacje
-    public List<TripModel> getLastMinuteTrips() {
-        LocalDate dateInTheFuture = LocalDate.now().plusDays(3);
-        return tripRepository.findLastMinuteTrips();
-
-
+    public List<TripModel> getLastMinuteTrips(){
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 7);
+        date = c.getTime();
+        return tripRepository.findTripModelByStartDateBefore(date);
     }
 }
 

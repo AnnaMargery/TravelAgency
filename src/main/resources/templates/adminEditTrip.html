@@ -62,9 +62,10 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <h2>Edit Trip</h2>
-
+        </div>
             <form th:action="@{/trips/edit/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="post">
                 <input type="hidden" th:field="${id}" />
+<!--                <input type="hidden" th:field="${duration}" />-->
                 <div class="form-row">
                 </div>
                 <div class="col-md-6 form-group">
@@ -93,23 +94,47 @@
                     <input type="text" th:field="*{airportTo.name}"class="form-control">
                 </div>
 
-                <div class="col-md-6 form-group">
-                    <label>Hotel</label>
-                    <input type="text" th:field="*{hotel.name}" class="form-control">
-                </div>
 
                 <div class="col-md-6 form-group">
-                    <label>Food Option</label>
-                    <input type="text"  th:field="*{foodOption}" class="form-control">
+                    <label>Select Hotel</label>
+                    <select name="hotel" id="hotel" class="form-control">
+                        <option value="${tripToEdit.getHotel()}" th:selected="selected" th:text="${tripToEdit.getHotel.name} + ', ' + ${tripToEdit.getHotel().address.location.city}"></option>
+                        <option th:each="hotelDetail : ${allHotels}"
+                                th:value="${hotelDetail.id}" th:text="${hotelDetail.name}+', '+${hotelDetail.address.location.city}"/>
+                    </select>
                 </div>
-            </form>
+
+
+                <div class="col-md-6 form-group">
+                    <label>Select Food Option</label>
+                    <select name="foodOption" id="foods" class="form-control">
+<!--                        <option th:value="${tripToEdit.getFoodOption()}" th:selected="selected" th:text="${tripToEdit.getFoodOption().foodOption}"></option>-->
+                        <option value="${tripToEdit.getFoodOption().foodOption}" th:selected="selected" th:text="${tripToEdit.getFoodOption().foodOption}"></option>
+                        <option th:each="food : ${allFoods}"
+                                th:value="${food}" th:text="${food.foodOption}" />
+                    </select>
+                </div>
+
+                <div class="row col-md-6 form-group">
+                    <div class="col-md-6 form-group">
+                        <label>Price for adult</label>
+                        <input type="number" step="0.01" th:field="*{priceForAdult}" class="form-control" >
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Price for child</label>
+                        <input type="number" step="0.01" th:field="*{priceForChild}" class="form-control" >
+                    </div>
+                </div>
+
             </select>
-        </div>
-                <a class="btn btn-primary btn-block mt-3" th:href="@{/trips/update/{id}(id=${tripToEdit.id})}">Save</a>
-                </td>
+
+<!--                <a class="btn btn-primary btn-block mt-3" th:href="@{/trips/update/{id}(id=${tripToEdit.id})}">Save</a>-->
+<!--                </td>-->
 <!--        <form th:action="@{/trips/update/{id} (id=${tripToEdit.id})}" th:object="${tripToEdit}" method="put">-->
-<!--            <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>-->
+            <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
         </form>
+        </div>
     </div>
 </div>
 </div>
