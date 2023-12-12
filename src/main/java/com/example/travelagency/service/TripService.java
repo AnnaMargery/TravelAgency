@@ -77,6 +77,8 @@ public class TripService {
             throw new ApiRequestException("Trip not found for id: " + tripId);
         }
         tripRepository.deleteById(tripId);
+
+        //todo zrobić widok dla błędów/exceptionów itp.
     }
 
     public List<TripModel> getLastMinuteTrips(){
