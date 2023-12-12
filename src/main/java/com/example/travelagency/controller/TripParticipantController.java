@@ -33,7 +33,6 @@ public class TripParticipantController {
 
     @PostMapping("/addParticipant/{id}")
     public String saveParticipant(@ModelAttribute TripParticipantModel participant, @PathVariable("id") Long id) {
-
         participant.setTripOrder(tripOrderService.getOrderById(id));
         tripParticipantService.postAddParticipant(participant);
 
