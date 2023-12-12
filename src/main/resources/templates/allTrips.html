@@ -90,12 +90,12 @@
 
                 <form th:action="@{/trips/edit/{id}(id=${trip.id})}" method="get">
                     <td>
-                        <button type="submit" class="btn btn-primary btn-block mt-3" sec:authorize="hasAuthority('ADMIN')">Edit
+                        <button type="submit" class="btn btn-warning btn-block mt-3" sec:authorize="hasAuthority('ADMIN')">Edit
                         </button>
                 </form>
                 <form th:action="@{/trips/delete/{id}(id=${trip.id})}" method="delete">
                     <td>
-                        <button type="submit" class="btn btn-primary btn-block mt-3" sec:authorize="hasAuthority('ADMIN')">Delete
+                        <button type="submit" class="btn btn-danger btn-block mt-3" sec:authorize="hasAuthority('ADMIN')">Delete
                         </button>
                 </form>
 

@@ -44,4 +44,8 @@ public class TripOrderService {
     public List<TripOrderModel> getOrdersByTripId(Long tripId) {
         return tripOrderRepository.getAllByTripId(tripId);
     }
+
+    public List<TripOrderModel> get5LastOrders(){
+        return tripOrderRepository.findFiveLastOrders();
+    }
 }
