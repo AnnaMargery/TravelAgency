@@ -61,7 +61,6 @@
         <th scope="col">Departure Date</th>
         <th scope="col">Duration</th>
         <th scope="col">Number of places</th>
-        <th scope="col">Promoted Trip</th>
         <th scope="col">Price for adult</th>
         <th scope="col">Price for child</th>
         <th scope="col">Food Option</th>
@@ -69,6 +68,7 @@
         <th scope="col">Airport To</th>
         <th scope="col">Hotel Details</th>
         <th scope="col">Actions</th>
+
     </tr>
     </thead>
     <tbody>
@@ -88,7 +88,6 @@
         <td th:text="${tripCon.airportFrom.name}"></td>
         <td th:text="${tripCon.airportTo.name}"></td>
         <td th:text="${tripCon.hotel.name} +  ${tripCon.hotel.address.street} +  ${tripCon.hotel.address.location.city}"></td>
-
 
         <form th:action="@{/trips/edit/{id}(id=${tripCon.id})}" method="get">
             <td>
