@@ -22,21 +22,17 @@ public class TripOrderService {
     }
 
 
-
     public Double totalPrice(long tripId, int numberOfAdults, int numberOfChildren) {
         Optional<TripModel> tripById = tripRepository.findById(tripId);
         Double priceForAdult = tripById.get().getPriceForAdult();
         Double priceForChildren = tripById.get().getPriceForChild();
-
-        Double totalPrice = numberOfAdults * priceForAdult + numberOfChildren * priceForChildren;
-        return totalPrice;
+        Long duration = tripById.get().getDuration();
+        return (numberOfAdults * priceForAdult + numberOfChildren * priceForChildren) * duration;
     }
 
 
     public void PostAddTripOrder(TripOrderModel tripOrder) {
-        Double priceForAdult = tripOrder.getTrip().getPriceForAdult();
-        Double priceForChild = tripOrder.getTrip().getPriceForChild();
-        Double totalPrice = tripOrder.getNumberOfAdults() * priceForAdult + tripOrder.getNumberOfChildren() * priceForChild;
+        Double totalPrice = totalPrice(tripOrder.getTrip().getId(), tripOrder.getNumberOfAdults(), tripOrder.getNumberOfChildren());
         tripOrder.setTotalPrice(totalPrice);
         tripOrderRepository.save(tripOrder);
     }
@@ -45,7 +41,11 @@ public class TripOrderService {
         return tripOrderRepository.getTripOrderModelById(id);
     }
 
-    public List<TripOrderModel> getOrdersByTripId(Long tripId){
+    public List<TripOrderModel> getOrdersByTripId(Long tripId) {
         return tripOrderRepository.getAllByTripId(tripId);
+    }
+
+    public List<TripOrderModel> get5LastOrders(){
+        return tripOrderRepository.findFiveLastOrders();
     }
 }
