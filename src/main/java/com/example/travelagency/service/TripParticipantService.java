@@ -13,6 +13,7 @@ public class TripParticipantService {
     private final TripParticipantRepository tripParticipantRepository;
 
     public void postAddParticipant(TripParticipantModel participant) {
+       participant.setId(null);
         tripParticipantRepository.save(participant);
     }
 

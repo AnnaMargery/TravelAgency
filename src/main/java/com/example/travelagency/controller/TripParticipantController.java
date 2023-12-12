@@ -26,8 +26,6 @@ public class TripParticipantController {
         TripParticipantModel participant = new TripParticipantModel();
         model.addAttribute("participant", participant);
 
-//        TripOrderModel orderById = tripOrderService.getOrderById(id);
-//        participant.setTripOrder(orderById);
         model.addAttribute("orderId", id);
 
        return "addParticipant";
