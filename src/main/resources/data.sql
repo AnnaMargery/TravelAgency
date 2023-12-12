@@ -175,6 +175,14 @@ INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (1, 2, 1);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
 values (2, 2, 0);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (3, 2, 0);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (4, 2, 3);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (5, 5, 0);
+INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children)
+values (6, 1, 1);
 
 
 /*TripParticipant init data*/

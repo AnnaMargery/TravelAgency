@@ -88,10 +88,6 @@
             <td>
     <a class="btn btn-info" th:href="@{/addParticipant/{id}(id=${details.id})}">Add participant</a>
             </td>
-            <!--        <form th:action="@{/addParticipant/{id}(id=${details.id})}" method="get">-->
-            <!--            <td><button type="submit" class="btn btn-primary btn-block mt-3">Add participant</button>-->
-            <!--        </form>-->
-            <!--        </td>-->
 
         </tr>
         </tbody>
@@ -116,6 +112,7 @@
 
         </tbody>
     </table>
+    <a class="btn btn-success" th:href="@{/orders}">Confirm</a>
 </form>
 <div class="container">
 <footer class="py-3 my-4">

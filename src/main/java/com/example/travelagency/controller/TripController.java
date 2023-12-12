@@ -1,10 +1,7 @@
 package com.example.travelagency.controller;
 
 import com.example.travelagency.exception.ApiRequestException;
-import com.example.travelagency.model.AirportModel;
-import com.example.travelagency.model.FoodOption;
-import com.example.travelagency.model.HotelModel;
-import com.example.travelagency.model.TripModel;
+import com.example.travelagency.model.*;
 import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,7 +59,6 @@ public class TripController {
         model.addAttribute("trip", tripModel);
         model.addAttribute("hotelModel", new HotelModel());
         model.addAttribute("airportModel", new AirportModel());
-
         model.addAttribute("foods", FoodOption.values());
         List<AirportModel> airportList = airportService.getAirportList();
         model.addAttribute("airports", airportList);
@@ -147,6 +143,12 @@ public class TripController {
         return "lastMinute";
     }
 
+    @GetMapping("/lastOrders")
+    public String getLastOrderedTrips(Model model) {
+        List<TripOrderModel> lastOrderedTrips = tripOrderService.get5LastOrders();
+        model.addAttribute("lastOrders", lastOrderedTrips);
+        return "lastOrders";
+    }
     //todo
     @GetMapping("/select")
     public String getSelectFormTrip(Model model){
