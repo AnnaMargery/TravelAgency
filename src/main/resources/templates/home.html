@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link divider-vertical"  th:href="@{/logout}" sec:authorize="hasAuthority('USER')">Show all trips</a>
+                    <a class="nav-link divider-vertical"  th:href="@{/trips}" sec:authorize="hasAuthority('USER')">Show all trips</a>
                 </li>
 
                 <li class="nav-item ">
@@ -56,9 +56,7 @@
     <h2>Welcome</h2>
     <p>Spring Security Thymeleaf tutorial</p>
     <div sec:authorize="hasRole('USER')">Text visible to user.</div>
-
     <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-
     <div sec:authorize="isAuthenticated()"> Text visible only to authenticated users.</div>
     Authenticated username:
     <b><div sec:authentication="name"></div></b>
