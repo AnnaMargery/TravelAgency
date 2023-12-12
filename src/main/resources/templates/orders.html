@@ -57,6 +57,13 @@
     <thead>
     <tr>
         <th scope="col">Id</th>
+        <th scope="col">From Airport</th>
+        <th scope="col">To Airport</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Hotel Name</th>
+        <th scope="col">Food Option</th>
         <th scope="col">Number of adults</th>
         <th scope="col">Number of children</th>
         <th scope="col">Total price</th>
@@ -67,9 +74,17 @@
     <tbody>
     <tr th:each="order : ${orders}">
         <td th:text="${order.getId()}"></td>
-        <td th:text="${order.numberOfChildren}"></td>
+        <td th:text="${order.getTrip().getAirportFrom().name}"></td>
+        <td th:text="${order.getTrip().getAirportTo().name}"></td>
+        <td th:text="${order.getTrip().startDate}"></td>
+        <td th:text="${order.getTrip().endDate}"></td>
+        <td th:text="${order.getTrip().duration}"></td>
+        <td th:text="${order.getTrip().hotel.name}"></td>
+        <td th:text="${order.getTrip().foodOption}"></td>
         <td th:text="${order.numberOfAdults}"></td>
-        <td></td>
+        <td th:text="${order.numberOfChildren}"></td>
+        <td th:text="${order.totalPrice}"></td>
+
         <form th:action="@{/orders/details/{id}(id=${order.id})}" method="get">
             <td>
                 <button type="submit" class="btn btn-primary btn-block mt-3">Details</button>
