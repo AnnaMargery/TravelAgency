@@ -64,12 +64,20 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="col-md-4 col-md-pull-7">
                     <div class="booking-form">
+<!--                DO KONSULTACJI-->
                         <form>
-                            <div class="form-group">
-                                <span class="form-label">Continent</span>
-                                <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
+                            <div class="form-group" >
+                                <span class="form-label" >Continent</span>
+                                <select name="continent" required id="continent" class="form-control" >
+                                    <option th:each="food : ${allFoods}"
+                                            th:value="${food}" th:text="${airport.name}"/>
+                                    <option>Select Continent</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <span class="form-label">Country</span>

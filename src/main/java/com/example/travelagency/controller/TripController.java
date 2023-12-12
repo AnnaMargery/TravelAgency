@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/trips")
@@ -61,6 +62,7 @@ public class TripController {
         model.addAttribute("trip", tripModel);
         model.addAttribute("hotelModel", new HotelModel());
         model.addAttribute("airportModel", new AirportModel());
+
         model.addAttribute("foods", FoodOption.values());
         List<AirportModel> airportList = airportService.getAirportList();
         model.addAttribute("airports", airportList);
@@ -117,7 +119,7 @@ public class TripController {
     public String saveEditTrip(@ModelAttribute TripModel tripModel, Model model) {
         TripModel updatedTrip = tripService.saveEditTrip(tripModel);
 //        return "redirect:/trips/admin";
-        return "redirect:/trips/admin";
+        return "redirect:/trips";
     }
 
 
@@ -143,6 +145,20 @@ public class TripController {
         List<TripModel> lastMinuteTrips = tripService.getLastMinuteTrips();
         model.addAttribute("lastMinuteTrips", lastMinuteTrips);
         return "lastMinute";
+    }
+
+    //todo
+    @GetMapping("/select")
+    public String getSelectFormTrip(Model model){
+
+        List<FoodOption> foodOptions = Arrays.stream(FoodOption.values()).toList();
+        Set<String> continents = locationService.getListOfContinents();
+
+        model.addAttribute("continents", continents);
+        model.addAttribute("allFoods", foodOptions);
+        model.addAttribute("allHotels",hotelService.getHotelsList());
+        model.addAttribute("allAirports",airportService.getAirportList());
+        return "filteredTrips";
     }
 }
 
