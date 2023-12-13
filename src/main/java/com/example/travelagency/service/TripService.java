@@ -48,7 +48,7 @@ public class TripService {
         throw new ApiRequestException("Trip not found for id: " + tripId);
     }
 
-    public List<TripModel> getPromotedTrips(){
+    public List<TripModel> getPromotedTrips() {
         List<TripModel> promotedTrips = tripRepository.findByPromotedIsTrue();
         if (!promotedTrips.isEmpty()) {
             return promotedTrips;
@@ -78,10 +78,9 @@ public class TripService {
         }
         tripRepository.deleteById(tripId);
 
-        //todo zrobić widok dla błędów/exceptionów itp.
     }
 
-    public List<TripModel> getLastMinuteTrips(){
+    public List<TripModel> getLastMinuteTrips() {
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -89,5 +88,14 @@ public class TripService {
         date = c.getTime();
         return tripRepository.findTripModelByStartDateBefore(date);
     }
+
+    public List<TripModel> findSelectedTrips(Integer hotelStandard, String foodOption, String continent, String country) {
+        if (!tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country).isEmpty()) {
+            return tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country);
+        }
+        throw new ApiRequestException("Trip not found for requested criteria");
+    }
+
+
 }
 

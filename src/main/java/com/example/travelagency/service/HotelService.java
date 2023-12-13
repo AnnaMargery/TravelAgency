@@ -77,4 +77,6 @@ public class HotelService {
         throw new ApiRequestException("Hotel not found for id: " + hotelToEdit.getId());
     }
 
+
+
 }
