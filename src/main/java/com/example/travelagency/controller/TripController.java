@@ -78,15 +78,37 @@ public class TripController {
         return "getTrips";
     }
 
+
+@GetMapping("/search")
+
+public String showSearchForm(Model model){
+        model.addAttribute("searchForm", new SearchForm());
+        model.addAttribute("foodOptions",  Arrays.asList(FoodOption.values()));
+        model.addAttribute("continents", locationService.getListOfContinents());
+        model.addAttribute("countries", locationService.getListOfCountries());
+        model.addAttribute("standards", hotelService.getListOfHotelStandard());
+        return "searchTrip";
+}
+
+@PostMapping("/search")
+public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+    String foodOption = searchForm.getFoodOption();
+    List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(),searchForm.getFoodOption(),searchForm.getContinent(),searchForm.getCountry());
+    model.addAttribute("searchedTrips", searchedTrips);
+    model.addAttribute("foodOptions", foodOption);
+    model.addAttribute("continents", locationService.getListOfContinents());
+    model.addAttribute("countries", locationService.getListOfCountries());
+    model.addAttribute("standards", hotelService.getListOfHotelStandard());
+    return "getSearchedTrips";
+
+}
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
         TripModel tripModel = tripService.getTripById(id);
-
         model.addAttribute("tripToEdit", tripModel);
         model.addAttribute("allFoods", Arrays.asList(FoodOption.values()));
         model.addAttribute("allHotels", hotelService.getHotelsList());
         model.addAttribute("allAirports", airportService.getAirportList());
-
         return "adminEditTrip";
     }
 
@@ -114,6 +136,7 @@ public class TripController {
         return "promotedTrips";
     }
 
+
     @GetMapping("/lastMinute")
     public String getLastMinuteTrips(Model model) {
         List<TripModel> lastMinuteTrips = tripService.getLastMinuteTrips();
@@ -127,6 +150,18 @@ public class TripController {
         model.addAttribute("lastOrders", lastOrderedTrips);
         return "lastOrders";
     }
-
+    //todo
+//    @GetMapping("/select")
+//    public String getSelectFormTrip(Model model){
+//
+//        List<FoodOption> foodOptions = Arrays.stream(FoodOption.values()).toList();
+//        Set<String> continents = locationService.getListOfContinents();
+//
+//        model.addAttribute("continents", continents);
+//        model.addAttribute("allFoods", foodOptions);
+//        model.addAttribute("allHotels",hotelService.getHotelsList());
+//        model.addAttribute("allAirports",airportService.getAirportList());
+//        return "filteredTrips";
+//    }
 }
 

@@ -1,6 +1,7 @@
 package com.example.travelagency.service;
 
 import com.example.travelagency.exception.ApiRequestException;
+import com.example.travelagency.model.FoodOption;
 import com.example.travelagency.model.TripModel;
 import com.example.travelagency.repository.TripOrderRepository;
 import com.example.travelagency.repository.TripParticipantRepository;
@@ -41,6 +42,11 @@ public class TripService {
         return tripRepository.findTripModelByHotelAddressLocationCountry(country);
     }
 
+    public List<FoodOption> getFoodsList(){
+        return Arrays.asList(FoodOption.values());
+    }
+
+
     public TripModel getTripById(Long tripId) {
         if (tripRepository.existsById(tripId)) {
             return tripRepository.findById(tripId).get();
@@ -48,7 +54,7 @@ public class TripService {
         throw new ApiRequestException("Trip not found for id: " + tripId);
     }
 
-    public List<TripModel> getPromotedTrips() {
+    public List<TripModel> getPromotedTrips(){
         List<TripModel> promotedTrips = tripRepository.findByPromotedIsTrue();
         if (!promotedTrips.isEmpty()) {
             return promotedTrips;
@@ -80,7 +86,7 @@ public class TripService {
 
     }
 
-    public List<TripModel> getLastMinuteTrips() {
+    public List<TripModel> getLastMinuteTrips(){
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -97,5 +103,9 @@ public class TripService {
     }
 
 
+
+    public List<TripModel> findByFoodOption(FoodOption foodOption) {
+        return tripRepository.findTripModelByFoodOption(foodOption);
+    }
 }
 

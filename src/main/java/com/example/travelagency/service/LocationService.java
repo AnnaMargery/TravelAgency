@@ -49,7 +49,7 @@ public class LocationService {
         return continents;
     }
 
-    public Set<String> getListOfCountires() {
+    public Set<String> getListOfCountries() {
         List<LocationModel> allLocations = locationRepository.findAll();
         Set<String> countries = new HashSet<>();
         for (LocationModel location : allLocations) {
