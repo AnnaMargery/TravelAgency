@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+
     @GetMapping("/")
     public String greeting(Model model) {
         model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
@@ -17,8 +18,10 @@ public class HomeController {
         return "login";
     }
 
+
+
     @GetMapping("/start")
-    public String start() {
+    public String start(Model model){
         return "start";
     }
 
@@ -36,4 +39,7 @@ public class HomeController {
     public String logout() {
         return "redirect:/login";
     }
+
+
+
 }

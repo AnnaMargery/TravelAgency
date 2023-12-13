@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add new trip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link type="text/css" media="all" href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+
+    <script type='text/javascript' src=''></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript'
+            src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<!--navbar-->
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Go For a Journey, Go!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link divider-vertical" th:href="@{/start}"
+                       sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Home </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link divider-vertical" th:href="@{/trips/add}" sec:authorize="hasAuthority('ADMIN')">Add
+                        trip</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link divider-vertical" th:href="@{/trips}" sec:authorize="hasAuthority('ADMIN')">Show,
+                        edit, delete trips</a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link divider-vertical" th:href="@{/trips}" sec:authorize="hasAuthority('USER')">Show
+                        all trips</a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link divider-vertical" th:href="@{/logout}"
+                       sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--FORM-->
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Search your trip</h2>
+
+            <form th:action="@{search}" th:object="${searchForm}" method="post">
+                <div class="form-row">
+                </div>
+                <div class="col-md-6 form-group">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Select Continent</label>
+                    <select id="continent" name="continent" th:field="*{continent}">
+                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                        <option th:each="continent : ${continents}" th:value="${continent}"
+                                th:text="${continent}"></option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-6 form-group">
+                    <label>Country:</label>
+                    <select id="country" name="country" th:field="*{country}">
+                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                        <!-- Loop through available food options -->
+                        <option th:each="country : ${countries}" th:value="${country}"
+                                th:text="${country}"></option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Hotel's standard:</label>
+                    <select id="standard" name="standard" th:field="*{standard}">
+                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                        <!-- Loop through available food options -->
+                        <option th:each="standard : ${standards}" th:value="${standard}"
+                                th:text="${standard}"></option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-6 form-group">
+                    <label>Food Option:</label>
+                    <select id="foodOption" name="foodOption" th:field="*{foodOption}">
+                        <option value="">Select Food Option</option>
+                        <!-- Loop through available food options -->
+                        <option th:each="option : ${foodOptions}" th:value="${option}"
+                                th:text="${option}"></option>
+                    </select>
+                </div>
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Start Date</label>-->
+                <!--                    <input type="date" th:field="*{startDate}" required th:value="${trip.startDate}" class="form-control"-->
+                <!--                           placeholder="yyyy-MM-dd">-->
+                <!--                </div>-->
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>End Date</label>-->
+                <!--                    <input type="date" th:field="*{endDate}" required th:value="${trip.endDate}" class="form-control"-->
+                <!--                           placeholder="yyyy-MM-dd">-->
+                <!--                </div>-->
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Number of places</label>-->
+                <!--                    <input type="number" min="0"  required th:field="*{numberOfPlaces}" class="form-control">-->
+                <!--                </div>-->
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Select Departure Airport</label>-->
+                <!--                    <select name="airportFrom" required id="airportFrom" class="form-control">-->
+                <!--                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>-->
+                <!--                        <option th:each="airport : ${airports}"-->
+                <!--                                th:value="${airport.id}" th:text="${airport.name}"/>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Select Departure Airport</label>-->
+                <!--                    <select name="airportTo" required id="airportTo" class="form-control">-->
+                <!--                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>-->
+                <!--                        <option th:each="airport : ${airports}"-->
+                <!--                                th:value="${airport.id}" th:text="${airport.name}"/>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Select Food Option</label>-->
+                <!--                    <select name="foodOption" required id="foodOption" class="form-control">-->
+                <!--                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>-->
+                <!--                        <option th:each="food : ${foods}"-->
+                <!--                                th:value="${food}" th:text="${food.getFoodOption()}"/>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+
+                <!--                <div class="col-md-6 form-group">-->
+                <!--                    <label>Is trip promoted? </label>-->
+                <!--                    <select name="promoted" required th:field="*{promoted}" class="form-control">-->
+                <!--                        &lt;!&ndash;                            <option value="" th:selected="selected" th:disabled="disabled">&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                                Please select</option>&ndash;&gt;-->
+                <!--                        <option th:value="true" th:text="Yes"></option>-->
+                <!--                        <option th:value="false" th:text="No"></option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+
+                <!--                <div class="row col-md-6 form-group">-->
+                <!--                    <div class="col-md-6 form-group">-->
+                <!--                        <label>Price for adult</label>-->
+                <!--                        <input type="number" min="0" required step="0.01" th:field="*{priceForAdult}" class="form-control">-->
+                <!--                    </div>-->
+
+                <!--                    <div class="col-md-6 form-group">-->
+                <!--                        <label>Price for child</label>-->
+                <!--                        <input type="number" min="0" required step="0.01" th:field="*{priceForChild}" class="form-control">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+        </div>
+    </div>
+
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">&copy; 2023 Go For Java, Girl!, Marta Kozdrój, Agnieszka
+            Skrzypulec-Szota, Anna Margery </p>
+    </footer>
+</div>
+</p>
+</footer>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--<script>-->
+<!--    $(function() {-->
+<!--        $("#join_datepicker").datepicker({dateFormat:"yy-mm-dd"});-->
+<!--        $("#retire_datepicker").datepicker({dateFormat:"yy-mm-dd"});-->
+<!--    });-->
+<!--</script>-->
+
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.example.travelagency.repository;
 
+import com.example.travelagency.model.FoodOption;
 import com.example.travelagency.model.TripModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,8 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     List<TripModel> findTripModelByHotelAddressLocationCountry(String country);
 
     Optional<TripModel> findById(Long id);
+
+    List<TripModel> findTripModelByFoodOption(FoodOption FoodOption);
 
     List<TripModel> findTripModelByStartDateBefore(Date next7Days);
 

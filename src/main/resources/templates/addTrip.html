@@ -81,7 +81,7 @@
                 <div class="col-md-6 form-group">
                     <label>Select Departure Airport</label>
                     <select name="airportFrom" required id="airportFrom" class="form-control">
-                        <option value="" th:selected="selected" th:disabled="disabled">
+                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
                         <option th:each="airport : ${airports}"
                                 th:value="${airport.id}" th:text="${airport.name}"/>
                     </select>
@@ -90,7 +90,7 @@
                 <div class="col-md-6 form-group">
                     <label>Select Departure Airport</label>
                     <select name="airportTo" required id="airportTo" class="form-control">
-                        <option value="" th:selected="selected" th:disabled="disabled">
+                        <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
                         <option th:each="airport : ${airports}"
                                 th:value="${airport.id}" th:text="${airport.name}"/>
                     </select>
@@ -139,18 +139,6 @@
                 </div>
 
 
-                <!--                <div class="col-md-6 form-group">-->
-                <!--                    <label>Is promoted? </label>-->
-                <!--                    <div class="form-check form-check-inline">-->
-                <!--                        <input class="form-check-input" type="radio" th:name="${promoted}" id="option1" value="true">-->
-                <!--                        <label class="form-check-label" for="option1">Yes</label>-->
-                <!--                    </div>-->
-                <!--                    <div class="form-check form-check-inline">-->
-                <!--                        <input class="form-check-input" type="radio" th:field="${promoted}" id="option2" value="false" checked>-->
-                <!--                        <label class="form-check-label" for="option2">No</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
                 <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
         </div>
     </div>
@@ -159,32 +147,6 @@
 </div>
 </div>
 
-
-<!--                    <div class="col-md-6 form-group">-->
-<!--                        <strong>Gender</strong>-->
-<!--                        <div class="form-check form-check-inline">-->
-<!--&lt;!&ndash;                            <input class="form-check-input" type="radio" th:field="*{gender}" id="option1" value="Male">&ndash;&gt;-->
-<!--                            <label class="form-check-label" for="option1">Male</label>-->
-<!--                        </div>-->
-<!--                        <div class="form-check form-check-inline">-->
-<!--&lt;!&ndash;                            <input class="form-check-input" type="radio" th:field="*{gender}" id="option2" value="Female">&ndash;&gt;-->
-<!--                            <label class="form-check-label" for="option2">Female</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6 form-group">-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6 form-group">-->
-<!--                        <label>Joining Date</label>-->
-<!--&lt;!&ndash;                        <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="join_datepicker" th:field="*{joiningDate}">&ndash;&gt;-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6 form-group">-->
-<!--                        <label>Retiring Date</label>-->
-<!--&lt;!&ndash;                        <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="retire_datepicker" th:field="*{retiringDate}">&ndash;&gt;-->
-<!--                    </div>-->
-
-<!--Footer-->
-
-<!--<div class="b-example-divider"></div>-->
 
 <div class="container">
     <footer class="py-3 my-4">

@@ -3,6 +3,7 @@ package com.example.travelagency.service;
 import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.AddressModel;
 import com.example.travelagency.model.HotelModel;
+import com.example.travelagency.model.LocationModel;
 import com.example.travelagency.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class HotelService {
         throw new ApiRequestException("Hotel list is empty");
     }
 
+    public List<Integer> getHotelStandard(){
+        return getHotelStandard();
+    }
+
+
     public HotelModel getHotelById(Long hotelId) {
         if (hotelRepository.existsById(hotelId)) {
             return hotelRepository.findById(hotelId).get();
@@ -43,12 +49,23 @@ public class HotelService {
         return hotels;
     }
 
+    public Set<Integer> getListOfHotelStandard() {
+        List<HotelModel> allStandards = hotelRepository.findAll();
+        Set<Integer> standards = new HashSet<>();
+        for (HotelModel standard : allStandards) {
+            standards.add(standard.getStandard());
+        }
+        return standards;
+    }
+
     public List<HotelModel> getHotelsByContinent(String continent) {
         if (!hotelRepository.getAllByAddress_LocationContinent(continent).isEmpty()) {
             return hotelRepository.getAllByAddress_LocationContinent(continent);
         }
         throw new ApiRequestException("Hotels not found for continent: " + continent);
     }
+
+
 
     public List<HotelModel> getHotelsByStandard(Integer standard) {
         if (!hotelRepository.getHotelModelByStandard(standard).isEmpty()) {
