@@ -92,7 +92,7 @@ public String showSearchForm(Model model){
 
 @PostMapping("/search")
 public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-    String foodOption = searchForm.getFoodOption();
+    FoodOption foodOption = searchForm.getFoodOption();
     List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(),searchForm.getFoodOption(),searchForm.getContinent(),searchForm.getCountry());
     model.addAttribute("searchedTrips", searchedTrips);
     model.addAttribute("foodOptions", foodOption);

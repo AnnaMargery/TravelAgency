@@ -95,9 +95,16 @@ public class TripService {
         return tripRepository.findTripModelByStartDateBefore(date);
     }
 
-    public List<TripModel> findSelectedTrips(Integer hotelStandard, String foodOption, String continent, String country) {
+    public List<TripModel> findSelectedTrips(Integer hotelStandard, FoodOption foodOption, String continent, String country) {
         if (!tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country).isEmpty()) {
             return tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country);
+        }
+        throw new ApiRequestException("Trip not found for requested criteria");
+    }
+
+    public List<TripModel> findSelectedTripsWithoutFood(Integer hotelStandard, String continent, String country) {
+        if (!tripRepository.findSelectedTripWithoutFood(hotelStandard, continent, country).isEmpty()) {
+            return tripRepository.findSelectedTripWithoutFood(hotelStandard,continent, country);
         }
         throw new ApiRequestException("Trip not found for requested criteria");
     }
