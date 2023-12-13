@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class TripOrderModel {
     private TripModel trip;
 
     @OneToMany(mappedBy = "tripOrder")
-    private Set<TripParticipantModel> participant;
+    private List<TripParticipantModel> participant;
 
     private Integer numberOfAdults;
     private Integer numberOfChildren;

@@ -34,6 +34,7 @@ public class TripOrderService {
     public void PostAddTripOrder(TripOrderModel tripOrder) {
         Double totalPrice = totalPrice(tripOrder.getTrip().getId(), tripOrder.getNumberOfAdults(), tripOrder.getNumberOfChildren());
         tripOrder.setTotalPrice(totalPrice);
+        tripOrder.setId(null);
         tripOrderRepository.save(tripOrder);
     }
 

@@ -26,8 +26,6 @@ public class TripParticipantController {
         TripParticipantModel participant = new TripParticipantModel();
         model.addAttribute("participant", participant);
 
-//        TripOrderModel orderById = tripOrderService.getOrderById(id);
-//        participant.setTripOrder(orderById);
         model.addAttribute("orderId", id);
 
        return "addParticipant";
@@ -35,7 +33,6 @@ public class TripParticipantController {
 
     @PostMapping("/addParticipant/{id}")
     public String saveParticipant(@ModelAttribute TripParticipantModel participant, @PathVariable("id") Long id) {
-
         participant.setTripOrder(tripOrderService.getOrderById(id));
         tripParticipantService.postAddParticipant(participant);
 
