@@ -1,5 +1,6 @@
 package com.example.travelagency.controller;
 
+import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.*;
 import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,6 @@ public class TripController {
     public String getTripListByContinent(@PathVariable(value = "continent") String continent, Model model) {
         List<TripModel> tripsByContinent = tripService.getTripsByContinent(continent);
         model.addAttribute("tripsByContinent", tripsByContinent);
-//        return "redirect:/trips/continent/{continent}";
         return "tripsByContinent";
     }
 
@@ -47,7 +47,6 @@ public class TripController {
     public String getTripListByCountry(@PathVariable(value = "country") String country, Model model) {
         List<TripModel> tripsByCountry = tripService.getTripsByCountry(country);
         model.addAttribute("tripsByCountry", tripsByCountry);
-//        return "redirect:/trips/country/{country}";
         return "tripsByCountry";
     }
 
@@ -79,29 +78,34 @@ public class TripController {
     }
 
 
-@GetMapping("/search")
+    @GetMapping("/search")
 
-public String showSearchForm(Model model){
+    public String showSearchForm(Model model) {
         model.addAttribute("searchForm", new SearchForm());
-        model.addAttribute("foodOptions",  Arrays.asList(FoodOption.values()));
+        model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
         model.addAttribute("continents", locationService.getListOfContinents());
         model.addAttribute("countries", locationService.getListOfCountries());
         model.addAttribute("standards", hotelService.getListOfHotelStandard());
         return "searchTrip";
-}
+    }
 
-@PostMapping("/search")
-public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-    FoodOption foodOption = searchForm.getFoodOption();
-    List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(),searchForm.getFoodOption(),searchForm.getContinent(),searchForm.getCountry());
-    model.addAttribute("searchedTrips", searchedTrips);
-    model.addAttribute("foodOptions", foodOption);
-    model.addAttribute("continents", locationService.getListOfContinents());
-    model.addAttribute("countries", locationService.getListOfCountries());
-    model.addAttribute("standards", hotelService.getListOfHotelStandard());
-    return "getSearchedTrips";
+    @PostMapping("/search")
+    public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
 
-}
+        try {
+            FoodOption foodOption = searchForm.getFoodOption();
+            List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(), searchForm.getFoodOption(), searchForm.getContinent(), searchForm.getCountry());
+            model.addAttribute("searchedTrips", searchedTrips);
+            model.addAttribute("foodOptions", foodOption);
+            model.addAttribute("continents", locationService.getListOfContinents());
+            model.addAttribute("countries", locationService.getListOfCountries());
+            model.addAttribute("standards", hotelService.getListOfHotelStandard());
+            return "getSearchedTrips";
+        } catch (ApiRequestException e) {
+            return "errorTripSearch";
+        }
+    }
+
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
         TripModel tripModel = tripService.getTripById(id);
@@ -115,7 +119,6 @@ public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm search
     @PostMapping("/edit/{id}")
     public String saveEditTrip(@ModelAttribute TripModel tripModel, Model model) {
         TripModel updatedTrip = tripService.saveEditTrip(tripModel);
-//        return "redirect:/trips/admin";
         return "redirect:/trips";
     }
 
@@ -150,18 +153,6 @@ public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm search
         model.addAttribute("lastOrders", lastOrderedTrips);
         return "lastOrders";
     }
-    //todo
-//    @GetMapping("/select")
-//    public String getSelectFormTrip(Model model){
-//
-//        List<FoodOption> foodOptions = Arrays.stream(FoodOption.values()).toList();
-//        Set<String> continents = locationService.getListOfContinents();
-//
-//        model.addAttribute("continents", continents);
-//        model.addAttribute("allFoods", foodOptions);
-//        model.addAttribute("allHotels",hotelService.getHotelsList());
-//        model.addAttribute("allAirports",airportService.getAirportList());
-//        return "filteredTrips";
-//    }
+
 }
 

@@ -11,6 +11,7 @@ import jakarta.persistence.PreUpdate;
 import org.hibernate.validator.constraints.time.DurationMax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -108,8 +109,6 @@ public class TripService {
         }
         throw new ApiRequestException("Trip not found for requested criteria");
     }
-
-
 
     public List<TripModel> findByFoodOption(FoodOption foodOption) {
         return tripRepository.findTripModelByFoodOption(foodOption);
