@@ -27,6 +27,7 @@ public class TripModel {
     private boolean isPromoted;
     private Double priceForAdult;
     private Double priceForChild;
+
     @Enumerated(EnumType.STRING)
     private FoodOption foodOption;
     @ManyToOne(cascade = CascadeType.PERSIST)
