@@ -1,6 +1,5 @@
 package com.example.travelagency.controller;
 
-import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.*;
 import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/trips")
@@ -80,34 +78,15 @@ public class TripController {
         return "getTrips";
     }
 
-
-//    @GetMapping("/admin")
-//    public String getAdminTripList(Model model) {
-//        List<TripModel> tripList = tripService.getTripList();
-//        model.addAttribute("trips", tripList);
-//        return "allTrips";
-//    }
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
         TripModel tripModel = tripService.getTripById(id);
 
         model.addAttribute("tripToEdit", tripModel);
-//        model.addAttribute("hotelModel", tripModel.getHotel());
-//        model.addAttribute("airportModel", tripModel.getAirportTo());
-//        model.addAttribute("foods", tripModel.getFoodOption());
-
         model.addAttribute("allFoods", Arrays.asList(FoodOption.values()));
-        model.addAttribute("allHotels",hotelService.getHotelsList());
-        model.addAttribute("allAirports",airportService.getAirportList());
+        model.addAttribute("allHotels", hotelService.getHotelsList());
+        model.addAttribute("allAirports", airportService.getAirportList());
 
-
-//        model.addAttribute("priceAdult", tripModel.getPriceForAdult());
-//        model.addAttribute("priceChild", tripModel.getPriceForChild());
-//        model.addAttribute("numberOfPlaces", tripModel.getNumberOfPlaces());
-//        List<AirportModel> airportList = airportService.getAirportList();
-//        model.addAttribute("airports", airportList);
-//        List<HotelModel> hotelList = hotelService.getHotelsList();
-//        model.addAttribute("hotels", hotelList);
         return "adminEditTrip";
     }
 
@@ -148,18 +127,6 @@ public class TripController {
         model.addAttribute("lastOrders", lastOrderedTrips);
         return "lastOrders";
     }
-    //todo
-    @GetMapping("/select")
-    public String getSelectFormTrip(Model model){
 
-        List<FoodOption> foodOptions = Arrays.stream(FoodOption.values()).toList();
-        Set<String> continents = locationService.getListOfContinents();
-
-        model.addAttribute("continents", continents);
-        model.addAttribute("allFoods", foodOptions);
-        model.addAttribute("allHotels",hotelService.getHotelsList());
-        model.addAttribute("allAirports",airportService.getAirportList());
-        return "filteredTrips";
-    }
 }
 
