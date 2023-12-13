@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
@@ -18,26 +19,16 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@ExtendWith(MockitoExtension.class)
+
+
 @DataJpaTest
 class TripRepositoryTest {
+
     @Autowired
     private TripRepository tripRepository;
     @Autowired
     TestEntityManager testEntityManager;
 
-//    @BeforeEach
-//    void setUp() {
-//        MockitoAnnotations.initMocks(this);
-//        TripModel trip = new TripModel();
-//        trip.setId(111l);
-//        trip.setStartDate(new Date(2024, 06, 03));
-//        trip.setEndDate(new Date(2024, 06, 04));
-//        trip.setNumberOfPlaces(20);
-//        trip.setPriceForAdult(100d);
-//        trip.setPriceForChild(50d);
-//        tripRepository.save(trip);
-//    }
 
     @Test
     void givenTripObject_whenSave_thenReturnSavedTrip() {
@@ -75,18 +66,9 @@ class TripRepositoryTest {
 
     @Test
     void returnAllTrips() {
-        //given
-        TripModel tripModel = new TripModel();
-        tripModel.setId(110l);
-
-        tripModel.setDuration(1l);
-        tripModel.setNumberOfPlaces(30);
-        tripModel.setPriceForAdult(150d);
-        tripModel.setPriceForChild(50d);
-        tripRepository.save(tripModel);
         //when
         List<TripModel> allTrips = tripRepository.findAll();
         //then
-        assertThat(allTrips).hasSize(2);
+        assertThat(allTrips).hasSize(9);
     }
 }
