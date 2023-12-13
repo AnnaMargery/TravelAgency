@@ -90,4 +90,4 @@ To do:
 
 
 ## Contact
-Created by ...............
+Created by: Agnieszka Skrzypulec-Szota, Anna Margery, Marta Kozdrój
