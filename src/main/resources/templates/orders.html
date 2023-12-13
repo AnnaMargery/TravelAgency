@@ -80,7 +80,7 @@
         <td th:text="${order.getTrip().endDate}"></td>
         <td th:text="${order.getTrip().duration}"></td>
         <td th:text="${order.getTrip().hotel.name}"></td>
-        <td th:text="${order.getTrip().foodOption}"></td>
+        <td th:text="${order.getTrip().foodOption.getFoodOption()}"></td>
         <td th:text="${order.numberOfAdults}"></td>
         <td th:text="${order.numberOfChildren}"></td>
         <td th:text="${order.totalPrice}"></td>

@@ -81,10 +81,10 @@
         <td th:text="${lastmin.numberOfPlaces}"></td>
         <td th:text="${lastmin.priceForAdult}"></td>
         <td th:text="${lastmin.priceForChild}"></td>
-        <td th:text="${lastmin.foodOption}"></td>
+        <td th:text="${lastmin.foodOption.getFoodOption()}"></td>
         <td th:text="${lastmin.airportFrom.name}"></td>
         <td th:text="${lastmin.airportTo.name}"></td>
-        <td th:text="${lastmin.hotel.name} +  ${lastmin.hotel.address.street} +  ${lastmin.hotel.address.location.city}"></td>
+        <td th:text="${lastmin.hotel.name} + ' , '+ ${lastmin.hotel.address.street} + ' , ' + ${lastmin.hotel.address.postalCode} + ', ' + ${lastmin.hotel.address.location.country}"></td>
 
         <form th:action="@{/trips/edit/{id}(id=${lastmin.id})}" method="get">
             <td>
@@ -96,14 +96,11 @@
                 <button type="submit" class="btn btn-danger btn-block mt-3" sec:authorize="hasAuthority('ADMIN')">Delete
                 </button>
         </form>
-
-        <div>
             <form th:action="@{/orders/add/{id}(id=${lastmin.id})}" method="get">
                 <td>
                     <button type="submit" class="btn btn-primary btn-block mt-3" sec:authorize="hasAuthority('USER')">Order
                     </button>
             </form>
-
     </tr>
     </tbody>
 </table>

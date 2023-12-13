@@ -87,7 +87,7 @@
         <td th:text="${promoted.foodOption.getFoodOption()}"></td>
         <td th:text="${promoted.airportFrom.name}"></td>
         <td th:text="${promoted.airportTo.name}"></td>
-        <td th:text="${promoted.hotel.name} +  ${promoted.hotel.address.street} +  ${promoted.hotel.address.location.city}"></td>
+        <td th:text="${promoted.hotel.name} + ' , ' + ${promoted.hotel.address.street} + ' , ' +  ${promoted.hotel.address.location.city}"></td>
 
     <form th:action="@{/trips/edit/{id}(id=${promoted.id})}" method="get">
         <td>
