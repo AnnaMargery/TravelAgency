@@ -89,5 +89,7 @@ public class TripService {
         date = c.getTime();
         return tripRepository.findTripModelByStartDateBefore(date);
     }
+
+
 }
 

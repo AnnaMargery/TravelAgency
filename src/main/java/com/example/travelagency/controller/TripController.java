@@ -122,7 +122,7 @@ public class TripController {
     @GetMapping("/delete/{id}")
     public String deleteTrip(@PathVariable(value = "id") Long tripId) {
         if (!tripOrderService.getOrdersByTripId(tripId).isEmpty()) {
-            throw new ApiRequestException("Trip can't be removed - trip orders exists");
+            return "errorDeleteTrip";
         }
         tripService.deleteTrip(tripId);
         return "deleteInfo";
@@ -134,7 +134,6 @@ public class TripController {
         model.addAttribute("promotedTrips", promotedTrips);
         return "promotedTrips";
     }
-
 
     @GetMapping("/lastMinute")
     public String getLastMinuteTrips(Model model) {

@@ -3,6 +3,7 @@ package com.example.travelagency.repository;
 import com.example.travelagency.model.TripModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -25,6 +26,13 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     @Query("SELECT t FROM TripModel t WHERE t.isPromoted= TRUE")
     List<TripModel> findByPromotedIsTrue();
 
+
+    @Query("SELECT t FROM TripModel t " +
+            "JOIN HotelModel h ON t.hotel.id = h.id " +
+            "JOIN AddressModel a ON h.address.id= a.id " +
+            "JOIN LocationModel l ON a.location.id = l.id " +
+            "WHERE h.standard = ?1 AND t.foodOption = ?2 AND l.continent = ?3 AND l.country = ?4")
+    List<TripModel> findSelectedTrip(Integer hotelStandard, String foodOption, String continent, String country);
 
 
 }
