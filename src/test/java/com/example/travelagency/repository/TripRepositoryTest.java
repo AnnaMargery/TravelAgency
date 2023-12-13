@@ -1,4 +1,5 @@
 package com.example.travelagency.repository;
+
 import com.example.travelagency.model.TripModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TripRepositoryTest {
     @Autowired
     private TripRepository tripRepository;
-@Autowired
+    @Autowired
     TestEntityManager testEntityManager;
 
 //    @BeforeEach
@@ -52,6 +54,22 @@ class TripRepositoryTest {
         assertThat(testEntityManager.find(TripModel.class, save.getId())).isEqualTo(tripModel);
         assertThat(tripModel).isNotNull();
         assertThat(tripModel.getPriceForAdult()).isEqualTo(150d);
+
+    }
+
+    @Test
+    void givenTripCreated_whenFindById_thenSuccess() {
+        //given
+        TripModel trip = new TripModel();
+        trip.setDuration(1l);
+        trip.setNumberOfPlaces(30);
+        trip.setPriceForAdult(150d);
+        trip.setPriceForChild(50d);
+        testEntityManager.persist(trip);
+        //when
+        Optional<TripModel> tripById = tripRepository.findById(trip.getId());
+        //then
+        assertThat(tripById).contains(trip);
 
     }
 
