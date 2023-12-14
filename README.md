@@ -58,18 +58,23 @@ User:
 
 ## Screenshots
 Home Page with searching form 
+
 ![img.png](img.png)
 
 Page with admin view with the all trips
+
 ![img_1.png](img_1.png)
 
 Page with admin view with add trip form
+
 ![img_2.png](img_2.png)
 
 Page with user view with order trip form
+
 ![img_3.png](img_3.png)
 
 Page with user view with order details
+
 ![img_4.png](img_4.png)
 
 
