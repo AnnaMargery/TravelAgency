@@ -27,6 +27,16 @@ INSERT INTO location_model (continent, country, city)
 values ('Europe', 'Poland', 'Warsaw');
 INSERT INTO location_model (continent, country, city)
 values ('Europe', 'Poland', 'Cracow');
+INSERT INTO location_model (continent, country, city)
+values ('Africa', 'Morocco', 'Chefchaouen');
+INSERT INTO location_model (continent, country, city)
+values ('Africa', 'Morocco', 'Fez');
+INSERT INTO location_model (continent, country, city)
+values ('Africa', 'Egypt', 'Giza');
+INSERT INTO location_model (continent, country, city)
+values ('Asia', 'China', 'Shanghai');
+
+
 
 /* AddressModel init data*/
 /*HOTELE*/
@@ -48,6 +58,16 @@ INSERT INTO address_model (street, postal_code, location_id)
     values ('Gran Via de les Corts Catalanes 543', '08011', 5);
 INSERT INTO address_model (street, postal_code, location_id)
 values ('ChinaTown 123', '0826451', 12);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('35 Av. Hassan II', '91000',15);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('8 Avenue Ahmed Chaouki', '30000',16);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('10 Abu El Haule El Seyahy Street', '12222',17);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('Pund-dong- abau', '200120',18);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('C. Leopoldo Cólogan Zulueta 12', '38400',8);
 
 /*ADDRESY (LOTNISKA)*/
 INSERT INTO address_model (street, postal_code, location_id)
@@ -62,6 +82,17 @@ INSERT INTO address_model (street, postal_code, location_id)
 values ('Żwirki i Wigury 1', '02-143', 13);
 INSERT INTO address_model (street, postal_code, location_id)
 values ('Medweckiego 1', '32-083', 14);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('89 Avenu 9 Avril', '93000', 15);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('Fez', '30000', 16);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('Al Giza Desert', '4V5Q+583', 17);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('Yingbin Expy', '4RV5+P8J',18);
+INSERT INTO address_model (street, postal_code, location_id)
+values ('Santa Cruz de Tenerife', '38610',8);
+
 
 /* AirportHotel init data*/
 /*LOTNISKA*/
@@ -77,6 +108,18 @@ INSERT INTO airport_model (name, address_id)
 values ('Warsaw Chopin Airport', 5);
 INSERT INTO airport_model (name, address_id)
 values ('Cracow Airport', 6);
+INSERT INTO airport_model (name, address_id)
+values ('Teouan Airport', 7);
+INSERT INTO airport_model (name, address_id)
+values ('Aéroport Fes Saïss Oulad Tayeb', 19);
+INSERT INTO airport_model (name, address_id)
+values ('Sphinx international airport', 20);
+INSERT INTO airport_model (name, address_id)
+values ('Shanghai Pudong International Airport', 24);
+INSERT INTO airport_model (name, address_id)
+values ('Aeropuerto de Tenerife Sur', 14);
+
+
 
 /*HotelModel init data*/
 INSERT INTO hotel_model (name, standard, description, address_id)
@@ -91,6 +134,16 @@ INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Hotel Prague 1', 4, 'Nice hotel', 6);
 INSERT INTO hotel_model (name, standard, description, address_id)
 values ('Hotel Bee-Bei', 4, 'Nice hotel', 9);
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Hotel Vancii', 4, 'Very good', 10);
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Fes Marriott Hotel Jnan Palace', 5, 'Perfect', 11);
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Pyramids View Inn', 4, 'Very nice view',12 );
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Grand Hyatt Shanghai', 5, 'Stunning!', 24);
+INSERT INTO hotel_model (name, standard, description, address_id)
+values ('Hotel Best Semiramis', 4, 'Stunning!', 25);
 
 /*TripModel init data*/
 INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
@@ -130,59 +183,41 @@ INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_pro
                         price_for_child, food_option, airport_from_id, airport_to_id,
                         hotel_id)
 values ('2024-12-03', '2024-12-13', 10, 20, 'false', 150, 80, 'OB', 5, 3, 6);
---
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-01','2024-01-08',7,50,'true',6,1,5,1);
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-10','2024-01-15',5,30,'true',1,2,2,2);
--- INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, airport_from_id, airport_to_id, hotel_id, price_id)
--- values('2024-01-01','2024-01-08',7,50,'true',4,3,3,3);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
+                        hotel_id)
+values ('2024-12-15', '2024-12-24', 9, 30, 'true', 150, 180, 'ALLINC', 5, 7, 7);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
+                        hotel_id)
+values ('2024-03-10', '2024-03-24', 14, 25, 'true', 200, 150, 'ALLINC', 4, 8, 8);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
+                        hotel_id)
+values ('2024-03-15', '2024-03-25', 10, 30, 'true', 250, 180, 'ALLINC', 5, 9, 9);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
+                        hotel_id)
+values ('2023-12-15', '2023-12-25', 10, 30, 'true', 250, 180, 'ALLINC', 3, 10, 10);
+INSERT INTO trip_model (start_date, end_date, duration, number_of_places, is_promoted, price_for_adult,
+                        price_for_child, food_option, airport_from_id, airport_to_id,
+                        hotel_id)
+values ('2023-12-15', '2023-12-25', 10, 30, 'true', 250, 180, 'ALLINC', 5, 11, 11);
 
-
-/*FoodModel init data
-INSERT INTO food_model(food_option)
-values ('All-Inclusive');
-INSERT INTO food_model(food_option)
-values ('Full-Board');
-INSERT INTO food_model(food_option)
-values ('Half-Board');
-INSERT INTO food_model(food_option)
-values ('Bed and Breakfast');
-INSERT INTO food_model(food_option)
-values ('Only Bed');
-*/
-/*PriceModel init data
-INSERT INTO price_model (price_for_adult, price_for_children, food_id)
-values (1200, 600, 1);
-INSERT INTO price_model (price_for_adult, price_for_children, food_id)
-values (1000, 500, 2);
-INSERT INTO price_model (price_for_adult, price_for_children, food_id)
-values (800, 400, 3);
-*/
-/*PriceModel_TripModel
-INSERT INTO price_model_trip (price_id, trip_id)
-values (1, 1);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (2, 1);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (1, 2);
-INSERT INTO price_model_trip (price_id, trip_id)
-values (2, 2);
-*/
 
 /*TripOrder init data*/
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (1, 2, 1,10000);
+values (1, 2, 1,1000);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (2, 2, 0, 15000);
+values (2, 2, 0, 1500);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (3, 2, 0,19000);
+values (3, 2, 0,1900);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (4, 2, 3,20000);
+values (4, 2, 3,2000);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (5, 5, 0, 25000);
+values (5, 5, 0, 2500);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (6, 1, 1,5000);
+values (6, 1, 1,500);
 
 
 /*TripParticipant init data*/
