@@ -19,12 +19,12 @@ On the administrative side:
 - Add trips into travel agency offer,
 - Edit trips,
 - Delete trips,
-- Vieweing list of trips by Continent, Country, Las-minute trips, Promoted trips,
+- Viewing list of trips by Continent, Country, Las-minute trips, Promoted trips,
 - Searching trips by Continent, Country, Food option and Hotel standard
 - View trip orders
 
 From the user side:
-- Vieweing list of trips by Continent, Country, Las-minute trips, Promoted trips,
+- Viewing list of trips by Continent, Country, Las-minute trips, Promoted trips,
 - Searching trips by Continent, Country, Food option and Hotel standard
 - Creating trip orders
 - Adding trip participants
@@ -57,8 +57,21 @@ User:
 
 
 ## Screenshots
+Home Page with searching form 
+![img.png](img.png)
 
-////// TUTAJ WKLEIC ŁADNE SCREENY APLIKACJI./////
+Page with admin view with the all trips
+![img_1.png](img_1.png)
+
+Page with admin view with add trip form
+![img_2.png](img_2.png)
+
+Page with user view with order trip form
+![img_3.png](img_3.png)
+
+Page with user view with order details
+![img_4.png](img_4.png)
+
 
 ![Zrzut ekranu 2023-12-13 203435](https://github.com/mkozdroj/TravelAgency/assets/131193379/b24101df-c8cf-4480-89a8-12e94de4d8dd)
 ![Zrzut ekranu 2023-12-13 203515](https://github.com/mkozdroj/TravelAgency/assets/131193379/6a36391c-124b-414b-85e1-049b53cfc822)
