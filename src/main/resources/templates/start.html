@@ -57,85 +57,65 @@
             <div class="row">
                 <div class="col-md-7 col-md-push-5">
                     <div class="booking-cta">
-                        <h1>Make your reservation</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-                            ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-                            Perspiciatis.
+                        <h1>Book your trip</h1>
+                        <p>Unlock incredible journeys with just a few clicks!
+                            Experience the world like never before!
+                            From breathtaking landscapes to vibrant cultures, our  website
+                            offers a gateway to endless exploration. Explore, relax, and create unforgettable memories. Start planning today!
+                            Start your journey with us and let every mile become a story worth sharing!
+
                         </p>
                     </div>
                 </div>
                 <div class="col-md-4 col-md-pull-7">
                     <div class="booking-form">
-                        <form>
-                            <div class="form-group">
-                                <span class="form-label">Continent</span>
-                                <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">Country</span>
-                                <input class="form-control" type="text" placeholder="Enter a country">
-                            </div>
-                            <div class="form-group">
-                                <span class="form-label">City</span>
-                                <input class="form-control" type="text" placeholder="Enter a city">
-                            </div>
+                        <form th:action="@{/}" th:object="${searchForm}" method="post">
+                        <div class="form-group">
+                            <label>Select Continent</label>
+                            <select name="continent" required id="continent" class="form-control">
+                                <!--                    <select id="continent" name="continent" th:field="*{continent}">-->
+                                <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                                <option th:each="continent : ${continents}"
+                                        th:value="${continent}"
+                                        th:text="${continent}"></option>
+                            </select>
+                        </div>
 
-                            <div class="form-group">
-                                <span class="form-label">Your Destination</span>
-                                <input class="form-control" type="text" placeholder="Enter a destination or hotel name">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">Start date</span>
-                                        <input class="form-control" type="date" required>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <span class="form-label">End date</span>
-                                        <input class="form-control" type="date" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <span class="form-label">Food</span>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </select>
-                                        <span class="select-arrow"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <span class="form-label">Adults</span>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                        </select>
-                                        <span class="select-arrow"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <span class="form-label">Children</span>
-                                        <select class="form-control">
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                        </select>
-                                        <span class="select-arrow"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-btn">
-                                <button class="submit-btn">Check availability</button>
-                            </div>
+
+                        <div class="form-group">
+                            <label>Country:</label>
+                            <select name="country" required id="country" class="form-control">
+                                <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                                <!-- Loop through available food options -->
+                                <option th:each="country : ${countries}" th:value="${country}"
+                                        th:text="${country}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hotel standard:</label>
+                            <select name="standard" required id="standard" class="form-control">
+                                <option value="" th:selected="selected" th:disabled="disabled">Please select</option>
+                                <!-- Loop through available food options -->
+                                <option th:each="standard : ${standards}" th:value="${standard}"
+                                        th:text="${standard}"></option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Food Option:</label>
+                            <select name="foodOption" required id="foodOption" class="form-control">
+                                <option value="">Select Food Option</option>
+                                <!-- Loop through available food options -->
+                                <option th:each="option : ${foodOptions}" th:value="${option}"
+                                        th:text="${option.getFoodOption()}"></option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Search</button>
+                    </div>
                         </form>
                     </div>
                 </div>
