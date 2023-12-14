@@ -59,23 +59,23 @@ User:
 ## Screenshots
 Home Page with searching form 
 
-![img.png](img.png)
+![img.png](src%2Fmain%2Fresources%2Fstatic%2Fimg%2FReadme%2Fimg.png)
 
 Page with admin view with the all trips
 
-![img_1.png](img_1.png)
+![img_1.png](src%2Fmain%2Fresources%2Fstatic%2Fimg%2FReadme%2Fimg_1.png)
 
 Page with admin view with add trip form
 
-![img_2.png](img_2.png)
+![img_2.png](src%2Fmain%2Fresources%2Fstatic%2Fimg%2FReadme%2Fimg_2.png)
 
 Page with user view with order trip form
 
-![img_3.png](img_3.png)
+![img_3.png](src%2Fmain%2Fresources%2Fstatic%2Fimg%2FReadme%2Fimg_3.png)
 
 Page with user view with order details
 
-![img_4.png](img_4.png)
+![img_4.png](src%2Fmain%2Fresources%2Fstatic%2Fimg%2FReadme%2Fimg_4.png)
 
 
 ![Zrzut ekranu 2023-12-13 203435](https://github.com/mkozdroj/TravelAgency/assets/131193379/b24101df-c8cf-4480-89a8-12e94de4d8dd)
