@@ -43,10 +43,9 @@ public class TripService {
         return tripRepository.findTripModelByHotelAddressLocationCountry(country);
     }
 
-    public List<FoodOption> getFoodsList(){
+    public List<FoodOption> getFoodsList() {
         return Arrays.asList(FoodOption.values());
     }
-
 
     public TripModel getTripById(Long tripId) {
         if (tripRepository.existsById(tripId)) {
@@ -55,7 +54,7 @@ public class TripService {
         throw new ApiRequestException("Trip not found for id: " + tripId);
     }
 
-    public List<TripModel> getPromotedTrips(){
+    public List<TripModel> getPromotedTrips() {
         List<TripModel> promotedTrips = tripRepository.findByPromotedIsTrue();
         if (!promotedTrips.isEmpty()) {
             return promotedTrips;
@@ -65,7 +64,6 @@ public class TripService {
 
 
     public void PostAddTrip(TripModel tripModel) {
-//        TripModel tripModel = new TripModel();
         Long durationInMillies = Math.abs(tripModel.getEndDate().getTime() - tripModel.getStartDate().getTime());
         Long durationInDays = TimeUnit.DAYS.convert(durationInMillies, TimeUnit.MILLISECONDS);
         tripModel.setDuration(durationInDays);
@@ -87,7 +85,7 @@ public class TripService {
 
     }
 
-    public List<TripModel> getLastMinuteTrips(){
+    public List<TripModel> getLastMinuteTrips() {
         Date date = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -99,13 +97,6 @@ public class TripService {
     public List<TripModel> findSelectedTrips(Integer hotelStandard, FoodOption foodOption, String continent, String country) {
         if (!tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country).isEmpty()) {
             return tripRepository.findSelectedTrip(hotelStandard, foodOption, continent, country);
-        }
-        throw new ApiRequestException("Trip not found for requested criteria");
-    }
-
-    public List<TripModel> findSelectedTripsWithoutFood(Integer hotelStandard, String continent, String country) {
-        if (!tripRepository.findSelectedTripWithoutFood(hotelStandard, continent, country).isEmpty()) {
-            return tripRepository.findSelectedTripWithoutFood(hotelStandard,continent, country);
         }
         throw new ApiRequestException("Trip not found for requested criteria");
     }

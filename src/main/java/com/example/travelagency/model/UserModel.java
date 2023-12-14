@@ -26,7 +26,6 @@ public class UserModel {
     private String email;
     @Column(nullable = false)
     private String password;
-
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<UserRole> userRoles;

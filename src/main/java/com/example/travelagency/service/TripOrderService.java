@@ -16,11 +16,9 @@ public class TripOrderService {
     private final TripOrderRepository tripOrderRepository;
     private final TripRepository tripRepository;
 
-
     public List<TripOrderModel> getOrderList() {
         return tripOrderRepository.findAll();
     }
-
 
     public Double totalPrice(long tripId, int numberOfAdults, int numberOfChildren) {
         Optional<TripModel> tripById = tripRepository.findById(tripId);
@@ -29,7 +27,6 @@ public class TripOrderService {
         Long duration = tripById.get().getDuration();
         return (numberOfAdults * priceForAdult + numberOfChildren * priceForChildren) * duration;
     }
-
 
     public void PostAddTripOrder(TripOrderModel tripOrder) {
         Double totalPrice = totalPrice(tripOrder.getTrip().getId(), tripOrder.getNumberOfAdults(), tripOrder.getNumberOfChildren());

@@ -111,12 +111,5 @@ class TripRepositoryTest {
         //then
         assertThat(selectedTrips).hasSize(1);
     }
-    @Test
-    void returnTripsByStandardContinentAndCountry(){
-        //when
-        List<TripModel> selectedTripWithoutFood = tripRepository.findSelectedTripWithoutFood(3, "Europe", "United Kingdom");
-        //then
-        assertThat(selectedTripWithoutFood).hasSize(2);
-    }
 
 }

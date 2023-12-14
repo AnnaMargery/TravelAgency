@@ -29,20 +29,11 @@ public interface TripRepository extends JpaRepository<TripModel, Long> {
     @Query("SELECT t FROM TripModel t WHERE t.isPromoted= TRUE")
     List<TripModel> findByPromotedIsTrue();
 
-
     @Query("SELECT t FROM TripModel t " +
             "JOIN HotelModel h ON t.hotel.id = h.id " +
             "JOIN AddressModel a ON h.address.id= a.id " +
             "JOIN LocationModel l ON a.location.id = l.id " +
             "WHERE h.standard = ?1 AND t.foodOption = ?2 AND l.continent = ?3 AND l.country = ?4")
     List<TripModel> findSelectedTrip(Integer hotelStandard, FoodOption foodOption, String continent, String country);
-
-    @Query("SELECT t FROM TripModel t " +
-            "JOIN HotelModel h ON t.hotel.id = h.id " +
-            "JOIN AddressModel a ON h.address.id= a.id " +
-            "JOIN LocationModel l ON a.location.id = l.id " +
-            "WHERE h.standard = ?1 AND l.continent = ?2 AND l.country = ?3")
-    List<TripModel> findSelectedTripWithoutFood(Integer hotelStandard, String continent, String country);
-
 
 }

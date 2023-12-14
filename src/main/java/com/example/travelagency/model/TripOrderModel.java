@@ -16,13 +16,10 @@ public class TripOrderModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     private TripModel trip;
-
     @OneToMany(mappedBy = "tripOrder")
     private List<TripParticipantModel> participant;
-
     private Integer numberOfAdults;
     private Integer numberOfChildren;
     private Double totalPrice;

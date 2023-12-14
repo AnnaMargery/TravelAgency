@@ -21,11 +21,10 @@ public class AirportController {
         this.airportService = airportService;
     }
 
-
     @GetMapping
     public ResponseEntity<List<AirportModel>> getAirportsList() {
-            List<AirportModel> airportsList = airportService.getAirportList();
-            return ResponseEntity.ok(airportsList);
+        List<AirportModel> airportsList = airportService.getAirportList();
+        return ResponseEntity.ok(airportsList);
     }
 
     @GetMapping("/{airportId}")
@@ -36,7 +35,7 @@ public class AirportController {
 
     @PostMapping()
     public ResponseEntity<AirportModel> addAirport(@RequestBody AirportModel airportToAdd, AddressModel airportAddress) {
-        AirportModel airport = airportService.addAirport(airportToAdd,airportAddress);
+        AirportModel airport = airportService.addAirport(airportToAdd, airportAddress);
         return ResponseEntity.ok(airport);
     }
 
@@ -51,5 +50,4 @@ public class AirportController {
         AirportModel updatedAirport = airportService.saveEditAirport(airportToUpdate);
         return ResponseEntity.ok(updatedAirport);
     }
-
 }

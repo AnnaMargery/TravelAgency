@@ -25,9 +25,7 @@ public class TripParticipantController {
     public String getAddParticipantForm(@PathVariable("id") Long id, Model model) {
         TripParticipantModel participant = new TripParticipantModel();
         model.addAttribute("participant", participant);
-
         model.addAttribute("orderId", id);
-
        return "addParticipant";
     }
 
@@ -35,7 +33,6 @@ public class TripParticipantController {
     public String saveParticipant(@ModelAttribute TripParticipantModel participant, @PathVariable("id") Long id) {
         participant.setTripOrder(tripOrderService.getOrderById(id));
         tripParticipantService.postAddParticipant(participant);
-
         return "redirect:/orders/details/"+id;
     }
 }

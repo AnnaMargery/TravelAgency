@@ -1,6 +1,5 @@
 package com.example.travelagency.controller;
 
-import com.example.travelagency.exception.ApiRequestException;
 import com.example.travelagency.model.*;
 import com.example.travelagency.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,40 +69,11 @@ public class TripController {
         return "addTrip";
     }
 
-
     @PostMapping("/add")
     public String saveTrip(@ModelAttribute TripModel tripModel, Model model) {
         tripService.PostAddTrip(tripModel);
         return "getTrips";
     }
-
-
-//    @GetMapping("/search")
-//    public String showSearchForm(Model model) {
-//        model.addAttribute("searchForm", new SearchForm());
-//        model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
-//        model.addAttribute("continents", locationService.getListOfContinents());
-//        model.addAttribute("countries", locationService.getListOfCountries());
-//        model.addAttribute("standards", hotelService.getListOfHotelStandard());
-//        return "searchTrip";
-//    }
-//
-//    @PostMapping("/search")
-//    public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-//
-//        try {
-//            FoodOption foodOption = searchForm.getFoodOption();
-//            List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(), searchForm.getFoodOption(), searchForm.getContinent(), searchForm.getCountry());
-//            model.addAttribute("searchedTrips", searchedTrips);
-//            model.addAttribute("foodOptions", foodOption);
-//            model.addAttribute("continents", locationService.getListOfContinents());
-//            model.addAttribute("countries", locationService.getListOfCountries());
-//            model.addAttribute("standards", hotelService.getListOfHotelStandard());
-//            return "getSearchedTrips";
-//        } catch (ApiRequestException e) {
-//            return "errorTripSearch";
-//        }
-//    }
 
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
@@ -120,7 +90,6 @@ public class TripController {
         TripModel updatedTrip = tripService.saveEditTrip(tripModel);
         return "redirect:/trips";
     }
-
 
     @GetMapping("/delete/{id}")
     public String deleteTrip(@PathVariable(value = "id") Long tripId) {

@@ -21,7 +21,6 @@ public class AddressController {
 
     private final AddressService addressService;
 
-
     @Autowired
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
@@ -62,6 +61,4 @@ public class AddressController {
         AddressModel updatedAddress = addressService.updateAddress(addressToUpdate);
         return ResponseEntity.ok(updatedAddress);
     }
-
-    //todo zrobić testy w Postmanie!
 }

@@ -15,11 +15,8 @@ public class TripParticipantModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
-//    @ToString.Exclude
     private TripOrderModel tripOrder;
-
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
