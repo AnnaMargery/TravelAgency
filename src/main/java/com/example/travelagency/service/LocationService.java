@@ -31,13 +31,11 @@ public class LocationService {
         return locationRepository.save(locationToAdd);
     }
 
-
     public List<LocationModel> getLocationList() {
         if (!locationRepository.findAll().isEmpty()) {
             return locationRepository.findAll();
         }
         throw new ApiRequestException("Locations not found");
-
     }
 
     public Set<String> getListOfContinents() {

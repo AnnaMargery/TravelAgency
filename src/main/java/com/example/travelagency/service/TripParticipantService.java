@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TripParticipantService {
+
     private final TripParticipantRepository tripParticipantRepository;
 
     public void postAddParticipant(TripParticipantModel participant) {
@@ -27,6 +28,4 @@ public class TripParticipantService {
     public List<TripParticipantModel> findParticipantsByTripOrderId(Long tripOrderId) {
         return tripParticipantRepository.findAllByTripOrderId(tripOrderId);
     }
-
-
 }

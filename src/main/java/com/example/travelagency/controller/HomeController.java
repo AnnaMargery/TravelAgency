@@ -33,17 +33,15 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String greeting(Model model){
+    public String greeting(Model model) {
         model.addAttribute("searchForm", new SearchForm());
         model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
         model.addAttribute("continents", locationService.getListOfContinents());
         model.addAttribute("countries", locationService.getListOfCountries());
         model.addAttribute("standards", hotelService.getListOfHotelStandard());
-
         model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
         return "start";
     }
-
 
 
     @PostMapping("/")
@@ -66,23 +64,20 @@ public class HomeController {
     }
 
     @GetMapping("/start")
-    public String start(Model model){
+    public String start(Model model) {
         model.addAttribute("searchForm", new SearchForm());
         model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
         model.addAttribute("continents", locationService.getListOfContinents());
         model.addAttribute("countries", locationService.getListOfCountries());
         model.addAttribute("standards", hotelService.getListOfHotelStandard());
-        return "searchTrip";
+        model.addAttribute("userRoles", SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
+        return "start";
     }
 
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-
-
-
-
 
     @GetMapping("/admin")
     public String admin() {
@@ -98,7 +93,6 @@ public class HomeController {
     public String logout() {
         return "redirect:/login";
     }
-
 
 
 }

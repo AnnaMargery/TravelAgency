@@ -29,14 +29,14 @@
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(160, 214, 236, 0.55)
+    background: rgba(160, 214, 236, 0.37)
 }
 
 .booking-form {
     background-color: rgba(255, 255, 255, 0.76);
     padding: 20px 20px;
     -webkit-box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 5px 30px -5px rgba(0, 0, 0, 0.44);
     border-radius: 4px;
 }
 
@@ -44,6 +44,7 @@
     position: relative;
     margin-bottom: 5px;
 }
+
 
 .booking-form .form-control {
     background-color: #ebecee;
@@ -78,7 +79,7 @@
     appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.booking-form select.form-control + .select-arrow {
     position: absolute;
     right: 0px;
     bottom: 4px;
@@ -91,7 +92,7 @@
     font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.booking-form select.form-control + .select-arrow:after {
     content: '\279C';
     display: block;
     -webkit-transform: rotate(90deg);
@@ -131,23 +132,32 @@
 .booking-cta h1 {
     font-size: 40px;
     text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
     font-weight: 700;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.34);
 }
 
 .booking-cta p {
     font-size: 20px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.34);
+    text-align: justify;
+    text-justify: inter-word;
+    padding-right: 30px;
+}
+
+.position-for-cards {
+    margin-left: 10px;
+    margin-rigt: 0px;
 }
 
 
 .card {
     border: 0;
-    /*padding: 2% 2% 2% 2%;*/
-    /*margin-bottom: 2%;*/
     width: 20vw;
     height: 10%;
 }
+
 .img-hov img:hover {
     transform: scale(1.2);
     -webkit-transform: scale(1.05);

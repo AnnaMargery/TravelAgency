@@ -8,8 +8,6 @@ import java.util.List;
 
 @Repository
 public interface AddressRepository extends JpaRepository<AddressModel, Long> {
-
-
     List<AddressModel> findAllByLocationContinentContains(String continent);
 
 

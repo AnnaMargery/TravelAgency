@@ -38,9 +38,7 @@ public class TripOrderController {
     public String getAddTripOrderFormById(@PathVariable("id") Long id, Model model) {
         TripOrderModel tripOrderModel = new TripOrderModel();
         model.addAttribute("order", tripOrderModel);
-
         model.addAttribute("tripId", id);
-
         return "addOrder";
     }
 
@@ -53,7 +51,7 @@ public class TripOrderController {
             Integer updatedPNumberOfPlaces = tripById.getNumberOfPlaces() - (tripOrderModel.getNumberOfChildren() + tripOrderModel.getNumberOfAdults());
             tripById.setNumberOfPlaces(updatedPNumberOfPlaces);
             tripOrderService.PostAddTripOrder(tripOrderModel);
-        }else{
+        } else {
             throw new ApiRequestException("Not enough places in the trip");
         }
         return "redirect:/orders/details/" + tripOrderModel.getId();
@@ -62,14 +60,11 @@ public class TripOrderController {
 
     @GetMapping("/details/{id}")
     public String getOrderDetails(@PathVariable("id") Long id, Model model) {
-
         TripOrderModel orderById = tripOrderService.getOrderById(id);
         model.addAttribute("details", orderById);
-
         model.addAttribute("orderId", id);
         List<TripParticipantModel> participantsByTripOrderId = tripParticipantService.findParticipantsByTripOrderId(id);
         model.addAttribute("participantsList", participantsByTripOrderId);
-
         return "orderDetails";
     }
 }

@@ -65,8 +65,6 @@ public class HotelService {
         throw new ApiRequestException("Hotels not found for continent: " + continent);
     }
 
-
-
     public List<HotelModel> getHotelsByStandard(Integer standard) {
         if (!hotelRepository.getHotelModelByStandard(standard).isEmpty()) {
             return hotelRepository.getHotelModelByStandard(standard);
@@ -93,7 +91,4 @@ public class HotelService {
         }
         throw new ApiRequestException("Hotel not found for id: " + hotelToEdit.getId());
     }
-
-
-
 }

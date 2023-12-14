@@ -20,7 +20,6 @@ public class AirportService {
         this.airportRepository = airportRepository;
     }
 
-
     public Set<String> getAirportModelNames() {
         List<AirportModel> allAirports = airportRepository.findAll();
         Set<String> airports = new HashSet<>();
@@ -64,6 +63,5 @@ public class AirportService {
         }
         throw new ApiRequestException("Airport not found for id: " + airportId);
     }
-
 
 }

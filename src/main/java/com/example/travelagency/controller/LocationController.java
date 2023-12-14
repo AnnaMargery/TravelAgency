@@ -26,7 +26,6 @@ public class LocationController {
         return ResponseEntity.ok(locationList);
     }
 
-    //todo zapytać Mikolaja o exceptiony
     @GetMapping("/continent/{continent}")
     public ResponseEntity<List<LocationModel>> getLocationsByContinent(@PathVariable("continent") String continent) {
         List<LocationModel> locationList = locationService.getLocationListByContinent(continent);
