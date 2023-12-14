@@ -14,9 +14,9 @@ values ('Europe', 'Spain', 'Costa del Sol');
 INSERT INTO location_model (continent, country, city)
 values ('Europe', 'Spain', 'Costa Brava');
 INSERT INTO location_model (continent, country, city)
-values ('Europe', 'Spain', 'Tenerife');
+values ('Europe', 'Tenerife', 'Adeje');
 INSERT INTO location_model (continent, country, city)
-values ('Europe', 'Spain', 'Fuerteventura');
+values ('Europe', 'Fuertaventura', 'Corallejo');
 INSERT INTO location_model (continent, country, city)
 values ('Europe', 'Spain', 'Gran Canaria');
 INSERT INTO location_model (continent, country, city)
