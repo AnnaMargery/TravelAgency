@@ -92,7 +92,7 @@ Page with user view with order details
 - Initial database schemas and datas are incuded in file 'data.sql'
 - The application runs on localhost: 8080 
 - Database console is available : [http://localhost:8080/h2-console](url)
-- You can check the functionality of the backend itself using swagger: [http://localhost:8080/swagger-ui.html](url) - please, use passwoerd mentioned in General Information section
+- You can check the functionality of the backend itself using swagger: [http://localhost:8080/swagger-ui](url) - please, use passwoerd mentioned in General Information section
 
 
 ## Room for Improvement
