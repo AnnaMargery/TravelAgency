@@ -78,33 +78,32 @@ public class TripController {
     }
 
 
-    @GetMapping("/search")
-
-    public String showSearchForm(Model model) {
-        model.addAttribute("searchForm", new SearchForm());
-        model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
-        model.addAttribute("continents", locationService.getListOfContinents());
-        model.addAttribute("countries", locationService.getListOfCountries());
-        model.addAttribute("standards", hotelService.getListOfHotelStandard());
-        return "searchTrip";
-    }
-
-    @PostMapping("/search")
-    public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
-        try {
-            FoodOption foodOption = searchForm.getFoodOption();
-            List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(), searchForm.getFoodOption(), searchForm.getContinent(), searchForm.getCountry());
-            model.addAttribute("searchedTrips", searchedTrips);
-            model.addAttribute("foodOptions", foodOption);
-            model.addAttribute("continents", locationService.getListOfContinents());
-            model.addAttribute("countries", locationService.getListOfCountries());
-            model.addAttribute("standards", hotelService.getListOfHotelStandard());
-            return "getSearchedTrips";
-        } catch (ApiRequestException e) {
-            return "errorTripSearch";
-        }
-    }
+//    @GetMapping("/search")
+//    public String showSearchForm(Model model) {
+//        model.addAttribute("searchForm", new SearchForm());
+//        model.addAttribute("foodOptions", Arrays.asList(FoodOption.values()));
+//        model.addAttribute("continents", locationService.getListOfContinents());
+//        model.addAttribute("countries", locationService.getListOfCountries());
+//        model.addAttribute("standards", hotelService.getListOfHotelStandard());
+//        return "searchTrip";
+//    }
+//
+//    @PostMapping("/search")
+//    public String searchByFoodOption(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+//
+//        try {
+//            FoodOption foodOption = searchForm.getFoodOption();
+//            List<TripModel> searchedTrips = tripService.findSelectedTrips(searchForm.getStandard(), searchForm.getFoodOption(), searchForm.getContinent(), searchForm.getCountry());
+//            model.addAttribute("searchedTrips", searchedTrips);
+//            model.addAttribute("foodOptions", foodOption);
+//            model.addAttribute("continents", locationService.getListOfContinents());
+//            model.addAttribute("countries", locationService.getListOfCountries());
+//            model.addAttribute("standards", hotelService.getListOfHotelStandard());
+//            return "getSearchedTrips";
+//        } catch (ApiRequestException e) {
+//            return "errorTripSearch";
+//        }
+//    }
 
     @GetMapping("/edit/{id}")
     public String getEditTripForm(@PathVariable(value = "id") Long id, Model model) {
