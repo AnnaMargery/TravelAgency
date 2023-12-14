@@ -207,17 +207,17 @@ values ('2023-12-15', '2023-12-25', 10, 30, 'true', 250, 180, 'ALLINC', 5, 11, 1
 
 /*TripOrder init data*/
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (1, 2, 1,1000);
+values (1, 2, 1,10150);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (2, 2, 0, 1500);
+values (2, 2, 0, 4500);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (3, 2, 0,1900);
+values (3, 2, 0,5600);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (4, 2, 3,2000);
+values (4, 2, 3,16100);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (5, 5, 0, 2500);
+values (5, 5, 0, 8750);
 INSERT INTO trip_order_model (trip_id, number_of_adults, number_of_children,total_price)
-values (6, 1, 1,500);
+values (6, 1, 1,3500);
 
 
 /*TripParticipant init data*/

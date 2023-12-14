@@ -62,7 +62,7 @@ class TripRepositoryTest {
         //when
         List<TripModel> allTrips = tripRepository.findAll();
         //then
-        assertThat(allTrips).hasSize(9);
+        assertThat(allTrips).hasSize(14);
     }
 
     @Test
@@ -70,7 +70,7 @@ class TripRepositoryTest {
         //when
         List<TripModel> tripsInEurope = tripRepository.findTripModelByHotelAddressLocationContinent("Europe");
         //then
-        assertThat(tripsInEurope).hasSize(8);
+        assertThat(tripsInEurope).hasSize(9);
     }
 
     @Test
@@ -78,7 +78,7 @@ class TripRepositoryTest {
         //when
         List<TripModel> tripsInChina = tripRepository.findTripModelByHotelAddressLocationCountry("China");
         //then
-        assertThat(tripsInChina).hasSize(1);
+        assertThat(tripsInChina).hasSize(2);
     }
 
     @Test
@@ -96,7 +96,7 @@ class TripRepositoryTest {
         //when
         List<TripModel> promotedTrips = tripRepository.findByPromotedIsTrue();
         //then
-        assertThat(promotedTrips).hasSize(7);
+        assertThat(promotedTrips).hasSize(12);
     }
 
     @Test
