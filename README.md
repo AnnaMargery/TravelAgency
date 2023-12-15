@@ -40,7 +40,7 @@ User:
 - The default login is: user
 - Default password is: user
 
-## Entity-Relationship Diagam
+## Entity-Relationship Diagram
 
 ![ERD_Travel_Agency](https://github.com/mkozdroj/TravelAgency/assets/131193379/1a735358-bfa1-4021-8b4d-ac1593a81260)
 
@@ -89,17 +89,17 @@ Page with user view with order details
 ## Setup
 - Clone this repository to your IDE.
 - The project uses Maven as a build tool. 
-- Initial database schemas and datas are incuded in file 'data.sql'
+- Initial database schemas and datas are included in file 'data.sql'
 - The application runs on localhost: 8080 
 - Database console is available : [http://localhost:8080/h2-console](url)
-- You can check the functionality of the backend itself using swagger: [http://localhost:8080/swagger-ui.html](url) - please, use passwoerd mentioned in General Information section
+- You can check the functionality of the backend itself using swagger: [http://localhost:8080/swagger-ui.html](url) - please, use password mentioned in General Information section
 
 
 ## Room for Improvement
 To do:
 - Add more test
-- Add validation in backend connected with entities
-- Add Data tranfer objects
+- Add validation in the backend connected with entities
+- Add Data transfer objects
 
 
 ## Acknowledgements
