@@ -1,6 +1,7 @@
 # Travel Agency :airplane:
 > Restfull API MVC simulating travel agency application.
-> Final project for Go For Java, Girl! bootcamp- first edition 2023 r.
+> Final project for Go For Java, Girl! bootcamp- first edition 2023 r. Contributed with: M.Kozdrój, A.Skrzypulec-Szota
+> From 16th Dec developed by me.
 
 ## Table of Contents
 * [General Information](#general-information)
