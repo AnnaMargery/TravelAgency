@@ -15,7 +15,6 @@ public interface LocationRepository extends JpaRepository<LocationModel, Long> {
 
     LocationModel findLocationByCity(String city);
 
-    void deleteAddressById(Long addressId);
 
 
 }
